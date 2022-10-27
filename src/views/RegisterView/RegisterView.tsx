@@ -23,7 +23,7 @@ export function RegisterView(): JSX.Element {
                     type="password"
                 />
                 <Link className="mb-4" to="/login">J'ai déjà un compte</Link>
-                <Button>Je m'inscris</Button>
+                <Button fullWidth>Je m'inscris</Button>
             </form>
         </div>
     )

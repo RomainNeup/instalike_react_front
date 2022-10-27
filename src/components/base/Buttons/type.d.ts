@@ -7,4 +7,5 @@ interface ButtonProps {
     size?: 'small' | 'medium' | 'large';
     color?: 'primary' | 'secondary' | 'basic' = 'primary';
     plain?: boolean;
+    fullWidth?: boolean;
 }

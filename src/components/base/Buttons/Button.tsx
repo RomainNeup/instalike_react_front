@@ -4,13 +4,12 @@ export function Button(props: ButtonProps): JSX.Element {
     const componentClass = clsx(
         props.className,
         [
-            "w-full",
             "block",
             "rounded-lg",
             "border"
         ],
         {
-            "p-1": props.size === "small",
+            "p-1 px-2": props.size === "small",
             "p-2": props.size === "medium" || !props.size,
             "p-3": props.size === "large",
     
@@ -27,6 +26,8 @@ export function Button(props: ButtonProps): JSX.Element {
             "text-basic hover:bg-basic hover:text-primary": props.color === "basic" && !props.plain,
     
             "hover:bg-transparent": props.plain,
+
+            "w-full": props.fullWidth,
         }
     )
     return (

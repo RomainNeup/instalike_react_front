@@ -18,7 +18,7 @@ export function LoginView(): JSX.Element {
                     type="password"
                 />
                 <Link className="mb-4" to="/register">Je n'ai pas de compte</Link>
-                <Button>Je me connecte</Button>
+                <Button fullWidth>Je me connecte</Button>
             </form>
         </div>
     )
