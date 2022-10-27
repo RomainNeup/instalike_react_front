@@ -1,4 +1,4 @@
-import { IndexView, LoginView } from "../views";
+import { IndexView, LoginView, RegisterView } from "../views";
 
 export default function getRoutes(): AppRoute[] {
     return [
@@ -9,6 +9,10 @@ export default function getRoutes(): AppRoute[] {
         {
             path: '/login',
             element: LoginView,
+        },
+        {
+            path: '/register',
+            element: RegisterView
         }
     ]
 }
