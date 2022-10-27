@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import { H3 } from "../base";
-import { Image } from "../base/Images";
+import { H3, Image } from "../";
 
 export function Header(props: LayoutProps): JSX.Element {
     return (
