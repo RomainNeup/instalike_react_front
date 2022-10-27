@@ -5,7 +5,7 @@ export function Input(props: InputProps): JSX.Element {
                 <label v-if="label">{props.label}</label>
             </div>
             <input
-                className="w-full block rounded-md bg-transparent border border-primary placeholder:text-primary/50 p-2"
+                className={`${!props.noBorder && "border border-primary p-2"} w-full block rounded-md bg-transparent placeholder:text-primary/50 px-2`}
                 type={props.type}
                 placeholder={props.placeholder}
                 value={props.value}
