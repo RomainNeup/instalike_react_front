@@ -1,4 +1,4 @@
-import { Button, H1, Input } from "../../components";
+import { Button, H1, Input , Link } from "../../components";
 import React from "react";
 
 export function LoginView(): JSX.Element {
@@ -10,16 +10,14 @@ export function LoginView(): JSX.Element {
                     label="Nom d'utilisateur"
                     placeholder="toto"
                     className="mb-4"
-                    v-model="identifier"
                 />
                 <Input
                     label="Mot de passe"
                     placeholder="****"
                     className="mb-8"
-                    v-model="password"
                     type="password"
                 />
-                {/* <Link className="mb-4" to="/register">Je n'ai pas de compte</Link> */}
+                <Link className="mb-4" to="/register">Je n'ai pas de compte</Link>
                 <Button>Je me connecte</Button>
             </form>
         </div>

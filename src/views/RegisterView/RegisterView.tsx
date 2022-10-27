@@ -1,4 +1,4 @@
-import { Button, H1, Input } from "../../components"
+import { Button, H1, Input, Link } from "../../components"
 
 export function RegisterView(): JSX.Element {
     return (
@@ -9,22 +9,20 @@ export function RegisterView(): JSX.Element {
                     label="Nom d'utilisateur"
                     placeholder="toto"
                     className="mb-4"
-                    v-model="username"
                 />
                 <Input
                     label="Adresse email"
                     placeholder="example@mail.fr"
                     className="mb-4"
-                    v-model="email"
+                    type="email"
                 />
                 <Input
                     label="Mot de passe"
                     placeholder="****"
                     className="mb-8"
-                    v-model="password"
                     type="password"
                 />
-                {/* <Link className="mb-4" to="/login">J'ai déjà un compte</Link> */}
+                <Link className="mb-4" to="/login">J'ai déjà un compte</Link>
                 <Button>Je m'inscris</Button>
             </form>
         </div>

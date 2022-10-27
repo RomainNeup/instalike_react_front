@@ -6,4 +6,5 @@ interface InputProps {
     value?: string;
     placeholder?: string;
     label?: string;
+    noBorder?: boolean;
 }
