@@ -3,7 +3,7 @@ import { Image, P, Icon } from "../../";
 export function PostBody(props: PostBodyProps): JSX.Element {
     return (
         <div className={`${props.className}`}>
-            <Image className="h-96 w-full" src={props.post.image} alt={props.post.caption} />
+            <Image className="h-96 w-full" src={props.post.image} alt={props.post.caption} border="primary" />
             <div className="mt-2">
                 <Icon name="favorite" className="text-secondary mr-2" />
                 <Icon name="chat_bubble" className="text-secondary" />

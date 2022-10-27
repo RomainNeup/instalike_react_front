@@ -3,5 +3,5 @@ interface ImageProps {
     src: string;
     className?: string;
     round?: boolean;
-    border?: string;
+    border?: "primary" | "secondary" | "basic";
 }
