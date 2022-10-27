@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f3eb1bf8-6a2a-413a-9e39-9caeb13aef34/deploy-status)](https://app.netlify.com/sites/instalike-front/deploys)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
