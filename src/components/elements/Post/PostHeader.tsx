@@ -1,4 +1,4 @@
-import { Image, P } from "../../../components/base";
+import { Button, Image, P } from "../../../components/base";
 
 export function PostHeader(props: PostHeaderProps) {
     return (
@@ -8,7 +8,7 @@ export function PostHeader(props: PostHeaderProps) {
             </div>
             <div>
                 <P className="flex-none">{props.username}</P>
-                {/* <SmallButton>Follow</SmallButton> */}
+                <Button size="small">Follow</Button>
             </div>
         </div>
     )
