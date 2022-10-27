@@ -5,3 +5,4 @@ export * from "./Images";
 export * from "./Links";
 export * from "./Texts";
 export * from "./Icons";
+export * from "./Errors";
