@@ -7,16 +7,26 @@ export function Button(props: ButtonProps): JSX.Element {
             "w-full",
             "block",
             "rounded-lg",
-            "bg-transparent",
-            "border",
-            "px-2"
+            "border"
         ],
         {
             "p-1": props.size === "small",
             "p-2": props.size === "medium" || !props.size,
             "p-3": props.size === "large",
-            "text-primary border-primary hover:bg-primary hover:text-basic": props.color === "primary" || !props.color,
-            "text-secondary border-secondary hover:bg-secondary hover:text-basic": props.color === "secondary",
+    
+            "border-primary": props.color === "primary" || !props.color,
+            "border-secondary": props.color === "secondary",
+            "border-basic": props.color === "basic",
+    
+            "bg-primary text-basic hover:text-primary": props.color === "primary" && props.plain,
+            "bg-secondary text-basic hover:text-secondary": props.color === "secondary" && props.plain,
+            "bg-basic text-primary hover:text-basic": props.color === "basic" && props.plain,
+
+            "text-primary hover:bg-primary hover:text-basic": props.color === "primary" && !props.plain,
+            "text-secondary hover:bg-secondary hover:text-basic": props.color === "secondary" && !props.plain,
+            "text-basic hover:bg-basic hover:text-primary": props.color === "basic" && !props.plain,
+    
+            "hover:bg-transparent": props.plain,
         }
     )
     return (
