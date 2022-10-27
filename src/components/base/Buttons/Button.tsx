@@ -9,16 +9,14 @@ export function Button(props: ButtonProps): JSX.Element {
             "rounded-lg",
             "bg-transparent",
             "border",
-            "border-primary",
-            "text-primary",
-            "hover:bg-primary",
-            "hover:text-basic",
             "px-2"
         ],
         {
             "p-1": props.size === "small",
             "p-2": props.size === "medium" || !props.size,
-            "p-3": props.size === "large"
+            "p-3": props.size === "large",
+            "text-primary border-primary hover:bg-primary hover:text-basic": props.color === "primary" || !props.color,
+            "text-secondary border-secondary hover:bg-secondary hover:text-basic": props.color === "secondary",
         }
     )
     return (
