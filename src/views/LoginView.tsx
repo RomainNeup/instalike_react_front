@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import {
-  Button, H1, Input, Link,
-} from '../../components';
+import Button from '../components/base/Buttons/Button';
+import H1 from '../components/base/Titles/H1';
+import Input from '../components/base/Inputs/Input';
+import Link from '../components/base/Links/Link';
 
-export function LoginView(): JSX.Element {
+export default function LoginView(): JSX.Element {
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
 
@@ -30,7 +31,7 @@ export function LoginView(): JSX.Element {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Link className="mb-4" to="/register">Je n'ai pas de compte</Link>
+        <Link className="mb-4" to="/register">Je n&apos;ai pas de compte</Link>
         <Button fullWidth>Je me connecte</Button>
       </form>
     </div>

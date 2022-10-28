@@ -1,14 +1,14 @@
 import React from 'react';
-import { PostBody } from './PostBody';
-import { PostFooter } from './PostFooter';
-import { PostHeader } from './PostHeader';
+import PostBody from './PostBody';
+import PostFooter from './PostFooter';
+import PostHeader from './PostHeader';
 
-export function Post(props: PostProps): JSX.Element {
+export default function Post({ user, post }: PostProps): JSX.Element {
   return (
     <div className="w-full mb-8">
-      <PostHeader username={props.user.username} avatar={props.user.avatar} />
-      <PostBody {...props} className="mb-4" />
-      <PostFooter {...props} className="mb-4" />
+      <PostHeader username={user.username} avatar={user.avatar} />
+      <PostBody post={post} user={user} className="mb-4" />
+      <PostFooter className="mb-4" user={user} />
     </div>
   );
 }

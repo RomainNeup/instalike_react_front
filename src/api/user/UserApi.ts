@@ -1,6 +1,6 @@
 import API from '../Api';
 
-export class UserApi extends API {
+export default class UserApi extends API {
   public login(identifier: string, password: string): Promise<User> {
     return this.post('user/login', {
       identifier,

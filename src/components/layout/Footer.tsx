@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-export function Footer(): JSX.Element {
+export default function Footer(): JSX.Element {
   return (
     <div />
   );

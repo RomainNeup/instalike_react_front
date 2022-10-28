@@ -1,10 +1,10 @@
 import React from 'react';
 import clsx from 'clsx';
-import { Icon } from '../Icons';
+import Icon from '../Icons/Icon';
 
-export function Error(props: ErrorProps): JSX.Element {
+export default function Error({ id, message, className }: ErrorProps): JSX.Element {
   const errorClass = clsx(
-    props.className,
+    className,
     [
       'bg-secondary',
       'w-full',
@@ -13,16 +13,19 @@ export function Error(props: ErrorProps): JSX.Element {
       'text-basic',
     ],
   );
+  const deleteError = () => {
+    console.log(`Delete error ${id}`);
+  };
 
   return (
     <div className={errorClass}>
       <Icon
         name="close"
         className="float-right cursor-pointer hover:text-basic/75"
-        onClick={() => {}}
+        onClick={deleteError}
       />
       <b className="font-bold">Erreur ! </b>
-      {props.message}
+      {message}
     </div>
   );
 }
