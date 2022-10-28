@@ -15,13 +15,15 @@ export default class API {
     if (!response.ok) {
       response.text().then((text) => {
         const { errors } = JSON.parse(text);
-        // errors.forEach((error: string) => store.dispatch("addError", error)); //TODO error handling
+        // errors.forEach((error: string) => store.dispatch("addError", error));
+        // TODO error handling
       });
       return null;
     }
     return response.json().then((a) => {
       if (a.errors && a.errors.length) {
-        // a.errors.forEach((error: string) => store.dispatch("addError", error)); //TODO Error handling
+        // a.errors.forEach((error: string) => store.dispatch("addError", error));
+        // TODO Error handling
       }
       return a;
     });
