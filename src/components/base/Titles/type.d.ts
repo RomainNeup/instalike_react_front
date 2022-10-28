@@ -1,4 +1,4 @@
 interface TitleProps {
-    children: React.ReactNode;
-    className?: string;
+  children: React.ReactNode;
+  className?: string;
 }

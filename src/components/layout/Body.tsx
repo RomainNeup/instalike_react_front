@@ -1,11 +1,11 @@
-import { Footer } from "./Footer";
-import { Header } from "./Header";
+import { Footer } from './Footer';
+import { Header } from './Header';
 
 export function Body(props: BodyProps): JSX.Element {
-    return (
-        <div>
-            <Header />
-            {/* <div className={`${props.className} px-8 md:px-16 justify-center flex`}>
+  return (
+    <div>
+      <Header />
+      {/* <div className={`${props.className} px-8 md:px-16 justify-center flex`}>
       <div className={`${props.className} max-w-md w-2/3`}>
         <Error
           v-for="(error, key) in errors"
@@ -16,10 +16,10 @@ export function Body(props: BodyProps): JSX.Element {
         />
       </div>
     </div> */}
-            <div className={`${props.className} p-8 md:px-16 flex justify-center`}>
-                {props.children}
-            </div>
-            <Footer />
-        </div>
-    )
+      <div className={`${props.className} p-8 md:px-16 flex justify-center`}>
+        {props.children}
+      </div>
+      <Footer />
+    </div>
+  );
 }

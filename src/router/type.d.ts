@@ -1,4 +1,4 @@
 interface AppRoute {
-    path: string;
-    element: () => JSX.Element;
+  path: string;
+  element: () => JSX.Element;
 }

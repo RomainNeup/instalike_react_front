@@ -1,5 +1,5 @@
 interface ErrorProps {
-    message: string
-    id: number
-    className?: string;
+  message: string
+  id: number
+  className?: string;
 }

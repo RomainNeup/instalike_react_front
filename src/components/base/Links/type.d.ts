@@ -1,5 +1,5 @@
 interface LinkProps {
-    children: React.ReactNode;
-    to: string;
-    className?: string;
+  children: React.ReactNode;
+  to: string;
+  className?: string;
 }

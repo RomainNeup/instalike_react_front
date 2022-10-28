@@ -1,7 +1,7 @@
 interface BodyProps extends LayoutProps {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }
 
 interface LayoutProps {
-    className?: string;
+  className?: string;
 }

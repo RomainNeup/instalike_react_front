@@ -1,5 +1,5 @@
 interface IconProps {
-    name: string
-    className?: string;
-    onClick?: function;
+  name: string
+  className?: string;
+  onClick?: function;
 }

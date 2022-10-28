@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
-import routes from './router/routes';
 import { Route, Routes } from 'react-router-dom';
+import routes from './router/routes';
 import { Body } from './components/layout/Body';
 
 function App(): JSX.Element {
