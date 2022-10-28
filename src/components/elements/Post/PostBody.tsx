@@ -13,7 +13,7 @@ export default function PostBody({ post, user, className }: PostBodyProps): JSX.
         <P className="font-light">
           {post.likes}
           {' '}
-          j'aime
+          j&apos;aime
         </P>
         <P className="font-light">
           <b className="font-bold">
