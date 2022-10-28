@@ -31,7 +31,7 @@ export default function LoginView(): JSX.Element {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Link className="mb-4" to="/register">Je n'ai pas de compte</Link>
+        <Link className="mb-4" to="/register">Je n&apos;ai pas de compte</Link>
         <Button fullWidth>Je me connecte</Button>
       </form>
     </div>
