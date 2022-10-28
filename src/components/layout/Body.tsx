@@ -1,8 +1,8 @@
 import React from 'react';
-import { Footer } from './Footer';
-import { Header } from './Header';
+import Footer from './Footer';
+import Header from './Header';
 
-export function Body(props: BodyProps): JSX.Element {
+export default function Body(props: BodyProps): JSX.Element {
   return (
     <div>
       <Header />

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Image, P } from '../../base';
 
-export function PostHeader(props: PostHeaderProps) {
+export default function PostHeader(props: PostHeaderProps) {
   return (
     <div className="flex flex-row space-x-4 mb-4">
       <div className="w-16 h-16">

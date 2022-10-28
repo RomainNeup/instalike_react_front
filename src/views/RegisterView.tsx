@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Button, H1, Input, Link,
-} from '../../components';
+} from '../components';
 
 export default function RegisterView(): JSX.Element {
   return (

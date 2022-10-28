@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, P, Icon } from '../..';
 
-export function PostBody(props: PostBodyProps): JSX.Element {
+export default function PostBody(props: PostBodyProps): JSX.Element {
   return (
     <div className={`${props.className}`}>
       <Image className="h-96 w-full" src={props.post.image} alt={props.post.caption} border="primary" />

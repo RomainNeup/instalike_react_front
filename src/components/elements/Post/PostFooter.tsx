@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, Input } from '../..';
 
-export function PostFooter(props: PostBodyProps): JSX.Element {
+export default function PostFooter(props: PostBodyProps): JSX.Element {
   return (
     <div className={props.className}>
       <div className="flex flex-row space-x-4 mb-4">

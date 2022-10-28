@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { H3, Image } from '..';
+import { H3, Image } from '../base';
 
-export function Header(props: LayoutProps): JSX.Element {
+export default function Header(props: LayoutProps): JSX.Element {
   return (
     <div className={`${props.className} p-8 flex justify-between`}>
       <Link to="/">

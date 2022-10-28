@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 
-export function H1({children, className}: TitleProps): JSX.Element {
+export function H1({ children, className }: TitleProps): JSX.Element {
   const componentClass = clsx(
     className,
     [

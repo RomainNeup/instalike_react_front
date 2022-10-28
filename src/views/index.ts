@@ -1,7 +1,7 @@
-import ComponentView from './ComponentView/ComponentView';
-import IndexView from './IndexView/IndexView';
-import LoginView from './LoginView/LoginView';
-import RegisterView from './RegisterView/RegisterView';
+import ComponentView from './ComponentView';
+import IndexView from './IndexView';
+import LoginView from './LoginView';
+import RegisterView from './RegisterView';
 
 export {
   ComponentView,
