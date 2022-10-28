@@ -1,6 +1,6 @@
 import React from 'react';
-import Image from "../../base/Images/Image";
-import Input from "../../base/Inputs/Input";
+import Image from '../../base/Images/Image';
+import Input from '../../base/Inputs/Input';
 
 export default function PostFooter({ className, user }: PostFooterProps): JSX.Element {
   return (

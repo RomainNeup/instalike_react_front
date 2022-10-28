@@ -1,9 +1,9 @@
 import React from 'react';
-import Button from "../../base/Buttons/Button";
-import Image from "../../base/Images/Image";
-import P from "../../base/Texts/P";
+import Button from '../../base/Buttons/Button';
+import Image from '../../base/Images/Image';
+import P from '../../base/Texts/P';
 
-export default function PostHeader({avatar, username}: PostHeaderProps) {
+export default function PostHeader({ avatar, username }: PostHeaderProps) {
   return (
     <div className="flex flex-row space-x-4 mb-4">
       <div className="w-16 h-16">
