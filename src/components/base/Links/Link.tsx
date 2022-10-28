@@ -2,9 +2,9 @@ import React from 'react';
 import { Link as ReactLink } from 'react-router-dom';
 import clsx from 'clsx';
 
-export function Link(props: LinkProps): JSX.Element {
+export function Link({children, to, className}: LinkProps): JSX.Element {
   const componentClass = clsx(
-    props.className,
+    className,
     [
       'w-full',
       'block',
@@ -20,9 +20,9 @@ export function Link(props: LinkProps): JSX.Element {
     <div>
       <ReactLink
         className={componentClass}
-        to={props.to}
+        to={to}
       >
-        {props.children}
+        {children}
       </ReactLink>
     </div>
   );
