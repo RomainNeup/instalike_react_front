@@ -1,4 +1,11 @@
-export * from './LoginView';
-export * from './IndexView';
-export * from './RegisterView';
-export * from './ComponentView';
+import ComponentView from './ComponentView';
+import IndexView from './IndexView';
+import LoginView from './LoginView';
+import RegisterView from './RegisterView';
+
+export {
+  ComponentView,
+  IndexView,
+  LoginView,
+  RegisterView,
+};

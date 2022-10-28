@@ -1,24 +1,26 @@
 import React from 'react';
-import { Image, P, Icon } from '../..';
+import Icon from '../../base/Icons/Icon';
+import P from '../../base/Texts/P';
+import Image from '../../base/Images/Image';
 
-export function PostBody(props: PostBodyProps): JSX.Element {
+export default function PostBody({ post, user, className }: PostBodyProps): JSX.Element {
   return (
-    <div className={`${props.className}`}>
-      <Image className="h-96 w-full" src={props.post.image} alt={props.post.caption} border="primary" />
+    <div className={`${className}`}>
+      <Image className="h-96 w-full" src={post.image} alt={post.caption} border="primary" />
       <div className="mt-4">
         <Icon name="favorite" className="text-secondary mr-2" />
         <Icon name="chat_bubble" className="text-secondary" />
         <P className="font-light">
-          {props.post.likes}
+          {post.likes}
           {' '}
-          j'aime
+          j&apos;aime
         </P>
         <P className="font-light">
           <b className="font-bold">
-            {props.user.username}
+            {user.username}
             {' '}
           </b>
-          {props.post.caption}
+          {post.caption}
         </P>
       </div>
     </div>

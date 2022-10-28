@@ -1,9 +1,11 @@
 import React from 'react';
 import clsx from 'clsx';
 
-export function Input(props: InputProps): JSX.Element {
+export default function Input({
+  className, disabled, label, noBorder, onChange, placeholder, type, value,
+}: InputProps): JSX.Element {
   const componentClass = clsx(
-    props.className,
+    className,
     ['text-primary'],
   );
   const inputClass = clsx(
@@ -16,20 +18,22 @@ export function Input(props: InputProps): JSX.Element {
       'px-2',
     ],
     {
-      'border border-primary p-2': !props.noBorder,
-      'mt-2': !!props.label,
+      'border border-primary p-2': !noBorder,
+      'mt-2': !!label,
     },
   );
 
   return (
     <div className={componentClass}>
-      <label hidden={!props.label}>{props.label}</label>
+      <label hidden={!label} htmlFor={label}>{label}</label>
       <input
+        id={label}
         className={inputClass}
-        type={props.type}
-        placeholder={props.placeholder}
-        value={props.value}
-        onChange={props.onChange}
+        type={type}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        disabled={disabled}
       />
     </div>
   );

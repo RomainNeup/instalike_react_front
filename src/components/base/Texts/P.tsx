@@ -1,9 +1,9 @@
 import React from 'react';
 import clsx from 'clsx';
 
-export function P(props: PProps): JSX.Element {
+export default function P({ children, className }: PProps): JSX.Element {
   const componentClass = clsx(
-    props.className,
+    className,
     [
       'text-primary',
       'text-base',
@@ -14,7 +14,7 @@ export function P(props: PProps): JSX.Element {
   );
   return (
     <p className={componentClass}>
-      {props.children}
+      {children}
     </p>
   );
 }
