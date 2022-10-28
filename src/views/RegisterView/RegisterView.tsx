@@ -3,7 +3,7 @@ import {
   Button, H1, Input, Link,
 } from '../../components';
 
-export function RegisterView(): JSX.Element {
+export default function RegisterView(): JSX.Element {
   return (
     <div className="max-w-md w-2/3">
       <H1 className="mb-16">Inscrivez vous</H1>

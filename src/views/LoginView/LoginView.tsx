@@ -3,7 +3,7 @@ import {
   Button, H1, Input, Link,
 } from '../../components';
 
-export function LoginView(): JSX.Element {
+export default function LoginView(): JSX.Element {
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
 

@@ -3,7 +3,7 @@ import {
   Button, H1, H2, H3, H4, H5,
 } from '../../components';
 
-export function ComponentView() {
+export default function ComponentView() {
   return (
     <div className="w-full max-w-lg content-center">
       <div className="my-4">

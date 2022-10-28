@@ -1,7 +1,7 @@
 import React from 'react';
 import { Post } from '../../components';
 
-export function IndexView(): JSX.Element {
+export default function IndexView(): JSX.Element {
   return (
     <div className="w-full max-w-lg content-center">
       <Post
