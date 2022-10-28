@@ -1,3 +1,4 @@
+import React from 'react';
 import { Image, P, Icon } from '../..';
 
 export function PostBody(props: PostBodyProps): JSX.Element {

@@ -1,3 +1,4 @@
+import React from 'react';
 import { Button, Image, P } from '../../base';
 
 export function PostHeader(props: PostHeaderProps) {

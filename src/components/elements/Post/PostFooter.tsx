@@ -1,3 +1,4 @@
+import React from 'react';
 import { Image, Input } from '../..';
 
 export function PostFooter(props: PostBodyProps): JSX.Element {
