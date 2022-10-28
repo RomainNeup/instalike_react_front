@@ -1,1 +1,5 @@
-export * from './P';
+import P from './P';
+
+export {
+  P,
+};

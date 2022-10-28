@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 
-export function Image({
+export default function Image({
   className, round, border, alt, src,
 }: ImageProps): JSX.Element {
   const imageClass = clsx(

@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 
-export function Input({
+export default function Input({
   className, disabled, label, noBorder, onChange, placeholder, type, value,
 }: InputProps): JSX.Element {
   const componentClass = clsx(

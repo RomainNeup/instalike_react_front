@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 
-export function P({ children, className }: PProps): JSX.Element {
+export default function P({ children, className }: PProps): JSX.Element {
   const componentClass = clsx(
     className,
     [

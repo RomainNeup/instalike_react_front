@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 
-export function Button({
+export default function Button({
   children, className, color, disabled, fullWidth, onClick, plain, size, type,
 }: ButtonProps): JSX.Element {
   const componentClass = clsx(
