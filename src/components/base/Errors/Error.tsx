@@ -2,9 +2,9 @@ import React from 'react';
 import clsx from 'clsx';
 import { Icon } from '../Icons';
 
-export function Error(props: ErrorProps): JSX.Element {
+export function Error({ id, message, className }: ErrorProps): JSX.Element {
   const errorClass = clsx(
-    props.className,
+    className,
     [
       'bg-secondary',
       'w-full',
@@ -22,7 +22,7 @@ export function Error(props: ErrorProps): JSX.Element {
         onClick={() => {}}
       />
       <b className="font-bold">Erreur ! </b>
-      {props.message}
+      {message}
     </div>
   );
 }
