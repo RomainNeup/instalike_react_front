@@ -13,11 +13,11 @@ export default class API {
 
   protected errorHandler(response: Response) {
     if (!response.ok) {
-      response.text().then((text) => {
-        const { errors } = JSON.parse(text);
-        // errors.forEach((error: string) => store.dispatch("addError", error));
-        // TODO error handling
-      });
+      // TODO error handling
+      // response.text().then((text) => {
+      //   const { errors } = JSON.parse(text);
+      //   errors.forEach((error: string) => store.dispatch("addError", error));
+      // });
       return null;
     }
     return response.json().then((a) => {

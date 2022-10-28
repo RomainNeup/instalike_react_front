@@ -1,10 +1,10 @@
 import { useDispatch } from 'react-redux';
-import { UserApi } from '../../../api';
-import { loginUser } from '../..';
+import UserApi from '../../../api/user/UserApi';
+import { loginUser } from '../../reducers/userReducer';
 
 const userApi = new UserApi();
 
-export function login(
+export default function login(
   identifier: string,
   password: string,
 ) {

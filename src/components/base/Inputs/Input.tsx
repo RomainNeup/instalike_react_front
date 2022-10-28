@@ -25,8 +25,9 @@ export default function Input({
 
   return (
     <div className={componentClass}>
-      <label hidden={!label}>{label}</label>
+      <label hidden={!label} htmlFor={label}>{label}</label>
       <input
+        id={label}
         className={inputClass}
         type={type}
         placeholder={placeholder}

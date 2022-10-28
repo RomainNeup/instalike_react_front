@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 
 export default function Button({
-  children, className, color, disabled, fullWidth, onClick, plain, size, type,
+  children, className, color, disabled, fullWidth, onClick, plain, size, type = 'button',
 }: ButtonProps): JSX.Element {
   const componentClass = clsx(
     className,

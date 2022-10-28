@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import './style.css';
 
-export default function Icon({ name, className, onClick }: IconProps): JSX.Element {
+export default function Icon({ name, className }: IconProps): JSX.Element {
   const iconClass = clsx(
     className,
     ['material-symbols-rounded'],
