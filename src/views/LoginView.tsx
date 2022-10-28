@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
   Button, H1, Input, Link,
-} from '../../components';
+} from '../components';
 
 export default function LoginView(): JSX.Element {
   const [identifier, setIdentifier] = useState('');

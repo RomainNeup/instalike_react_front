@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Button, H1, H2, H3, H4, H5,
-} from '../../components';
+} from '../components';
 
 export default function ComponentView() {
   return (
