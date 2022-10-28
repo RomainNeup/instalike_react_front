@@ -2,7 +2,7 @@ import React from 'react';
 import Footer from './Footer';
 import Header from './Header';
 
-export default function Body(props: BodyProps): JSX.Element {
+export default function Body({ children, className }: BodyProps): JSX.Element {
   return (
     <div>
       <Header />
@@ -17,8 +17,8 @@ export default function Body(props: BodyProps): JSX.Element {
         />
       </div>
     </div> */}
-      <div className={`${props.className} p-8 md:px-16 flex justify-center`}>
-        {props.children}
+      <div className={`${className} p-8 md:px-16 flex justify-center`}>
+        {children}
       </div>
       <Footer />
     </div>
