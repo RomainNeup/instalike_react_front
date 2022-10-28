@@ -1,5 +1,7 @@
 import React from 'react';
-import { Image, P, Icon } from '../..';
+import Icon from '../../base/Icons/Icon';
+import P from "../../base/Texts/P";
+import Image from "../../base/Images/Image";
 
 export default function PostBody({ post, user, className }: PostBodyProps): JSX.Element {
   return (

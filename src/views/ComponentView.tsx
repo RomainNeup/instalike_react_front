@@ -1,7 +1,10 @@
 import React from 'react';
-import {
-  Button, H1, H2, H3, H4, H5,
-} from '../components';
+import Button from '../components/base/Buttons/Button';
+import H1 from '../components/base/Titles/H1';
+import H2 from '../components/base/Titles/H2';
+import H3 from '../components/base/Titles/H3';
+import H4 from '../components/base/Titles/H4';
+import H5 from '../components/base/Titles/H5';
 
 export default function ComponentView() {
   return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Post } from '../components';
+import Post from '../components/elements/Post/Post';
 
 export default function IndexView(): JSX.Element {
   return (

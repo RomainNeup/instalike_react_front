@@ -32,6 +32,7 @@ export default function Input({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        disabled={disabled}
       />
     </div>
   );
