@@ -1,9 +1,9 @@
 import React from 'react';
 import clsx from 'clsx';
 
-export function H4(props: TitleProps): JSX.Element {
+export function H4({children, className}: TitleProps): JSX.Element {
   const componentClass = clsx(
-    props.className,
+    className,
     [
       'text-primary',
       'text-2xl',
@@ -13,7 +13,7 @@ export function H4(props: TitleProps): JSX.Element {
   );
   return (
     <h4 className={componentClass}>
-      {props.children}
+      {children}
     </h4>
   );
 }
