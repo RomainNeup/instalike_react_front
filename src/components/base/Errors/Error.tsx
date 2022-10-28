@@ -1,8 +1,8 @@
 import React from 'react';
 import clsx from 'clsx';
-import { Icon } from '../Icons';
+import { Icon } from '..';
 
-export function Error({ id, message, className }: ErrorProps): JSX.Element {
+export default function Error({ id, message, className }: ErrorProps): JSX.Element {
   const errorClass = clsx(
     className,
     [

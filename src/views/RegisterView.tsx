@@ -25,8 +25,8 @@ export default function RegisterView(): JSX.Element {
           className="mb-8"
           type="password"
         />
-        <Link className="mb-4" to="/login">J'ai déjà un compte</Link>
-        <Button fullWidth>Je m'inscris</Button>
+        <Link className="mb-4" to="/login">J&apos;ai déjà un compte</Link>
+        <Button fullWidth>Je m&apos;inscris</Button>
       </form>
     </div>
   );
