@@ -11,8 +11,8 @@ function App(): JSX.Element {
     <div className="App">
       <Body>
         <Routes>
-          {route.map(((route: AppRoute, index: number) => (
-            <Route path={route.path} element={route.element()} key={index} />
+          {route.map(((r: AppRoute, index: number) => (
+            <Route path={r.path} element={r.element()} key={r.path + index} />
           )))}
         </Routes>
       </Body>
