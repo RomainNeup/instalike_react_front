@@ -13,5 +13,8 @@ module.exports = {
   },
   plugins: [
     "import"
-  ]
+  ],
+  rules: {
+    "class-methods-use-this": "off",
+  }
 };

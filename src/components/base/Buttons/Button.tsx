@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 
 export default function Button({
-  children, className, color, disabled, fullWidth, onClick, plain, size, type = 'button',
+  children, className, color, disabled, fullWidth, onClick, plain, size,
 }: ButtonProps): JSX.Element {
   const componentClass = clsx(
     className,
@@ -36,7 +36,7 @@ export default function Button({
   return (
     <button
       className={componentClass}
-      type={type}
+      type={onClick ? 'button' : 'submit'}
       onClick={onClick}
       disabled={disabled}
     >

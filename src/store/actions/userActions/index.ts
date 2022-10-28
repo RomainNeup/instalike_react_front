@@ -4,7 +4,7 @@ import { loginUser } from '../../reducers/userReducer';
 
 const userApi = new UserApi();
 
-export default function login(
+export default function useLogin(
   identifier: string,
   password: string,
 ) {
