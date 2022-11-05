@@ -7,14 +7,17 @@ export default function getRoutes(): AppRoute[] {
     {
       path: '/',
       element: IndexView,
+      loginRequired: true,
     },
     {
       path: '/login',
       element: LoginView,
+      logoutRequired: true,
     },
     {
       path: '/register',
       element: RegisterView,
+      logoutRequired: true,
     },
     {
       path: '/components',
