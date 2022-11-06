@@ -4,6 +4,7 @@ import RegisterView from '../views/RegisterView';
 import ComponentView from '../views/ComponentView';
 import PublishView from '../views/PublishView';
 import ProfileView from '../views/ProfileView';
+import PostView from '../views/PostView';
 
 export default function getRoutes(): AppRoute[] {
   return [
@@ -35,6 +36,11 @@ export default function getRoutes(): AppRoute[] {
     {
       path: '/profile',
       Element: ProfileView,
+      loginRequired: true,
+    },
+    {
+      path: '/post/:id',
+      Element: PostView,
       loginRequired: true,
     },
     {

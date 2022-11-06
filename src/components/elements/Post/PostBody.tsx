@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+import clsx from 'clsx';
 import Icon from '../../base/Icons/Icon';
 import P from '../../base/Texts/P';
 import Image from '../../base/Images/Image';
@@ -8,7 +9,7 @@ import { useAppDispatch } from '../../../store/hooks';
 import PostComment from './PostComment';
 import UserText from './UserText';
 
-export default function PostBody({ post }: PostProps): ReactElement {
+export default function PostBody({ post, imageFull }: PostProps): ReactElement {
   const dispatch = useAppDispatch();
   const handleLike = () => {
     postService.likePost(post._id)
@@ -24,10 +25,16 @@ export default function PostBody({ post }: PostProps): ReactElement {
     postService.deletePost(post._id)
       .then(() => dispatch(deletePost(post._id)));
   };
+  const imageClass = clsx(
+    'w-full',
+    {
+      'max-h-96': !imageFull,
+    },
+  );
 
   return (
     <div className="mb-4">
-      <Image className="h-96 w-full" src={post.media?.url} alt={post.description} border="primary" />
+      <Image className={imageClass} src={post.media?.url} alt={post.description} border="primary" />
       <div className="mt-4">
         <Icon name="favorite" color="secondary" className="mr-2" onClick={handleLike} plain={post.isLiked} />
         <Icon name="chat_bubble" color="secondary" />

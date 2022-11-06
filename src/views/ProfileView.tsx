@@ -48,7 +48,7 @@ export default function ProfileView(): ReactElement {
       <div className="grid grid-cols-3 gap-2 mt-4">
         {user.posts?.map((post) => (
           <ReactLink
-            to=""
+            to={`/post/${post._id}`}
             key={post._id}
           >
             <Image src={post.media?.url} className="min-h-full" alt={post.description} />

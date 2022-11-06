@@ -13,6 +13,7 @@ interface PostFooterProps {
 interface PostProps {
   className?: string;
   post: Post;
+  imageFull?: boolean;
 }
 
 interface PostCommentProps {
