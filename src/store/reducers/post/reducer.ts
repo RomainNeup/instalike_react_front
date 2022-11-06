@@ -10,7 +10,7 @@ export const postSlice = createSlice({
       return action.payload;
     },
     addPost(posts, action: PayloadAction<Post>): Post[] {
-      return [...posts, action.payload];
+      return [action.payload, ...posts];
     },
     likePost(posts, action: PayloadAction<LikeAction>): void {
       const { _id, isLiked } = action.payload;
@@ -56,6 +56,7 @@ export const postSlice = createSlice({
 
 export const {
   setPosts,
+  addPost,
   likePost,
   followUser,
   addComment,

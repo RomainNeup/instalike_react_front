@@ -11,7 +11,6 @@ interface Post {
 }
 
 type PostResponse = {
-  post: Post;
   posts: Post[];
 };
 

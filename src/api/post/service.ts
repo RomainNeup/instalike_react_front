@@ -6,11 +6,14 @@ class PostApi {
   }
 
   public getPost(id: string): Promise<Post> {
-    return API.get<PostResponse>(`post/getPost/${id}`).then((a) => a.data.post);
+    return API.get<Post>(`post/getPost/${id}`).then((a) => a.data);
   }
 
-  public savePost(post: Post): Promise<Post> {
-    return API.post<PostResponse>('post/save', post).then((a) => a.data.post);
+  public createPost(media: string, description: string): Promise<Post> {
+    return API.post<Post>('post/save', {
+      media,
+      description,
+    }).then((a) => a.data);
   }
 
   public deletePost(id: string): Promise<void> {
@@ -18,7 +21,7 @@ class PostApi {
   }
 
   public editPost(id: string, post: Post): Promise<Post> {
-    return API.put<PostResponse>(`post/edit/${id}`, post).then((a) => a.data.post);
+    return API.put<Post>(`post/edit/${id}`, post).then((a) => a.data);
   }
 
   public likePost(id: string): Promise<boolean> {

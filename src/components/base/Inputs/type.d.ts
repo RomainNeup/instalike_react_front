@@ -1,8 +1,8 @@
 interface InputProps {
   className?: string;
   disabled?: boolean;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  type?: 'text' | 'password' | 'email' | 'number';
+  onChange?: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  type?: 'text' | 'password' | 'email' | 'number' | 'textarea' | 'file';
   value?: string;
   placeholder?: string;
   label?: string;

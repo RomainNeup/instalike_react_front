@@ -2,6 +2,7 @@ import IndexView from '../views/IndexView';
 import LoginView from '../views/LoginView';
 import RegisterView from '../views/RegisterView';
 import ComponentView from '../views/ComponentView';
+import PublishView from '../views/PublishView';
 
 export default function getRoutes(): AppRoute[] {
   return [
@@ -19,6 +20,11 @@ export default function getRoutes(): AppRoute[] {
       path: '/register',
       element: RegisterView,
       logoutRequired: true,
+    },
+    {
+      path: '/publish',
+      element: PublishView,
+      loginRequired: true,
     },
     {
       path: '/components',
