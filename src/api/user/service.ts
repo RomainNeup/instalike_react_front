@@ -5,7 +5,7 @@ class UserApi {
     return API.post<UserResponse>('user/login', {
       identifier,
       password,
-    }).then((a) => ({ ...a.data.user, id: a.data.user._id }));
+    }).then((a) => (a.data.user));
   }
 
   public register(
@@ -18,6 +18,10 @@ class UserApi {
       email,
       password,
     }).then((a) => a.data.user);
+  }
+
+  public followUser(id: string): Promise<boolean> {
+    return API.put<FollowResponse>(`user/follow/${id}`).then((a) => a.data.isFollower);
   }
 }
 
