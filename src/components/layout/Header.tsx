@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import H3 from '../base/Titles/H3';
@@ -8,7 +8,7 @@ import logo from '../../assets/images/logo-light.svg';
 import Button from '../base/Buttons/Button';
 import Icon from '../base/Icons/Icon';
 
-export default function Header({ className }: LayoutProps): JSX.Element {
+export default function Header({ className }: LayoutProps): ReactElement {
   const { informations, isLogged } = useAppSelector((state) => state.user);
   const headerClass = clsx(
     className,

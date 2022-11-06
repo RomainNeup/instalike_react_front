@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import clsx from 'clsx';
 import './style.css';
 
 export default function Icon({
   name, className, onClick, plain, color,
-}: IconProps): JSX.Element {
+}: IconProps): ReactElement {
   const iconClass = clsx(
     className,
     plain ? 'material-symbols-outlined' : 'material-symbols-rounded',
