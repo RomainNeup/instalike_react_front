@@ -12,6 +12,17 @@ export const postSlice = createSlice({
     addPost(posts, action: PayloadAction<Post>): Post[] {
       return [action.payload, ...posts];
     },
+    editPost(posts, action: PayloadAction<Post>): Post[] {
+      return posts.map((post) => {
+        if (post._id === action.payload._id) {
+          return action.payload;
+        }
+        return post;
+      });
+    },
+    deletePost(posts, action: PayloadAction<string>): Post[] {
+      return posts.filter((post) => post._id !== action.payload);
+    },
     likePost(posts, action: PayloadAction<LikeAction>): void {
       const { _id, isLiked } = action.payload;
       const postIndex = posts.findIndex((post) => post._id === _id);
@@ -57,6 +68,8 @@ export const postSlice = createSlice({
 export const {
   setPosts,
   addPost,
+  editPost,
+  deletePost,
   likePost,
   followUser,
   addComment,
