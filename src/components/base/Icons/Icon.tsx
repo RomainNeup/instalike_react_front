@@ -15,17 +15,17 @@ export default function Icon({
     },
     color && !!onClick && `hover:text-${color}/75`,
   );
+
+  if (onClick) {
+    return (
+      <button className={iconClass} onClick={onClick} type="button">
+        {name}
+      </button>
+    );
+  }
   return (
-    !onClick
-      ? (
-        <span className={iconClass}>
-          {name}
-        </span>
-      )
-      : (
-        <button className={iconClass} onClick={onClick} type="button">
-          {name}
-        </button>
-      )
+    <span className={iconClass}>
+      {name}
+    </span>
   );
 }
