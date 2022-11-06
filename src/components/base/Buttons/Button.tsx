@@ -34,6 +34,7 @@ export default function Button({
       'hover:bg-transparent': plain,
 
       'w-full': fullWidth,
+      'w-fit': !fullWidth,
     },
   );
 

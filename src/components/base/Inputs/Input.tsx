@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import clsx from 'clsx';
 
 export default function Input({
-  className, disabled, label, noBorder, onChange, placeholder, type = 'text', value, rows = 4,
+  className, disabled, label, noBorder, onChange, placeholder, type = 'text', value, rows = 4, autocomplete = 'off',
 }: InputProps): ReactElement {
   const componentClass = clsx(
     className,
@@ -58,6 +58,7 @@ export default function Input({
             value={value}
             onChange={onChange}
             disabled={disabled}
+            autoComplete={autocomplete}
           />
         )
       }

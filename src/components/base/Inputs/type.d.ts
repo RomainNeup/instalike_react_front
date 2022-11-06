@@ -8,4 +8,5 @@ interface InputProps {
   label?: string;
   noBorder?: boolean;
   rows?: number;
+  autocomplete?: string;
 }

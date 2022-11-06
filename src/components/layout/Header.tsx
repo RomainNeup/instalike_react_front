@@ -34,7 +34,7 @@ export default function Header({ className }: LayoutProps): ReactElement {
               <Icon name="add" className="mr-2" />
               Poster
             </Button>
-            <Link to="/" className="w-12 h-12">
+            <Link to="/profile" className="w-12 h-12">
               <Image
                 round
                 border="secondary"
