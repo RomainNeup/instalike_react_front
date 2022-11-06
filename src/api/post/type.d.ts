@@ -7,6 +7,7 @@ interface Post {
   isLiked: boolean;
   createdAt: string;
   comments: PostComment[];
+  currentUser?: boolean;
 }
 
 type PostResponse = {
