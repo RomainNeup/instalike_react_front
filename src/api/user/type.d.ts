@@ -1,7 +1,23 @@
 interface User {
+  _id: string;
   username: string;
-  email: string;
+  media: Media | null;
+  email?: string;
   description?: string;
+  followers?: number;
+  following?: number;
+  isFollower?: boolean;
+}
+
+type UserResponse = {
+  user: User;
+};
+
+// TODO: move this to a separate file
+interface Media {
+  _id: string;
+  mimetype: string;
+  url: string;
 }
 
 interface Login {
@@ -14,3 +30,7 @@ interface Register {
   email: string;
   password: string;
 }
+
+type FollowResponse = {
+  isFollower: boolean;
+};

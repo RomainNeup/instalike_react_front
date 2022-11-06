@@ -1,12 +1,5 @@
-interface Post {
-  id: string;
-  image: string;
-  caption: string;
-  likes: number;
-}
-
-interface PostBodyProps extends PostProps {
-  className?: string;
+interface PostLayoutProps {
+  user: User;
 }
 
 interface PostFooterProps {
@@ -18,14 +11,6 @@ interface PostFooterProps {
 }
 
 interface PostProps {
-  user: {
-    username: string;
-    avatar: string;
-  };
+  className?: string;
   post: Post;
-}
-
-interface PostHeaderProps {
-  username: string;
-  avatar: string;
 }

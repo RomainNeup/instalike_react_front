@@ -3,12 +3,12 @@ import PostBody from './PostBody';
 import PostFooter from './PostFooter';
 import PostHeader from './PostHeader';
 
-export default function Post({ user, post }: PostProps): JSX.Element {
+export default function Post({ post }: PostProps): JSX.Element {
   return (
     <div className="w-full mb-8">
-      <PostHeader username={user.username} avatar={user.avatar} />
-      <PostBody post={post} user={user} className="mb-4" />
-      <PostFooter className="mb-4" user={user} />
+      <PostHeader user={post.user} />
+      <PostBody post={post} className="mb-4" />
+      <PostFooter post={post} />
     </div>
   );
 }

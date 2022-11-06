@@ -1,3 +1,0 @@
-interface DispatchParams {
-  type: string;
-}

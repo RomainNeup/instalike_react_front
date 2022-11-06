@@ -1,5 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
+import placeholder from '../../../assets/images/user_placeholder.png';
 
 export default function Image({
   className, round, border, alt, src,
@@ -10,6 +11,7 @@ export default function Image({
       'object-cover',
       'w-full',
       'h-full',
+      'bg-primary',
     ],
     {
       'rounded-lg': !round,
@@ -24,7 +26,7 @@ export default function Image({
   return (
     <img
       className={imageClass}
-      src={src}
+      src={src || placeholder}
       alt={alt}
     />
   );
