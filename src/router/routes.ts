@@ -5,6 +5,7 @@ import ComponentView from '../views/ComponentView';
 import PublishView from '../views/PublishView';
 import ProfileView from '../views/ProfileView';
 import PostView from '../views/PostView';
+import EditProfileView from '../views/EditProfileView';
 
 export default function getRoutes(): AppRoute[] {
   return [
@@ -41,6 +42,11 @@ export default function getRoutes(): AppRoute[] {
     {
       path: '/post/:id',
       Element: PostView,
+      loginRequired: true,
+    },
+    {
+      path: '/account/edit',
+      Element: EditProfileView,
       loginRequired: true,
     },
     {
