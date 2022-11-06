@@ -13,13 +13,6 @@ type UserResponse = {
   user: User;
 };
 
-// TODO: move this to a separate file
-interface Media {
-  _id: string;
-  mimetype: string;
-  url: string;
-}
-
 interface Login {
   identifier: string;
   password: string;
