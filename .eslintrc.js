@@ -4,7 +4,6 @@ module.exports = {
     node: true,
   },
   extends: [
-    "react-app",
     'airbnb',
     'airbnb-typescript'
   ],
