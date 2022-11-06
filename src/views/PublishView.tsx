@@ -1,4 +1,4 @@
-import React, { FormEvent, ReactElement } from 'react';
+import React, { FormEvent, ReactElement, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/base/Buttons/Button';
 import Image from '../components/base/Images/Image';
@@ -16,8 +16,8 @@ interface UploadedImage {
 }
 
 export default function PublishView(): ReactElement {
-  const [uploadedImage, setUploadedImage] = React.useState<UploadedImage>({ value: '' });
-  const [description, setDescription] = React.useState<string>('');
+  const [uploadedImage, setUploadedImage] = useState<UploadedImage>({ value: '' });
+  const [description, setDescription] = useState<string>('');
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -28,6 +28,8 @@ export default function PublishView(): ReactElement {
         .then((media) => postService.createPost(media, description))
         .then((post) => {
           dispatch(addPost(post));
+          setUploadedImage({ value: '' });
+          setDescription('');
           navigate('/');
         });
     }
