@@ -7,4 +7,5 @@ interface InputProps {
   placeholder?: string;
   label?: string;
   noBorder?: boolean;
+  rows?: number;
 }
