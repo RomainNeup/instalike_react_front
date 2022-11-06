@@ -1,3 +1,3 @@
 interface UserInformationProps {
-    user: User | null;
+  user: User;
 }

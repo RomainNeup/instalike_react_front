@@ -3,32 +3,43 @@ import LoginView from '../views/LoginView';
 import RegisterView from '../views/RegisterView';
 import ComponentView from '../views/ComponentView';
 import PublishView from '../views/PublishView';
+import ProfileView from '../views/ProfileView';
 
 export default function getRoutes(): AppRoute[] {
   return [
     {
       path: '/',
-      element: IndexView,
+      Element: IndexView,
       loginRequired: true,
     },
     {
       path: '/login',
-      element: LoginView,
+      Element: LoginView,
       logoutRequired: true,
     },
     {
       path: '/register',
-      element: RegisterView,
+      Element: RegisterView,
       logoutRequired: true,
     },
     {
       path: '/publish',
-      element: PublishView,
+      Element: PublishView,
+      loginRequired: true,
+    },
+    {
+      path: '/profile/:username',
+      Element: ProfileView,
+      loginRequired: true,
+    },
+    {
+      path: '/profile',
+      Element: ProfileView,
       loginRequired: true,
     },
     {
       path: '/components',
-      element: ComponentView,
+      Element: ComponentView,
     },
   ];
 }

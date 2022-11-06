@@ -1,6 +1,6 @@
 interface AppRoute {
   path: string;
-  element: () => JSX.Element;
+  Element: () => React.ReactElement;
   loginRequired?: boolean;
   logoutRequired?: boolean;
 }

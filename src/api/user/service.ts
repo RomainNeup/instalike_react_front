@@ -20,6 +20,10 @@ class UserApi {
     }).then((a) => a.data.user);
   }
 
+  getUserProfile(username: string): Promise<User> {
+    return API.get<ProfileResponse>(`user/getWebProfile/${username}`).then((a) => a.data.webProfile);
+  }
+
   public followUser(id: string): Promise<boolean> {
     return API.put<FollowResponse>(`user/follow/${id}`).then((a) => a.data.isFollower);
   }

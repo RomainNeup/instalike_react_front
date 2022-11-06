@@ -7,10 +7,16 @@ interface User {
   followers?: number;
   following?: number;
   isFollower?: boolean;
+  posts?: Post[];
+  currentUser?: boolean;
 }
 
 type UserResponse = {
   user: User;
+};
+
+type ProfileResponse = {
+  webProfile: User;
 };
 
 interface Login {
