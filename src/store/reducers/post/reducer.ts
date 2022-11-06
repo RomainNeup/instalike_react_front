@@ -36,6 +36,21 @@ export const postSlice = createSlice({
       const postCopy = posts[postIndex];
       postCopy.comments.push(action.payload);
     },
+    editComment(posts, action: PayloadAction<PostComment>): void {
+      const postCopy = posts.find((post) => post._id === action.payload.post);
+      if (postCopy) {
+        const commentIndex = postCopy.comments
+          .findIndex((comment) => comment._id === action.payload._id);
+        postCopy.comments[commentIndex].text = action.payload.text;
+      }
+    },
+    deleteComment(posts, action: PayloadAction<PostComment>): void {
+      const postCopy = posts.find((post) => post._id === action.payload.post);
+      if (postCopy) {
+        postCopy.comments = postCopy.comments
+          .filter((comment) => comment._id !== action.payload._id);
+      }
+    },
   },
 });
 
@@ -44,6 +59,8 @@ export const {
   likePost,
   followUser,
   addComment,
+  editComment,
+  deleteComment,
 } = postSlice.actions;
 
 export default postSlice.reducer;

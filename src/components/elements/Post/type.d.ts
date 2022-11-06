@@ -14,3 +14,8 @@ interface PostProps {
   className?: string;
   post: Post;
 }
+
+interface PostCommentProps {
+  className?: string;
+  comment: PostComment;
+}

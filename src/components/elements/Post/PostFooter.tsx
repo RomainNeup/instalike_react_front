@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import Image from '../../base/Images/Image';
 import Input from '../../base/Inputs/Input';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
@@ -9,7 +9,8 @@ export default function PostFooter({ post }: PostProps): JSX.Element {
   const { informations } = useAppSelector((state) => state.user);
   const [comment, setComment] = useState('');
   const dispatch = useAppDispatch();
-  const handleAddComment = () => {
+  const handleAddComment = (event: FormEvent) => {
+    event.preventDefault();
     commentService.saveComment(post._id, comment)
       .then((response) => {
         dispatch(addComment(response));
