@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import clsx from 'clsx';
+import { Link as ReactLink } from 'react-router-dom';
 
 export default function Button({
-  children, className, color, disabled, fullWidth, onClick, plain, size,
-}: ButtonProps): JSX.Element {
+  children, className, color, disabled, fullWidth, onClick, plain, size, to,
+}: ButtonProps): ReactElement {
   const componentClass = clsx(
     className,
     [
       'block',
       'rounded-lg',
       'border',
+      'h-fit',
+      'text-center',
     ],
     {
       'p-1 px-2': size === 'small',
@@ -33,6 +36,18 @@ export default function Button({
       'w-full': fullWidth,
     },
   );
+
+  if (to) {
+    return (
+      <ReactLink
+        className={componentClass}
+        to={to}
+      >
+        {children}
+      </ReactLink>
+    );
+  }
+
   return (
     <button
       className={componentClass}
