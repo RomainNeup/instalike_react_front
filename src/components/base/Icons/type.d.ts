@@ -3,4 +3,5 @@ interface IconProps {
   className?: string;
   onClick?: () => void;
   plain?: boolean;
+  color?: 'primary' | 'secondary' | 'basic';
 }

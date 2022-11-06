@@ -21,7 +21,8 @@ export default function Error({ id, message, className }: ErrorProps): JSX.Eleme
     <div className={errorClass}>
       <Icon
         name="close"
-        className="float-right cursor-pointer hover:text-basic/75"
+        className="float-right"
+        color='basic'
         onClick={deleteError}
       />
       <b className="font-bold">Erreur ! </b>
