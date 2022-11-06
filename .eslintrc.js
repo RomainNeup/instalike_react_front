@@ -16,6 +16,7 @@ module.exports = {
   ],
   rules: {
     "class-methods-use-this": "off",
-    "no-underscore-dangle": "off"
+    "no-underscore-dangle": "off",
+    "@typescript-eslint/naming-convention": "off",
   }
 };
