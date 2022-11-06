@@ -9,7 +9,7 @@ export default function Icon({
     className,
     plain ? 'material-symbols-outlined' : 'material-symbols-rounded',
     {
-      'text-primary': color === 'primary' || !color,
+      'text-primary': color === 'primary',
       'text-secondary': color === 'secondary',
       'text-basic': color === 'basic',
     },

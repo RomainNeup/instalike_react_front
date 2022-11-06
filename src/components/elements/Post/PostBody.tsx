@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import Icon from '../../base/Icons/Icon';
 import P from '../../base/Texts/P';
 import Image from '../../base/Images/Image';
@@ -7,7 +7,7 @@ import { likePost } from '../../../store/reducers/post/reducer';
 import { useAppDispatch } from '../../../store/hooks';
 import PostComment from './PostComment';
 
-export default function PostBody({ post, className }: PostProps): JSX.Element {
+export default function PostBody({ post }: PostProps): ReactElement {
   const dispatch = useAppDispatch();
   const handleLike = () => {
     postService.likePost(post._id)
@@ -15,7 +15,7 @@ export default function PostBody({ post, className }: PostProps): JSX.Element {
   };
 
   return (
-    <div className={`${className}`}>
+    <div className="mb-4">
       <Image className="h-96 w-full" src={post.media?.url} alt={post.description} border="primary" />
       <div className="mt-4">
         <Icon name="favorite" color="secondary" className="mr-2" onClick={handleLike} plain={post.isLiked} />

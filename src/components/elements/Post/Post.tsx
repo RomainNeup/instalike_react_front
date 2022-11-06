@@ -7,7 +7,7 @@ export default function Post({ post }: PostProps): JSX.Element {
   return (
     <div className="w-full mb-8">
       <PostHeader user={post.user} />
-      <PostBody post={post} className="mb-4" />
+      <PostBody post={post} />
       <PostFooter post={post} />
     </div>
   );

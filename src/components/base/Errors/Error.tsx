@@ -22,7 +22,7 @@ export default function Error({ id, message, className }: ErrorProps): JSX.Eleme
       <Icon
         name="close"
         className="float-right"
-        color='basic'
+        color="basic"
         onClick={deleteError}
       />
       <b className="font-bold">Erreur ! </b>

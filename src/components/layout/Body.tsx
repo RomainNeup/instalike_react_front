@@ -1,8 +1,19 @@
 import React from 'react';
+import clsx from 'clsx';
 import Footer from './Footer';
 import Header from './Header';
 
 export default function Body({ children, className }: BodyProps): JSX.Element {
+  const bodyClass = clsx(
+    className,
+    [
+      'flex',
+      'justify-center',
+      'p-8',
+      'md:px-16',
+    ],
+  );
+
   return (
     <div>
       <Header />
@@ -17,7 +28,7 @@ export default function Body({ children, className }: BodyProps): JSX.Element {
         />
       </div>
     </div> */}
-      <div className={`${className} p-8 md:px-16 flex justify-center`}>
+      <div className={bodyClass}>
         {children}
       </div>
       <Footer />
