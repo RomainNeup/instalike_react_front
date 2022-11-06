@@ -2,8 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import H3 from '../base/Titles/H3';
 import Image from '../base/Images/Image';
+import { useAppSelector } from '../../store/hooks';
 
 export default function Header({ className }: LayoutProps): JSX.Element {
+  const { informations } = useAppSelector((state) => state.user);
+
   return (
     <div className={`${className} p-8 flex justify-between`}>
       <Link to="/">
@@ -14,7 +17,7 @@ export default function Header({ className }: LayoutProps): JSX.Element {
           round
           border="secondary"
           alt="PP"
-          src="https://media.istockphoto.com/photos/portrait-of-beautiful-woman-lit-by-neon-colored-lights-picture-id1313668357?b=1&k=20&m=1313668357&s=170667a&w=0&h=u-rsR__qiTfquxVEqYN2JKh5fNM7tr8okJcLU21rDKU="
+          src={informations?.media?.url}
         />
       </Link>
     </div>
