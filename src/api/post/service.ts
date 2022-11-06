@@ -17,11 +17,13 @@ class PostApi {
   }
 
   public deletePost(id: string): Promise<void> {
-    return API.delete<void>(`post/${id}`).then((a) => a.data);
+    return API.delete<void>(`post/delete/${id}`).then((a) => a.data);
   }
 
-  public editPost(id: string, post: Post): Promise<Post> {
-    return API.put<Post>(`post/edit/${id}`, post).then((a) => a.data);
+  public editPost(id: string, description: string): Promise<Post> {
+    return API.put<Post>(`post/edit/${id}`, {
+      description,
+    }).then((a) => a.data);
   }
 
   public likePost(id: string): Promise<boolean> {
