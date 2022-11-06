@@ -20,7 +20,7 @@ export default function PostHeader({ user }: PostLayoutProps): ReactElement {
       </div>
       <div>
         <P className="flex-none">{user.username}</P>
-        <Button size="small" onClick={handleFollow} plain={user.isFollower}>
+        <Button size="small" onClick={handleFollow} plain={!user.isFollower}>
           {user.isFollower ? 'Suivi(e)' : 'S\'abonner'}
         </Button>
       </div>
