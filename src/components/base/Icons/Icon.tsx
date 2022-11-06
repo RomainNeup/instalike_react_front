@@ -2,14 +2,24 @@ import React from 'react';
 import clsx from 'clsx';
 import './style.css';
 
-export default function Icon({ name, className }: IconProps): JSX.Element {
+export default function Icon({
+  name, className, onClick, plain,
+}: IconProps): JSX.Element {
   const iconClass = clsx(
     className,
-    ['material-symbols-rounded'],
+    plain ? 'material-symbols-outlined' : 'material-symbols-rounded',
   );
   return (
-    <span className={iconClass}>
-      {name}
-    </span>
+    !onClick
+      ? (
+        <span className={iconClass}>
+          {name}
+        </span>
+      )
+      : (
+        <button className={iconClass} onClick={onClick} type="button">
+          {name}
+        </button>
+      )
   );
 }
