@@ -25,11 +25,11 @@ class UserApi {
   }
 
   public editUser(user: User): Promise<User> {
-    return API.put<UserResponse>('user/edit', {
+    return API.put<User>('user/edit', {
       username: user.username,
       description: user.description,
       media: user.media?._id,
-    }).then((a) => a.data.user);
+    }).then((a) => a.data);
   }
 
   public followUser(id: string): Promise<boolean> {

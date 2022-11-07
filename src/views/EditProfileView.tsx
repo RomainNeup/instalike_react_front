@@ -1,9 +1,15 @@
-import React, { FormEvent, ReactElement, useState } from 'react';
+import React, {
+  FormEvent, ReactElement, useEffect, useState,
+} from 'react';
+import { useNavigate } from 'react-router-dom';
 import Image from '../components/base/Images/Image';
 import Input from '../components/base/Inputs/Input';
 import Button from '../components/base/Buttons/Button';
 import uploadService from '../api/upload/service';
 import userService from '../api/user/service';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { editUser } from '../store/reducers/user/reducer';
+import { editUser as editUserInUsers } from '../store/reducers/users/reducer';
 
 interface UploadedImage {
   value: string,
@@ -15,19 +21,46 @@ export default function EditProfileView(): ReactElement {
   const [media, setMedia] = useState<UploadedImage>({ value: '' });
   const [username, setUsername] = useState<string>('');
   const [description, setDescription] = useState<string>('');
+  const { informations } = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!username) {
+      setUsername(informations?.username || '');
+      setDescription(informations?.description || '');
+      setMedia({ ...media, preview: informations?.media?.url });
+    }
+  }, [informations, media, username]);
+
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     if (media.file) {
       uploadService.uploadMedia(media.file)
         .then((mediaId) => userService.editUser({
           _id: '', username, description, media: { _id: mediaId, mimetype: '', url: '' },
-        }));
+        }))
+        .then((user) => {
+          if (informations) {
+            dispatch(editUser(user));
+            dispatch(editUserInUsers({ ...user, _id: informations._id }));
+            navigate('/profile');
+          }
+        });
     } else {
       userService.editUser({
         _id: '', username, description, media: null,
-      });
+      })
+        .then((user) => {
+          if (informations) {
+            dispatch(editUser(user));
+            dispatch(editUserInUsers({ ...user, _id: informations._id }));
+            navigate('/profile');
+          }
+        });
     }
   };
+
   const handleImageUpload = (elem: HTMLInputElement) => {
     if (elem.files && elem.files.length > 0) {
       const fileReader = new FileReader();
@@ -46,12 +79,13 @@ export default function EditProfileView(): ReactElement {
       fileReader.readAsDataURL(elem.files[0]);
     }
   };
+
   return (
     <div className="w-2/3 max-w-md">
       <form onSubmit={handleSubmit} className="mb-4">
         <div className="flex justify-center mb-8">
           <div className="w-24 h-24">
-            <Image src="" alt="" round />
+            <Image src={media.preview} alt={username} round />
           </div>
         </div>
         <div className="space-y-4 mb-8">

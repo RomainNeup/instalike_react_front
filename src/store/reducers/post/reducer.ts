@@ -10,7 +10,11 @@ export const postSlice = createSlice({
       return action.payload;
     },
     addPost(posts, action: PayloadAction<Post>): Post[] {
-      return [action.payload, ...posts];
+      const foundPost = posts.find((post) => post._id === action.payload._id);
+      if (!foundPost) {
+        return [action.payload, ...posts];
+      }
+      return posts;
     },
     editPost(posts, action: PayloadAction<Post>): Post[] {
       return posts.map((post) => {
