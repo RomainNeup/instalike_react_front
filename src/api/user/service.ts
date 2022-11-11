@@ -20,6 +20,18 @@ class UserApi {
     }).then((a) => a.data.user);
   }
 
+  public getUserProfile(username: string): Promise<User> {
+    return API.get<ProfileResponse>(`user/getWebProfile/${username}`).then((a) => a.data.webProfile);
+  }
+
+  public editUser(user: User): Promise<User> {
+    return API.put<User>('user/edit', {
+      username: user.username,
+      description: user.description,
+      media: user.media?._id,
+    }).then((a) => a.data);
+  }
+
   public followUser(id: string): Promise<boolean> {
     return API.put<FollowResponse>(`user/follow/${id}`).then((a) => a.data.isFollower);
   }

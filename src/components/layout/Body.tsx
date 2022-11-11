@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import clsx from 'clsx';
 import Footer from './Footer';
 import Header from './Header';
 
-export default function Body({ children, className }: BodyProps): JSX.Element {
+export default function Body({ children, className }: BodyProps): ReactElement {
   const bodyClass = clsx(
     className,
     [

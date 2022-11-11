@@ -28,6 +28,7 @@ export default function LoginView(): ReactElement {
           placeholder="toto"
           className="mb-4"
           value={identifier}
+          autocomplete="username"
           onChange={(e) => setIdentifier(e.target.value)}
         />
         <Input
@@ -36,6 +37,7 @@ export default function LoginView(): ReactElement {
           className="mb-8"
           type="password"
           value={password}
+          autocomplete="current-password"
           onChange={(e) => setPassword(e.target.value)}
         />
         <Link className="mb-4" to="/register">Je n&apos;ai pas de compte</Link>

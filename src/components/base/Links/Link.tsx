@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Link as ReactLink } from 'react-router-dom';
 import clsx from 'clsx';
 
-export default function Link({ children, to, className }: LinkProps): JSX.Element {
+export default function Link({ children, to, className }: LinkProps): ReactElement {
   const componentClass = clsx(
     className,
     [

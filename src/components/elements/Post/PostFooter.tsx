@@ -1,11 +1,11 @@
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, ReactElement, useState } from 'react';
 import Image from '../../base/Images/Image';
 import Input from '../../base/Inputs/Input';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import commentService from '../../../api/comment/service';
 import { addComment } from '../../../store/reducers/post/reducer';
 
-export default function PostFooter({ post }: PostProps): JSX.Element {
+export default function PostFooter({ post }: PostProps): ReactElement {
   const { informations } = useAppSelector((state) => state.user);
   const [comment, setComment] = useState('');
   const dispatch = useAppDispatch();

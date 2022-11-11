@@ -13,6 +13,10 @@ export default function IndexView(): ReactElement {
     postService.getPosts()
       .then((response) => dispatch(setPosts(response.map((post) => ({
         ...post,
+        user: {
+          ...post.user,
+          currentUser: post.user._id === informations?._id,
+        },
         currentUser: informations?._id === post.user._id,
         comments: post.comments.map((comment) => ({
           ...comment,

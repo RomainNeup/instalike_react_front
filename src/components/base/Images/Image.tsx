@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import clsx from 'clsx';
 import placeholder from '../../../assets/images/user_placeholder.png';
 
 export default function Image({
   className, round, border, alt, src,
-}: ImageProps): JSX.Element {
+}: ImageProps): ReactElement {
   const imageClass = clsx(
     className,
     [

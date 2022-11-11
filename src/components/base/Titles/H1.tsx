@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import clsx from 'clsx';
 
-export default function H1({ children, className }: TitleProps): JSX.Element {
+export default function H1({ children, className }: TitleProps): ReactElement {
   const componentClass = clsx(
     className,
     [

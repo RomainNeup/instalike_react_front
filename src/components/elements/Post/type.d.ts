@@ -13,9 +13,19 @@ interface PostFooterProps {
 interface PostProps {
   className?: string;
   post: Post;
+  imageFull?: boolean;
 }
 
 interface PostCommentProps {
   className?: string;
   comment: PostComment;
+}
+
+interface UserTextProps {
+  className?: string;
+  text: string;
+  handleDelete: () => void;
+  handleEdit: (text: string) => void;
+  isEditable?: boolean;
+  username: string;
 }
