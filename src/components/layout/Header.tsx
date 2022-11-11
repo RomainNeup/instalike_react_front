@@ -3,13 +3,16 @@ import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import H3 from '../base/Titles/H3';
 import Image from '../base/Images/Image';
-import { useAppSelector } from '../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import logo from '../../assets/images/logo-light.svg';
 import Button from '../base/Buttons/Button';
 import Icon from '../base/Icons/Icon';
+import Dropdown from '../base/Dropdowns/Dropdown';
+import { logoutUser } from '../../store/reducers/user/reducer';
 
 export default function Header({ className }: LayoutProps): ReactElement {
   const { informations, isLogged } = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
   const headerClass = clsx(
     className,
     [
@@ -34,14 +37,43 @@ export default function Header({ className }: LayoutProps): ReactElement {
               <Icon name="add" className="mr-2" />
               Poster
             </Button>
-            <Link to="/profile" className="w-12 h-12">
-              <Image
-                round
-                border="secondary"
-                alt="PP"
-                src={informations?.media?.url}
-              />
-            </Link>
+            <div className="w-12 h-12">
+              <Dropdown items={[
+                {
+                  id: 'user',
+                  type: 'text',
+                  text: informations?.username || '',
+                  icon: 'account_circle',
+                },
+                {
+                  id: 'divider',
+                  type: 'divider',
+                },
+                {
+                  id: 'profile',
+                  text: 'Voir mon profil',
+                  type: 'link',
+                  to: '/profile',
+                  icon: 'person',
+                },
+                {
+                  id: 'logout',
+                  text: 'Me déconnecter',
+                  type: 'button',
+                  onClick: () => dispatch(logoutUser()),
+                  icon: 'logout',
+                  className: 'rounded-b-md',
+                },
+              ]}
+              >
+                <Image
+                  round
+                  border="secondary"
+                  alt="PP"
+                  src={informations?.media?.url}
+                />
+              </Dropdown>
+            </div>
           </div>
         )
       }
