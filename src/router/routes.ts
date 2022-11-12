@@ -6,6 +6,7 @@ import PublishView from '../views/PublishView';
 import ProfileView from '../views/ProfileView';
 import PostView from '../views/PostView';
 import EditProfileView from '../views/EditProfileView';
+import ChatView from '../views/ChatView';
 
 export default function getRoutes(): AppRoute[] {
   return [
@@ -47,6 +48,11 @@ export default function getRoutes(): AppRoute[] {
     {
       path: '/account/edit',
       Element: EditProfileView,
+      loginRequired: true,
+    },
+    {
+      path: '/chat',
+      Element: ChatView,
       loginRequired: true,
     },
     {
