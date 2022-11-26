@@ -11,7 +11,8 @@ export default function PostComment({ comment }: PostCommentProps): ReactElement
   const handleEditComment = (text: string) => {
     commentService.editComment(comment._id, text)
       .then((newCom) => {
-        dispatch(editComment({ ...comment, text: newCom.text }));
+        console.log('post', { ...comment, ...newCom });
+        dispatch(editComment({ ...comment, ...newCom }));
       });
   };
   const handleDeleteComment = () => {
@@ -21,7 +22,7 @@ export default function PostComment({ comment }: PostCommentProps): ReactElement
 
   return (
     <div className="flex flex-row space-x-4 mb-2">
-      <div className="w-8 h-8 min-w-fit">
+      <div className="w-8 h-8 shrink-0 grow-0">
         <Image
           round
           border="secondary"

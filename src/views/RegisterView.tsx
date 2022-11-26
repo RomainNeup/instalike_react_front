@@ -3,7 +3,7 @@ import Button from '../components/base/Buttons/Button';
 import H1 from '../components/base/Titles/H1';
 import Input from '../components/base/Inputs/Input';
 import Link from '../components/base/Links/Link';
-import userService from '../api/user/service';
+import authService from '../api/auth/service';
 import { useAppDispatch } from '../store/hooks';
 import { loginUser } from '../store/reducers/user/reducer';
 
@@ -15,8 +15,8 @@ export default function RegisterView(): ReactElement {
 
   const handleRegister = (event: FormEvent) => {
     event.preventDefault();
-    userService.register(username, email, password)
-      .then(() => userService.login(username, password))
+    authService.register(username, email, password)
+      .then(() => authService.login(username, password))
       .then((response) => dispatch(loginUser(response)));
   };
 

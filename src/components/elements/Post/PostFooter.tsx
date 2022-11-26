@@ -10,12 +10,17 @@ export default function PostFooter({ post }: PostProps): ReactElement {
   const [comment, setComment] = useState('');
   const dispatch = useAppDispatch();
   const handleAddComment = (event: FormEvent) => {
-    event.preventDefault();
-    commentService.saveComment(post._id, comment)
-      .then((response) => {
-        dispatch(addComment(response));
-        setComment('');
-      });
+    if (informations) {
+      event.preventDefault();
+      commentService.saveComment(post._id, comment)
+        .then((response) => {
+          dispatch(addComment({
+            ...response,
+            user: informations,
+          }));
+          setComment('');
+        });
+    }
   };
 
   return (

@@ -52,7 +52,9 @@ export default function PostBody({ post, imageFull }: PostProps): ReactElement {
           className="mb-2"
         />
 
-        {post.comments.map((comment) => (<PostComment comment={comment} key={comment._id} />))}
+        {post.comments.map((comment) => (
+          <PostComment comment={{ ...comment, post: post._id }} key={comment._id} />
+        ))}
       </div>
     </div>
   );

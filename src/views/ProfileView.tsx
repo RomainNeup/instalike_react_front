@@ -17,7 +17,7 @@ export default function ProfileView(): ReactElement {
 
   useEffect(() => {
     if (username && !user) {
-      userService.getUserProfile(username)
+      userService.getUser(username)
         .then((u) => {
           setLoading(false);
           dispatch(addUser({
