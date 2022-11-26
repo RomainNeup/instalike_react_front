@@ -1,14 +1,14 @@
 import API from '../api';
 
 class AuthService {
-  public login(identifier: string, password: string): Promise<User> {
+  public static login(identifier: string, password: string): Promise<User> {
     return API.post<User>('auth/login', {
       identifier,
       password,
     }).then((a) => (a.data));
   }
 
-  public register(
+  public static register(
     username: string,
     email: string,
     password: string,
@@ -20,9 +20,9 @@ class AuthService {
     }).then((a) => a.data);
   }
 
-  public logout(): Promise<void> {
+  public static logout(): Promise<void> {
     return API.get('auth/logout');
   }
 }
 
-export default new AuthService();
+export default AuthService;
