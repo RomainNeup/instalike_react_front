@@ -11,25 +11,6 @@ interface User {
   currentUser?: boolean;
 }
 
-type UserResponse = {
-  user: User;
-};
-
-type ProfileResponse = {
-  webProfile: User;
-};
-
-interface Login {
-  identifier: string;
-  password: string;
-}
-
-interface Register {
-  username: string;
-  email: string;
-  password: string;
-}
-
 type FollowResponse = {
   isFollower: boolean;
 };

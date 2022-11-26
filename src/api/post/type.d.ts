@@ -10,10 +10,6 @@ interface Post {
   currentUser?: boolean;
 }
 
-type PostResponse = {
-  posts: Post[];
-};
-
 type LikeResponse = {
   isLiked: boolean;
 };

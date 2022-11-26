@@ -1,31 +1,16 @@
 import API from '../api';
 
 class UserApi {
-  public login(identifier: string, password: string): Promise<User> {
-    return API.post<UserResponse>('user/login', {
-      identifier,
-      password,
-    }).then((a) => (a.data.user));
+  public getUser(username: string): Promise<User> {
+    return API.get<User>(`user/${username}`).then((a) => a.data);
   }
 
-  public register(
-    username: string,
-    email: string,
-    password: string,
-  ): Promise<User> {
-    return API.post<UserResponse>('user/save', {
-      username,
-      email,
-      password,
-    }).then((a) => a.data.user);
-  }
-
-  public getUserProfile(username: string): Promise<User> {
-    return API.get<ProfileResponse>(`user/getWebProfile/${username}`).then((a) => a.data.webProfile);
+  public getCurrentUser(username: string): Promise<User> {
+    return API.get<User>(`user/${username}`).then((a) => a.data);
   }
 
   public editUser(user: User): Promise<User> {
-    return API.put<User>('user/edit', {
+    return API.put<User>('user', {
       username: user.username,
       description: user.description,
       media: user.media?._id,
