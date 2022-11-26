@@ -1,12 +1,13 @@
-import clsx from 'clsx';
 import React, {
   ReactElement, useEffect, useRef, useState,
 } from 'react';
+import clsx from 'clsx';
 import { Link as ReactLink } from 'react-router-dom';
 import Icon from '../Icons/Icon';
+import Image from '../Images/Image';
 
 function DropdownItem({
-  text, type, icon, disabled, className, onClick, to,
+  id, text, type, icon, image, disabled, className, onClick, to,
 }: DropdownItemProps): ReactElement {
   const itemClass = clsx(
     className,
@@ -38,6 +39,7 @@ function DropdownItem({
             onClick={onClick}
           >
             {icon && <Icon name={icon} className="mr-2" />}
+            {image && <Image src={image} alt={id} className="mr-2 h-6 w-6 inline" background="none" />}
             {text}
           </ReactLink>
         );
@@ -53,6 +55,7 @@ function DropdownItem({
             disabled={disabled}
           >
             {icon && <Icon name={icon} className="mr-2" />}
+            {image && <Image src={image} alt={id} className="mr-2 h-6 w-6 inline" background="none" />}
             {text}
           </button>
         );
@@ -68,6 +71,7 @@ function DropdownItem({
   return (
     <span className={itemClass}>
       {icon && <Icon name={icon} className="mr-2" />}
+      {image && <Image src={image} alt={id} className="mr-2 h-6 w-6 inline" background="none" />}
       {text}
     </span>
   );
@@ -100,7 +104,7 @@ export default function Dropdown({ children, items }: DropdownProps): ReactEleme
             className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-secondary border border-secondary text-basic shadow-lg focus:outline-none"
           >
             {items.map(({
-              id, text, type, className, disabled, icon, onClick, to,
+              id, text, type, className, disabled, icon, image, onClick, to,
             }) => (
               <DropdownItem
                 key={id}
@@ -110,6 +114,7 @@ export default function Dropdown({ children, items }: DropdownProps): ReactEleme
                 className={className}
                 disabled={disabled}
                 icon={icon}
+                image={image}
                 onClick={(e) => {
                   setOpen(false);
                   if (onClick) {
