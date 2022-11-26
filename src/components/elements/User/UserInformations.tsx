@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+import { useTranslation } from 'react-i18next';
 import Image from '../../base/Images/Image';
 import P from '../../base/Texts/P';
 import H2 from '../../base/Titles/H2';
@@ -9,6 +10,7 @@ import { followUser as followUserUsersAction } from '../../../store/reducers/pos
 import { followUser as followUserPostAction } from '../../../store/reducers/users/reducer';
 
 export default function UserInformations({ user }: UserInformationProps): ReactElement {
+  const { t } = useTranslation('user');
   const dispatch = useAppDispatch();
   const handleFollow = () => {
     UserService.followUser(user._id)
@@ -28,24 +30,21 @@ export default function UserInformations({ user }: UserInformationProps): ReactE
             <P>
               <b className="font-black">{user.posts?.length}</b>
               <br />
-              Publication
-              {user.posts && user.posts.length > 1 ? 's' : ''}
+              {t('information.posts', { count: user.posts?.length })}
             </P>
           </div>
           <div className="text-center">
             <P>
               <b className="font-black">{user.followers}</b>
               <br />
-              Follower
-              {user.followers && user.followers > 1 ? 's' : ''}
+              {t('information.followers', { count: user.followers })}
             </P>
           </div>
           <div className="text-center">
             <P>
               <b className="font-black">{user.following}</b>
               <br />
-              Suivi(e)
-              {user.following && user.following > 1 ? 's' : ''}
+              {t('information.following', { count: user.following })}
             </P>
           </div>
         </div>
@@ -56,7 +55,7 @@ export default function UserInformations({ user }: UserInformationProps): ReactE
           {
             user.currentUser ? (
               <Button v-else className="w-1/3" to="/account/edit">
-                Editer le profil
+                {t('action.edit')}
               </Button>
             ) : (
               <Button
@@ -64,7 +63,7 @@ export default function UserInformations({ user }: UserInformationProps): ReactE
                 className="w-1/3"
                 plain={!user.isFollower}
               >
-                {user.isFollower ? 'Suivi(e)' : "S'abonner"}
+                {user.isFollower ? t('action.unfollow') : t('action.follow')}
               </Button>
             )
           }

@@ -1,4 +1,5 @@
 import React, { FormEvent, ReactElement, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import Button from '../components/base/Buttons/Button';
 import Image from '../components/base/Images/Image';
@@ -16,6 +17,7 @@ interface UploadedImage {
 }
 
 export default function PublishView(): ReactElement {
+  const { t } = useTranslation('post');
   const [uploadedImage, setUploadedImage] = useState<UploadedImage>({ value: '' });
   const [description, setDescription] = useState<string>('');
   const dispatch = useAppDispatch();
@@ -55,9 +57,9 @@ export default function PublishView(): ReactElement {
 
   return (
     <div className="max-w-lg w-full">
-      <H1 className="mb-16">Nouveau post</H1>
+      <H1 className="mb-16">{t('publish.title')}</H1>
       <form className="space-y-4" onSubmit={handlePublish}>
-        {uploadedImage.preview && <Image src={uploadedImage.preview} alt="Preview de l'image" className="w-full max-h-96" />}
+        {uploadedImage.preview && <Image src={uploadedImage.preview} alt={t('publish.preview')} className="w-full max-h-96" />}
         <Input
           type="file"
           value={uploadedImage.value}
@@ -65,14 +67,14 @@ export default function PublishView(): ReactElement {
         />
         <Input
           type="textarea"
-          label="Description"
-          placeholder="Dites en plus sur votre post"
+          label={t('publish.fields.description')}
+          placeholder={t('publish.placeholders.description')}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
         <div>
-          <Button className="mt-8" fullWidth plain>Je partage ma photo</Button>
-          <Button className="mt-4" fullWidth to="/">J&apos;abandonne</Button>
+          <Button className="mt-8" fullWidth plain>{t('publish.submit')}</Button>
+          <Button className="mt-4" fullWidth to="/">{t('publish.cancel')}</Button>
         </div>
       </form>
     </div>

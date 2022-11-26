@@ -14,7 +14,7 @@ export default function ChatView(): ReactElement {
         <div className="pb-4 flex justify-between border-b border-secondary items-center">
           <div className="h-12" />
           <P className="text-xl">romain_nonym</P>
-          <Button color="primary" onClick={() => console.log('addConvo')}>
+          <Button color="primary" onClick={() => 'TODO'}>
             <Icon name="edit" />
           </Button>
         </div>
@@ -110,7 +110,7 @@ export default function ChatView(): ReactElement {
             className="mb-0"
           />
         </div>
-        <div className="flex items-end w-100 text-primary items-center">
+        <div className="flex items-end w-100 text-primary">
           <Input type="text" placeholder="Ecrivez un message" className="grow" />
         </div>
       </div>

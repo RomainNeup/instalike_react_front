@@ -1,4 +1,5 @@
 import React, { FormEvent, ReactElement, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
 import Icon from '../../base/Icons/Icon';
 import P from '../../base/Texts/P';
@@ -7,6 +8,7 @@ import Input from '../../base/Inputs/Input';
 export default function UserText({
   className, text, handleDelete, handleEdit, isEditable, username,
 }: UserTextProps): ReactElement {
+  const { t } = useTranslation('post');
   const [editedText, setEditedText] = useState<string>('');
 
   const handleEditUserText = (event: FormEvent) => {
@@ -29,7 +31,7 @@ export default function UserText({
       <div className={classes}>
         <form onSubmit={handleEditUserText} className="flex">
           <Input
-            placeholder="Modifier un commentaire..."
+            placeholder={t('comment.add')}
             noBorder
             onChange={(e) => setEditedText(e.target.value)}
             value={editedText}

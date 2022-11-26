@@ -1,6 +1,7 @@
 import React, {
   FormEvent, ReactElement, useEffect, useState,
 } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import Image from '../components/base/Images/Image';
 import Input from '../components/base/Inputs/Input';
@@ -18,6 +19,7 @@ interface UploadedImage {
 }
 
 export default function EditProfileView(): ReactElement {
+  const { t } = useTranslation('user');
   const [media, setMedia] = useState<UploadedImage>({ value: '' });
   const [username, setUsername] = useState<string>('');
   const [description, setDescription] = useState<string>('');
@@ -26,12 +28,12 @@ export default function EditProfileView(): ReactElement {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!username) {
+    if (informations) {
       setUsername(informations?.username || '');
       setDescription(informations?.description || '');
-      setMedia({ ...media, preview: informations?.media?.url });
+      setMedia((m) => ({ ...m, preview: informations?.media?.url }));
     }
-  }, [informations, media, username]);
+  }, [informations]);
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
@@ -95,23 +97,23 @@ export default function EditProfileView(): ReactElement {
             onChange={(e) => handleImageUpload(e.target as HTMLInputElement)}
           />
           <Input
-            label="Nom d'utilisateur"
-            placeholder="Votre nouveau nom d'utilisateur"
+            label={t('fields.username')}
+            placeholder={t('placeholders.username')}
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
           <Input
-            label="Description"
-            placeholder="Décrivez vous en quelques mots..."
+            label={t('fields.description')}
+            placeholder={t('placeholders.description')}
             type="textarea"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>
-        <Button plain fullWidth>Je modifie mon profil</Button>
+        <Button plain fullWidth>{t('action.submit')}</Button>
       </form>
-      <Button fullWidth onClick={() => console.log('ta mère la pute')}>Je supprime mon compte</Button>
+      <Button fullWidth onClick={() => 'TODO'}>{t('action.delete')}</Button>
     </div>
   );
 }

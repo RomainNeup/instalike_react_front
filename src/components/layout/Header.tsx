@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import H3 from '../base/Titles/H3';
@@ -9,8 +10,11 @@ import Button from '../base/Buttons/Button';
 import Icon from '../base/Icons/Icon';
 import Dropdown from '../base/Dropdowns/Dropdown';
 import { logoutUser } from '../../store/reducers/user/reducer';
+import frFlag from '../../assets/images/flags/fr.png';
+import ukFlag from '../../assets/images/flags/uk.png';
 
 export default function Header({ className }: LayoutProps): ReactElement {
+  const { t, i18n } = useTranslation(['post', 'user', 'auth']);
   const { informations, isLogged } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
   const headerClass = clsx(
@@ -35,7 +39,7 @@ export default function Header({ className }: LayoutProps): ReactElement {
           <div className="flex space-x-4">
             <Button size="small" className="self-center" to="/publish">
               <Icon name="add" className="mr-2" />
-              Poster
+              {t('post:publish.button')}
             </Button>
             <div className="w-12 h-12">
               <Dropdown items={[
@@ -51,14 +55,21 @@ export default function Header({ className }: LayoutProps): ReactElement {
                 },
                 {
                   id: 'profile',
-                  text: 'Voir mon profil',
+                  text: t('user:profile'),
                   type: 'link',
                   to: '/profile',
                   icon: 'person',
                 },
                 {
+                  id: 'lang',
+                  text: t('user:action.lang'),
+                  type: 'button',
+                  onClick: () => i18n.changeLanguage(i18n.language === 'fr' ? 'en' : 'fr'),
+                  image: i18n.language === 'fr' ? frFlag : ukFlag,
+                },
+                {
                   id: 'logout',
-                  text: 'Me déconnecter',
+                  text: t('auth:logout.title'),
                   type: 'button',
                   onClick: () => dispatch(logoutUser()),
                   icon: 'logout',

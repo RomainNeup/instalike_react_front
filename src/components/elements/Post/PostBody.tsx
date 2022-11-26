@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
 import Icon from '../../base/Icons/Icon';
 import P from '../../base/Texts/P';
@@ -10,6 +11,7 @@ import PostComment from './PostComment';
 import UserText from './UserText';
 
 export default function PostBody({ post, imageFull }: PostProps): ReactElement {
+  const { t } = useTranslation('post');
   const dispatch = useAppDispatch();
   const handleLike = () => {
     PostService.likePost(post._id)
@@ -39,9 +41,7 @@ export default function PostBody({ post, imageFull }: PostProps): ReactElement {
         <Icon name="favorite" color="secondary" className="mr-2" onClick={handleLike} plain={post.isLiked} />
         <Icon name="chat_bubble" color="secondary" />
         <P className="font-light">
-          {post.likes}
-          {' '}
-          j&apos;aime
+          {t('likes', { count: post.likes })}
         </P>
         <UserText
           handleDelete={handleDeletePost}

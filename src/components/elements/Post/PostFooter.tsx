@@ -1,4 +1,5 @@
 import React, { FormEvent, ReactElement, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import Image from '../../base/Images/Image';
 import Input from '../../base/Inputs/Input';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
@@ -6,6 +7,7 @@ import CommentService from '../../../api/comment/service';
 import { addComment } from '../../../store/reducers/post/reducer';
 
 export default function PostFooter({ post }: PostProps): ReactElement {
+  const { t } = useTranslation('post');
   const { informations } = useAppSelector((state) => state.user);
   const [comment, setComment] = useState('');
   const dispatch = useAppDispatch();
@@ -32,7 +34,7 @@ export default function PostFooter({ post }: PostProps): ReactElement {
         <div className="self-center w-100 grow">
           <form onSubmit={handleAddComment}>
             <Input
-              placeholder="Ajouter un commentaire..."
+              placeholder={t('comment.add')}
               noBorder
               onChange={(e) => setComment(e.target.value)}
               value={comment}

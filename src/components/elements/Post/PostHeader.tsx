@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link as ReactLink } from 'react-router-dom';
 import Button from '../../base/Buttons/Button';
 import Image from '../../base/Images/Image';
@@ -9,6 +10,7 @@ import { followUser as followUserUsersAction } from '../../../store/reducers/pos
 import { followUser as followUserPostAction } from '../../../store/reducers/users/reducer';
 
 export default function PostHeader({ user }: PostLayoutProps): ReactElement {
+  const { t } = useTranslation('user');
   const dispatch = useAppDispatch();
   const handleFollow = () => {
     UserService.followUser(user._id)
@@ -30,11 +32,11 @@ export default function PostHeader({ user }: PostLayoutProps): ReactElement {
         {
           user.currentUser ? (
             <Button size="small" to="/profile">
-              Mon profil
+              {t('profile')}
             </Button>
           ) : (
             <Button size="small" onClick={handleFollow} plain={!user.isFollower}>
-              {user.isFollower ? 'Suivi(e)' : 'S\'abonner'}
+              {user.isFollower ? t('action.unfollow') : t('action.follow')}
             </Button>
           )
         }

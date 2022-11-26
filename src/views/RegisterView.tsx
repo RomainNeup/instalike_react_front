@@ -1,4 +1,5 @@
 import React, { FormEvent, ReactElement, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import Button from '../components/base/Buttons/Button';
 import H1 from '../components/base/Titles/H1';
 import Input from '../components/base/Inputs/Input';
@@ -12,6 +13,7 @@ export default function RegisterView(): ReactElement {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useAppDispatch();
+  const { t } = useTranslation('auth');
 
   const handleRegister = (event: FormEvent) => {
     event.preventDefault();
@@ -22,33 +24,33 @@ export default function RegisterView(): ReactElement {
 
   return (
     <div className="max-w-md w-2/3">
-      <H1 className="mb-16">Inscrivez vous</H1>
+      <H1 className="mb-16">{t('register.title')}</H1>
       <form onSubmit={handleRegister}>
         <Input
-          label="Nom d'utilisateur"
-          placeholder="toto"
+          label={t('fields.username')}
+          placeholder={t('placeholders.username')}
           className="mb-4"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
         <Input
-          label="Adresse email"
-          placeholder="example@mail.fr"
+          label={t('fields.email')}
+          placeholder={t('placeholders.email')}
           className="mb-4"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <Input
-          label="Mot de passe"
-          placeholder="****"
+          label={t('fields.password')}
+          placeholder={t('placeholders.password')}
           className="mb-8"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Link className="mb-4" to="/login">J&apos;ai déjà un compte</Link>
-        <Button fullWidth>Je m&apos;inscris</Button>
+        <Link className="mb-4" to="/login">{t('login.link')}</Link>
+        <Button fullWidth>{t('register.submit')}</Button>
       </form>
     </div>
   );

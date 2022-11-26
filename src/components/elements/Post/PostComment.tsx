@@ -11,7 +11,6 @@ export default function PostComment({ comment }: PostCommentProps): ReactElement
   const handleEditComment = (text: string) => {
     CommentService.editComment(comment._id, text)
       .then((newCom) => {
-        console.log('post', { ...comment, ...newCom });
         dispatch(editComment({ ...comment, ...newCom }));
       });
   };
