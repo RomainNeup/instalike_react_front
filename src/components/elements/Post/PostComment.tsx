@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import Image from '../../base/Images/Image';
-import commentService from '../../../api/comment/service';
+import CommentService from '../../../api/comment/service';
 import { useAppDispatch } from '../../../store/hooks';
 import { deleteComment, editComment } from '../../../store/reducers/post/reducer';
 import UserText from './UserText';
@@ -9,14 +9,14 @@ export default function PostComment({ comment }: PostCommentProps): ReactElement
   const dispatch = useAppDispatch();
 
   const handleEditComment = (text: string) => {
-    commentService.editComment(comment._id, text)
+    CommentService.editComment(comment._id, text)
       .then((newCom) => {
         console.log('post', { ...comment, ...newCom });
         dispatch(editComment({ ...comment, ...newCom }));
       });
   };
   const handleDeleteComment = () => {
-    commentService.deleteComment(comment._id)
+    CommentService.deleteComment(comment._id)
       .then(() => dispatch(deleteComment(comment)));
   };
 

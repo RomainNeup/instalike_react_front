@@ -2,7 +2,7 @@ import React, { FormEvent, ReactElement, useState } from 'react';
 import Image from '../../base/Images/Image';
 import Input from '../../base/Inputs/Input';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
-import commentService from '../../../api/comment/service';
+import CommentService from '../../../api/comment/service';
 import { addComment } from '../../../store/reducers/post/reducer';
 
 export default function PostFooter({ post }: PostProps): ReactElement {
@@ -12,7 +12,7 @@ export default function PostFooter({ post }: PostProps): ReactElement {
   const handleAddComment = (event: FormEvent) => {
     if (informations) {
       event.preventDefault();
-      commentService.saveComment(post._id, comment)
+      CommentService.saveComment(post._id, comment)
         .then((response) => {
           dispatch(addComment({
             ...response,

@@ -4,14 +4,14 @@ import P from '../../base/Texts/P';
 import H2 from '../../base/Titles/H2';
 import Button from '../../base/Buttons/Button';
 import { useAppDispatch } from '../../../store/hooks';
-import userService from '../../../api/user/service';
+import UserService from '../../../api/user/service';
 import { followUser as followUserUsersAction } from '../../../store/reducers/post/reducer';
 import { followUser as followUserPostAction } from '../../../store/reducers/users/reducer';
 
 export default function UserInformations({ user }: UserInformationProps): ReactElement {
   const dispatch = useAppDispatch();
   const handleFollow = () => {
-    userService.followUser(user._id)
+    UserService.followUser(user._id)
       .then((follow) => {
         dispatch(followUserPostAction({ _id: user._id, follow }));
         dispatch(followUserUsersAction({ _id: user._id, follow }));

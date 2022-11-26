@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import Image from '../components/base/Images/Image';
 import Input from '../components/base/Inputs/Input';
 import Button from '../components/base/Buttons/Button';
-import uploadService from '../api/upload/service';
-import userService from '../api/user/service';
+import UploadService from '../api/upload/service';
+import UserService from '../api/user/service';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { editUser } from '../store/reducers/user/reducer';
 import { editUser as editUserInUsers } from '../store/reducers/users/reducer';
@@ -36,8 +36,8 @@ export default function EditProfileView(): ReactElement {
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     if (media.file) {
-      uploadService.uploadMedia(media.file)
-        .then((mediaId) => userService.editUser({
+      UploadService.uploadMedia(media.file)
+        .then((mediaId) => UserService.editUser({
           _id: '', username, description, media: { _id: mediaId, mimetype: '', url: '' },
         }))
         .then((user) => {
@@ -48,7 +48,7 @@ export default function EditProfileView(): ReactElement {
           }
         });
     } else {
-      userService.editUser({
+      UserService.editUser({
         _id: '', username, description, media: null,
       })
         .then((user) => {

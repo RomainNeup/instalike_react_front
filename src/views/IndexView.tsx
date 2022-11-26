@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect } from 'react';
 import Post from '../components/elements/Post/Post';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
-import postService from '../api/post/service';
+import PostService from '../api/post/service';
 import { setPosts } from '../store/reducers/post/reducer';
 
 export default function IndexView(): ReactElement {
@@ -10,7 +10,7 @@ export default function IndexView(): ReactElement {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    postService.getPosts()
+    PostService.getPosts()
       .then((response) => dispatch(setPosts(response.map((post) => ({
         ...post,
         user: {

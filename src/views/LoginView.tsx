@@ -3,8 +3,8 @@ import Button from '../components/base/Buttons/Button';
 import H1 from '../components/base/Titles/H1';
 import Input from '../components/base/Inputs/Input';
 import Link from '../components/base/Links/Link';
-import authService from '../api/auth/service';
-import userService from '../api/user/service';
+import AuthService from '../api/auth/service';
+import UserService from '../api/user/service';
 import { loginUser } from '../store/reducers/user/reducer';
 import { useAppDispatch } from '../store/hooks';
 
@@ -15,8 +15,8 @@ export default function LoginView(): ReactElement {
 
   const handleLogin = (event: FormEvent) => {
     event.preventDefault();
-    authService.login(identifier, password)
-      .then(() => userService.getCurrentUser()
+    AuthService.login(identifier, password)
+      .then(() => UserService.getCurrentUser()
         .then((user) => dispatch(loginUser(user))));
   };
 

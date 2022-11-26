@@ -4,7 +4,7 @@ import Image from '../components/base/Images/Image';
 import UserInformations from '../components/elements/User/UserInformations';
 import { useAppSelector, useAppDispatch } from '../store/hooks';
 import NotFoundView from './utils/NotFoundView';
-import userService from '../api/user/service';
+import UserService from '../api/user/service';
 import { addUser } from '../store/reducers/users/reducer';
 import LoadingView from './utils/LoadingView';
 
@@ -17,7 +17,7 @@ export default function ProfileView(): ReactElement {
 
   useEffect(() => {
     if (username && !user) {
-      userService.getUser(username)
+      UserService.getUser(username)
         .then((u) => {
           setLoading(false);
           dispatch(addUser({

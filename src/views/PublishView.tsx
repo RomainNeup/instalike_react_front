@@ -4,8 +4,8 @@ import Button from '../components/base/Buttons/Button';
 import Image from '../components/base/Images/Image';
 import Input from '../components/base/Inputs/Input';
 import H1 from '../components/base/Titles/H1';
-import uploadService from '../api/upload/service';
-import postService from '../api/post/service';
+import UploadService from '../api/upload/service';
+import PostService from '../api/post/service';
 import { useAppDispatch } from '../store/hooks';
 import { addPost } from '../store/reducers/post/reducer';
 
@@ -24,8 +24,8 @@ export default function PublishView(): ReactElement {
   const handlePublish = (event: FormEvent) => {
     event.preventDefault();
     if (uploadedImage.file) {
-      uploadService.uploadMedia(uploadedImage.file)
-        .then((media) => postService.createPost(media, description))
+      UploadService.uploadMedia(uploadedImage.file)
+        .then((media) => PostService.createPost(media, description))
         .then((post) => {
           dispatch(addPost(post));
           setUploadedImage({ value: '' });
