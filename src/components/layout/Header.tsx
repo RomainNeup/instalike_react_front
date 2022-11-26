@@ -35,7 +35,7 @@ export default function Header({ className }: LayoutProps): ReactElement {
         <H3>InstaLike</H3>
       </Link>
       {
-        isLogged && (
+        isLogged ? (
           <div className="flex space-x-4">
             <Button size="small" className="self-center" to="/publish">
               <Icon name="add" className="mr-2" />
@@ -54,18 +54,18 @@ export default function Header({ className }: LayoutProps): ReactElement {
                   type: 'divider',
                 },
                 {
-                  id: 'profile',
-                  text: t('user:profile'),
-                  type: 'link',
-                  to: '/profile',
-                  icon: 'person',
-                },
-                {
                   id: 'lang',
                   text: t('user:action.lang'),
                   type: 'button',
                   onClick: () => i18n.changeLanguage(i18n.language === 'fr' ? 'en' : 'fr'),
                   image: i18n.language === 'fr' ? frFlag : ukFlag,
+                },
+                {
+                  id: 'profile',
+                  text: t('user:profile'),
+                  type: 'link',
+                  to: '/profile',
+                  icon: 'person',
                 },
                 {
                   id: 'logout',
@@ -87,6 +87,11 @@ export default function Header({ className }: LayoutProps): ReactElement {
             </div>
           </div>
         )
+          : (
+            <Button className="border-0" color="secondary" onClick={() => i18n.changeLanguage(i18n.language === 'fr' ? 'en' : 'fr')}>
+              <Image src={i18n.language === 'en' ? frFlag : ukFlag} alt="Lang" background="none" />
+            </Button>
+          )
       }
     </div>
   );

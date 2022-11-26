@@ -39,7 +39,7 @@ function DropdownItem({
             onClick={onClick}
           >
             {icon && <Icon name={icon} className="mr-2" />}
-            {image && <Image src={image} alt={id} className="mr-2 h-6 w-6 inline" background="none" />}
+            {image && <Image src={image} alt={id} className="mr-2 p-1 h-6 w-6 inline" background="none" />}
             {text}
           </ReactLink>
         );
@@ -55,7 +55,7 @@ function DropdownItem({
             disabled={disabled}
           >
             {icon && <Icon name={icon} className="mr-2" />}
-            {image && <Image src={image} alt={id} className="mr-2 h-6 w-6 inline" background="none" />}
+            {image && <Image src={image} alt={id} className="mr-2 p-1 h-6 w-6 inline" background="none" />}
             {text}
           </button>
         );
@@ -71,7 +71,7 @@ function DropdownItem({
   return (
     <span className={itemClass}>
       {icon && <Icon name={icon} className="mr-2" />}
-      {image && <Image src={image} alt={id} className="mr-2 h-6 w-6 inline" background="none" />}
+      {image && <Image src={image} alt={id} className="mr-2 p-1 h-6 w-6 inline" background="none" />}
       {text}
     </span>
   );
