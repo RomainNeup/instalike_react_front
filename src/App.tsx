@@ -5,6 +5,7 @@ import Body from './components/layout/Body';
 import Middleware from './router/middlewares/Middleware';
 import NotFoundView from './views/utils/NotFoundView';
 import LoadingView from './views/utils/LoadingView';
+import './translations/i18n';
 
 export default function App(): ReactElement {
   const [route] = useState<AppRoute[]>(routes());

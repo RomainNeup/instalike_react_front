@@ -1,0 +1,21 @@
+{
+    "likes_zero": "0 j'aime",
+    "likes_one": "1 j'aime",
+    "likes_other": "{{count}} j'aimes",
+    "comment": {
+        "add": "Ajouter un commentaire..."
+    },
+    "publish": {
+        "button": "Poster",
+        "title": "Nouveau post",
+        "preview": "Aperçu de l'image",
+        "fields": {
+            "description": "Description"
+        },
+        "placeholders": {
+            "description": "Dites en plus sur votre post..."
+        },
+        "submit": "Je partage ma photo",
+        "cancel": "J'abandonne"
+    }
+}

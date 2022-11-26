@@ -1,0 +1,32 @@
+{
+    "action": {
+        "follow": "Follow",
+        "unfollow": "Followed",
+        "edit": "Edit profile",
+        "submit": "Edit my profile",
+        "delete": "Delete my account",
+        "lang": "Change language"
+    },
+    "information": {
+        "posts_zero": "Post",
+        "posts_one": "Post",
+        "posts_other": "Posts",
+
+        "followers_zero": "Follower",
+        "followers_one": "Follower",
+        "followers_other": "Followers",
+
+        "following_zero": "Follow",
+        "following_one": "Follow",
+        "following_other": "Follows"
+    },
+    "fields": {
+        "username": "Username",
+        "description": "Description"
+    },
+    "placeholders": {
+        "username": "Username",
+        "description": "Let people know a little about you..."
+    },
+    "profile": "My profile"
+}

@@ -1,0 +1,21 @@
+{
+    "likes_zero": "0 like",
+    "likes_one": "1 like",
+    "likes_other": "{{count}} likes",
+    "comment": {
+        "add": "Add comment..."
+    },
+    "publish": {
+        "button": "Post",
+        "title": "New post",
+        "preview": "Image preview",
+        "fields": {
+            "description": "Description"
+        },
+        "placeholders": {
+            "description": "Tell us about your photo..."
+        },
+        "submit": "Share my photo",
+        "cancel": "Cancel"
+    }
+}

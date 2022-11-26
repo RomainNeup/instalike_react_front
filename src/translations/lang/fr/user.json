@@ -1,0 +1,32 @@
+{
+    "action": {
+        "follow": "S'abonner",
+        "unfollow": "Suivi(e)",
+        "edit": "Éditer mon profil",
+        "submit": "Je modifie mon profil",
+        "delete": "Je supprime mon compte",
+        "lang": "Changer de langue"
+    },
+    "information": {
+        "posts_zero": "Publication",
+        "posts_one": "Publication",
+        "posts_other": "Publications",
+
+        "followers_zero": "Follower",
+        "followers_one": "Follower",
+        "followers_other": "Followers",
+
+        "following_zero": "Suivi(e)",
+        "following_one": "Suivi(e)",
+        "following_other": "Suivi(e)s"
+    },
+    "fields": {
+        "username": "Nom d'utilisateur",
+        "description": "Description"
+    },
+    "placeholders": {
+        "username": "Nom d'utilisateur",
+        "description": "Décrivez-vous en quelques mots..."
+    },
+    "profile": "Mon profil"
+}
