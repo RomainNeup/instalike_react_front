@@ -19,8 +19,8 @@ export const usersSlice = createSlice({
         if (user._id === action.payload._id && user.followers !== undefined) {
           return {
             ...user,
-            isFollower: action.payload.isFollowed,
-            followers: action.payload.isFollowed ? user.followers + 1 : user.followers - 1,
+            isFollower: action.payload.follow,
+            followers: action.payload.follow ? user.followers + 1 : user.followers - 1,
           };
         }
         return user;

@@ -27,7 +27,7 @@ class PostApi {
   }
 
   public likePost(id: string): Promise<boolean> {
-    return API.put<LikeResponse>(`post/like/${id}`).then((a) => a.data.isLiked);
+    return API.put<LikeResponse>(`post/like/${id}`).then((a) => a.data.like);
   }
 }
 

@@ -28,20 +28,20 @@ export const postSlice = createSlice({
       return posts.filter((post) => post._id !== action.payload);
     },
     likePost(posts, action: PayloadAction<LikeAction>): void {
-      const { _id, isLiked } = action.payload;
+      const { _id, like } = action.payload;
       const postIndex = posts.findIndex((post) => post._id === _id);
       const postsCopy = posts;
-      postsCopy[postIndex].isLiked = isLiked;
-      postsCopy[postIndex].likes += isLiked ? 1 : -1;
+      postsCopy[postIndex].isLiked = like;
+      postsCopy[postIndex].likes += like ? 1 : -1;
     },
     followUser(posts, action: PayloadAction<FollowAction>): void {
-      const { _id, isFollowed } = action.payload;
+      const { _id, follow } = action.payload;
       posts.forEach((post) => {
         const postCopy = post;
         if (postCopy.user._id === _id) {
-          postCopy.user.isFollower = isFollowed;
+          postCopy.user.isFollower = follow;
           if (postCopy.user.followers) {
-            postCopy.user.followers += isFollowed ? 1 : -1;
+            postCopy.user.followers += follow ? 1 : -1;
           }
         }
       });

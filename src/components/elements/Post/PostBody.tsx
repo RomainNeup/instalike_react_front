@@ -13,7 +13,7 @@ export default function PostBody({ post, imageFull }: PostProps): ReactElement {
   const dispatch = useAppDispatch();
   const handleLike = () => {
     postService.likePost(post._id)
-      .then((isLiked) => dispatch(likePost({ _id: post._id, isLiked })));
+      .then((like) => dispatch(likePost({ _id: post._id, like })));
   };
   const handleEditPost = (description: string) => {
     postService.editPost(post._id, description)

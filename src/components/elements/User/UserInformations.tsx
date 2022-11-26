@@ -12,9 +12,9 @@ export default function UserInformations({ user }: UserInformationProps): ReactE
   const dispatch = useAppDispatch();
   const handleFollow = () => {
     userService.followUser(user._id)
-      .then((isFollowed) => {
-        dispatch(followUserPostAction({ _id: user._id, isFollowed }));
-        dispatch(followUserUsersAction({ _id: user._id, isFollowed }));
+      .then((follow) => {
+        dispatch(followUserPostAction({ _id: user._id, follow }));
+        dispatch(followUserUsersAction({ _id: user._id, follow }));
       });
   };
   return (

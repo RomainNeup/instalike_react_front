@@ -12,5 +12,5 @@ interface User {
 }
 
 type FollowResponse = {
-  isFollower: boolean;
+  follow: boolean;
 };

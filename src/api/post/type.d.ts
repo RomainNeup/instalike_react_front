@@ -11,5 +11,5 @@ interface Post {
 }
 
 type LikeResponse = {
-  isLiked: boolean;
+  like: boolean;
 };
