@@ -14,7 +14,7 @@ import frFlag from '../../assets/images/flags/fr.png';
 import ukFlag from '../../assets/images/flags/uk.png';
 
 export default function Header({ className }: LayoutProps): ReactElement {
-  const { t, i18n } = useTranslation(['post', 'user', 'auth']);
+  const { t, i18n } = useTranslation(['post', 'user', 'auth', 'chat']);
   const { informations, isLogged } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
   const headerClass = clsx(
@@ -44,9 +44,10 @@ export default function Header({ className }: LayoutProps): ReactElement {
             <div className="w-12 h-12">
               <Dropdown items={[
                 {
-                  id: 'user',
-                  type: 'text',
+                  id: 'profile',
                   text: informations?.username || '',
+                  type: 'link',
+                  to: '/profile',
                   icon: 'account_circle',
                 },
                 {
@@ -61,11 +62,11 @@ export default function Header({ className }: LayoutProps): ReactElement {
                   image: i18n.language === 'fr' ? frFlag : ukFlag,
                 },
                 {
-                  id: 'profile',
-                  text: t('user:profile'),
+                  id: 'chat',
+                  text: t('chat:title'),
                   type: 'link',
-                  to: '/profile',
-                  icon: 'person',
+                  to: '/chat',
+                  icon: 'forum',
                 },
                 {
                   id: 'logout',
@@ -73,7 +74,6 @@ export default function Header({ className }: LayoutProps): ReactElement {
                   type: 'button',
                   onClick: () => dispatch(logoutUser()),
                   icon: 'logout',
-                  className: 'rounded-b-md',
                 },
               ]}
               >
