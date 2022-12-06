@@ -10,3 +10,11 @@ interface InputProps {
   rows?: number;
   autocomplete?: string;
 }
+
+interface CheckboxProps {
+  className?: string;
+  disabled?: boolean;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  checked?: boolean;
+  label?: string;
+}
