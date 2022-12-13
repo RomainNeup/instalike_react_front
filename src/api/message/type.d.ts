@@ -1,6 +1,7 @@
 interface Message {
-    user: User;
-    conversation: string;
-    text: string;
-    readBy: User[];
+  id: string;
+  user: User;
+  conversation: string;
+  text: string;
+  readBy: User[];
 }

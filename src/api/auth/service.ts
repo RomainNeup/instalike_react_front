@@ -23,6 +23,10 @@ class AuthService {
   public static logout(): Promise<void> {
     return API.get('auth/logout');
   }
+
+  public static getSocketToken(): Promise<string> {
+    return API.get('auth/socket').then((a) => a.data.token);
+  }
 }
 
 export default AuthService;
