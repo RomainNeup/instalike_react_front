@@ -1,7 +1,7 @@
 import 'i18next';
-import fr from "./lang/fr"
+import fr from './lang/fr';
 
-declare module "i18next" {
+declare module 'i18next' {
   interface CustomTypeOptions {
     returnNull: false;
     resources: typeof fr;
