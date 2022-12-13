@@ -11,11 +11,11 @@ export const userSlice = createSlice({
   reducers: {
     loginUser(_, action: PayloadAction<User>): UserState {
       const {
-        _id, username, email, description, media,
+        id, username, email, description, media,
       } = action.payload;
       return {
         informations: {
-          _id,
+          id,
           username,
           email,
           description,

@@ -22,7 +22,7 @@ export default function ProfileView(): ReactElement {
           setLoading(false);
           dispatch(addUser({
             ...u,
-            currentUser: u._id === informations?._id,
+            currentUser: u.id === informations?.id,
           }));
         });
     } else {
@@ -48,8 +48,8 @@ export default function ProfileView(): ReactElement {
       <div className="grid grid-cols-3 gap-2 mt-4">
         {user.posts?.map((post) => (
           <ReactLink
-            to={`/post/${post._id}`}
-            key={post._id}
+            to={`/post/${post.id}`}
+            key={post.id}
           >
             <Image src={post.media?.url} className="min-h-full" alt={post.description} />
           </ReactLink>

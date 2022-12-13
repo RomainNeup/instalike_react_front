@@ -8,24 +8,24 @@ import PostService from '../../../api/post/service';
 import { likePost, editPost, deletePost } from '../../../store/reducers/post/reducer';
 import { useAppDispatch } from '../../../store/hooks';
 import PostComment from './PostComment';
-import UserText from './UserText';
+import UserText from '../../base/Texts/UserText';
 
 export default function PostBody({ post, imageFull }: PostProps): ReactElement {
   const { t } = useTranslation('post');
   const dispatch = useAppDispatch();
   const handleLike = () => {
-    PostService.likePost(post._id)
-      .then((like) => dispatch(likePost({ _id: post._id, like })));
+    PostService.likePost(post.id)
+      .then((like) => dispatch(likePost({ id: post.id, like })));
   };
   const handleEditPost = (description: string) => {
-    PostService.editPost(post._id, description)
+    PostService.editPost(post.id, description)
       .then((newPost) => {
         dispatch(editPost({ ...post, description: newPost.description }));
       });
   };
   const handleDeletePost = () => {
-    PostService.deletePost(post._id)
-      .then(() => dispatch(deletePost(post._id)));
+    PostService.deletePost(post.id)
+      .then(() => dispatch(deletePost(post.id)));
   };
   const imageClass = clsx(
     'w-full',
@@ -53,7 +53,7 @@ export default function PostBody({ post, imageFull }: PostProps): ReactElement {
         />
 
         {post.comments.map((comment) => (
-          <PostComment comment={{ ...comment, post: post._id }} key={comment._id} />
+          <PostComment comment={{ ...comment, post: post.id }} key={comment.id} />
         ))}
       </div>
     </div>

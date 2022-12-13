@@ -3,19 +3,19 @@ import Image from '../../base/Images/Image';
 import CommentService from '../../../api/comment/service';
 import { useAppDispatch } from '../../../store/hooks';
 import { deleteComment, editComment } from '../../../store/reducers/post/reducer';
-import UserText from './UserText';
+import UserText from '../../base/Texts/UserText';
 
 export default function PostComment({ comment }: PostCommentProps): ReactElement {
   const dispatch = useAppDispatch();
 
   const handleEditComment = (text: string) => {
-    CommentService.editComment(comment._id, text)
+    CommentService.editComment(comment.id, text)
       .then((newCom) => {
         dispatch(editComment({ ...comment, ...newCom }));
       });
   };
   const handleDeleteComment = () => {
-    CommentService.deleteComment(comment._id)
+    CommentService.deleteComment(comment.id)
       .then(() => dispatch(deleteComment(comment)));
   };
 

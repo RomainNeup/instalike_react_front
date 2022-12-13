@@ -14,7 +14,7 @@ export default function PostFooter({ post }: PostProps): ReactElement {
   const handleAddComment = (event: FormEvent) => {
     if (informations) {
       event.preventDefault();
-      CommentService.saveComment(post._id, comment)
+      CommentService.saveComment(post.id, comment)
         .then((response) => {
           dispatch(addComment({
             ...response,
@@ -35,7 +35,7 @@ export default function PostFooter({ post }: PostProps): ReactElement {
           <form onSubmit={handleAddComment}>
             <Input
               placeholder={t('comment.add')}
-              noBorder
+              border={false}
               onChange={(e) => setComment(e.target.value)}
               value={comment}
             />

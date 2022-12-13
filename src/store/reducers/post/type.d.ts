@@ -3,11 +3,11 @@ interface PostState {
 }
 
 interface LikeAction {
-  _id: string;
+  id: string;
   like: boolean;
 }
 
 interface FollowAction {
-  _id: string;
+  id: string;
   follow: boolean;
 }

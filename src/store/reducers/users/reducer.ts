@@ -7,7 +7,7 @@ export const usersSlice = createSlice({
   initialState,
   reducers: {
     addUser(users, action: PayloadAction<User>): User[] {
-      const userFound = users.find((user) => user._id === action.payload._id);
+      const userFound = users.find((user) => user.id === action.payload.id);
       if (!userFound) {
         action.payload.posts?.reverse();
         return [...users, action.payload];
@@ -16,7 +16,7 @@ export const usersSlice = createSlice({
     },
     followUser(users, action: PayloadAction<FollowAction>): User[] {
       return users.map((user) => {
-        if (user._id === action.payload._id && user.followers !== undefined) {
+        if (user.id === action.payload.id && user.followers !== undefined) {
           return {
             ...user,
             isFollower: action.payload.follow,
@@ -28,7 +28,7 @@ export const usersSlice = createSlice({
     },
     editUser(users, action: PayloadAction<User>): User[] {
       return users.map((user) => {
-        if (user._id === action.payload._id) {
+        if (user.id === action.payload.id) {
           return {
             ...user,
             ...action.payload,

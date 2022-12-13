@@ -6,7 +6,7 @@ import NotFoundView from './utils/NotFoundView';
 
 export default function PostView(): ReactElement {
   const { id } = useParams<'id'>();
-  const post = useAppSelector((state) => state.posts.find((p) => p._id === id));
+  const post = useAppSelector((state) => state.posts.find((p) => p.id === id));
   if (!post) {
     return (
       <NotFoundView pageName={`post ${id}`} />

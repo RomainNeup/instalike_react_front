@@ -1,5 +1,5 @@
 interface PostComment {
-  _id: string;
+  id: string;
   post: string;
   user: User;
   text: string;

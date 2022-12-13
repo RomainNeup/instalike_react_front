@@ -13,10 +13,10 @@ export default function UserInformations({ user }: UserInformationProps): ReactE
   const { t } = useTranslation('user');
   const dispatch = useAppDispatch();
   const handleFollow = () => {
-    UserService.followUser(user._id)
+    UserService.followUser(user.id)
       .then((follow) => {
-        dispatch(followUserPostAction({ _id: user._id, follow }));
-        dispatch(followUserUsersAction({ _id: user._id, follow }));
+        dispatch(followUserPostAction({ id: user.id, follow }));
+        dispatch(followUserUsersAction({ id: user.id, follow }));
       });
   };
   return (

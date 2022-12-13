@@ -40,23 +40,23 @@ export default function EditProfileView(): ReactElement {
     if (media.file) {
       UploadService.uploadMedia(media.file)
         .then((mediaId) => UserService.editUser({
-          _id: '', username, description, media: { _id: mediaId, mimetype: '', url: '' },
+          id: '', username, description, media: { id: mediaId, mimetype: '', url: '' },
         }))
         .then((user) => {
           if (informations) {
             dispatch(editUser(user));
-            dispatch(editUserInUsers({ ...user, _id: informations._id }));
+            dispatch(editUserInUsers({ ...user, id: informations.id }));
             navigate('/profile');
           }
         });
     } else {
       UserService.editUser({
-        _id: '', username, description, media: null,
+        id: '', username, description, media: null,
       })
         .then((user) => {
           if (informations) {
             dispatch(editUser(user));
-            dispatch(editUserInUsers({ ...user, _id: informations._id }));
+            dispatch(editUserInUsers({ ...user, id: informations.id }));
             navigate('/profile');
           }
         });

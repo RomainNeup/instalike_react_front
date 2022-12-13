@@ -1,5 +1,5 @@
 interface Media {
-  _id: string;
+  id: string;
   mimetype: string;
   url: string;
 }

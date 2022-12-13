@@ -1,5 +1,5 @@
 interface User {
-  _id: string;
+  id: string;
   username: string;
   media: Media | null;
   email?: string;
@@ -14,3 +14,8 @@ interface User {
 type FollowResponse = {
   follow: boolean;
 };
+
+interface SearchUser {
+  username: string;
+  id: string;
+}

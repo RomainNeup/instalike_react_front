@@ -15,19 +15,19 @@ export default function IndexView(): ReactElement {
         ...post,
         user: {
           ...post.user,
-          currentUser: post.user._id === informations?._id,
+          currentUser: post.user.id === informations?.id,
         },
-        currentUser: informations?._id === post.user._id,
+        currentUser: informations?.id === post.user.id,
         comments: post.comments.map((comment) => ({
           ...comment,
-          currentUser: informations?._id === comment.user._id,
+          currentUser: informations?.id === comment.user.id,
         })),
       })))));
   }, [dispatch, informations]);
 
   return (
     <div className="w-full max-w-lg content-center">
-      {posts.map((post) => (<Post key={post._id} post={post} />))}
+      {posts.map((post) => (<Post key={post.id} post={post} />))}
     </div>
   );
 }

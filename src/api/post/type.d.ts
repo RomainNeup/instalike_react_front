@@ -1,5 +1,5 @@
 interface Post {
-  _id: string;
+  id: string;
   media: Media | null;
   user: User;
   description: string;
