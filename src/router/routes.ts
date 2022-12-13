@@ -51,6 +51,11 @@ export default function getRoutes(): AppRoute[] {
       loginRequired: true,
     },
     {
+      path: '/chat/:id',
+      Element: ChatView,
+      loginRequired: true,
+    },
+    {
       path: '/chat',
       Element: ChatView,
       loginRequired: true,

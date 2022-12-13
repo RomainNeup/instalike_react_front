@@ -1,99 +1,45 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import clsx from 'clsx';
 import Image from '../../base/Images/Image';
+import ConversationService from '../../../api/conversation/service';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks';
+import Button from '../../base/Buttons/Button';
+import { setConversation } from '../../../store/reducers/conversation/reducer';
 
-export default function ChatList({ className }: ChatListProps): ReactElement {
+export default function ChatList({ className, currentConversation }: ChatListProps): ReactElement {
+  const dispatch = useAppDispatch();
+  const conversations = useAppSelector((state) => state.conversation);
+
   const containerClass = clsx(
     className,
     [
       'overflow-y-scroll',
-    ],
-  );
-  const itemClass = clsx(
-    [
-      'flex',
-      'border',
-      'border-primary',
-      'bg-primary',
-      'text-basic',
-      'rounded-lg',
-      'px-4',
-      'py-2',
-      'mb-4',
-      'text-left',
-      'w-full',
-      'space-x-2',
-      'items-center',
-      'hover:bg-basic',
-      'hover:text-primary',
+      'space-y-4',
     ],
   );
 
+  useEffect(() => {
+    ConversationService.getConversations().then((res) => {
+      dispatch(setConversation(res));
+    });
+  }, []);
+
   return (
     <div className={containerClass}>
-      <button className={itemClass} type="button">
-        <div className="h-12 w-12 shrink-0">
-          <Image alt="pp" round />
-        </div>
-        <div>
-          <p className="font-bold">romain_nonym</p>
-          <p>Salut</p>
-        </div>
-      </button>
-      <button className={itemClass} type="button">
-        <div className="h-12 w-12 shrink-0">
-          <Image alt="pp" round />
-        </div>
-        <div>
-          <p className="font-bold">thomas_bg13</p>
-          <p>Salut, j ai rien à te dire mais faut que j ecrive</p>
-        </div>
-      </button>
-      <button className={itemClass} type="button">
-        <div className="h-12 w-12 shrink-0">
-          <Image alt="pp" round />
-        </div>
-        <div>
-          <p className="font-bold">thomas_bg13</p>
-          <p>Salut, j ai rien à te dire mais faut que j ecrive</p>
-        </div>
-      </button>
-      <button className={itemClass} type="button">
-        <div className="h-12 w-12 shrink-0">
-          <Image alt="pp" round />
-        </div>
-        <div>
-          <p className="font-bold">thomas_bg13</p>
-          <p>Salut, j ai rien à te dire mais faut que j ecrive</p>
-        </div>
-      </button>
-      <button className={itemClass} type="button">
-        <div className="h-12 w-12 shrink-0">
-          <Image alt="pp" round />
-        </div>
-        <div>
-          <p className="font-bold">thomas_bg13</p>
-          <p>Salut, j ai rien à te dire mais faut que j ecrive</p>
-        </div>
-      </button>
-      <button className={itemClass} type="button">
-        <div className="h-12 w-12 shrink-0">
-          <Image alt="pp" round />
-        </div>
-        <div>
-          <p className="font-bold">thomas_bg13</p>
-          <p>Salut, j ai rien à te dire mais faut que j ecrive</p>
-        </div>
-      </button>
-      <button className={itemClass} type="button">
-        <div className="h-12 w-12 shrink-0">
-          <Image alt="pp" round />
-        </div>
-        <div>
-          <p className="font-bold">thomas_bg13</p>
-          <p>Salut, j ai rien à te dire mais faut que j ecrive</p>
-        </div>
-      </button>
+      {conversations.map((c) => (
+        <Button to={`/chat/${c.id}`} fullWidth className="flex space-x-2 relative" textAlignment="left" key={c.id} plain={c.id === currentConversation}>
+          <div className="relative h-12 w-12 shrink-0">
+            {c.unreadMessages && <span className="absolute rounded-full h-3 w-3 bg-secondary animate-pulse -top-1 -right-1" />}
+            <Image src={c.user.media?.url} alt={c.user.username} round />
+          </div>
+          <div className="grow-0 overflow-hidden">
+            <p className="font-bold">
+              {c.user.username}
+            </p>
+            <p className="truncate">{c.lastMessage?.text || 'Dites bonjour 👋'}</p>
+          </div>
+        </Button>
+      ))}
     </div>
   );
 }
