@@ -14,8 +14,5 @@ module.exports = {
   plugins: [
     "import"
   ],
-  rules: {
-    "no-underscore-dangle": "off",
-    "@typescript-eslint/naming-convention": "off",
-  }
+  rules: {}
 };
