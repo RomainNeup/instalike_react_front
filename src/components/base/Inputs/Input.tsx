@@ -2,11 +2,25 @@ import React, { ReactElement } from 'react';
 import clsx from 'clsx';
 
 export default function Input({
-  className, disabled, label, noBorder, onChange, placeholder, type = 'text', value, rows = 4, autocomplete = 'off',
+  className,
+  disabled,
+  label,
+  border = true,
+  onChange,
+  placeholder,
+  type = 'text',
+  value,
+  rows = 4,
+  autocomplete = 'off',
+  color = 'primary',
 }: InputProps): ReactElement {
   const componentClass = clsx(
     className,
-    ['text-primary'],
+    {
+      'text-primary': color === 'primary',
+      'text-secondary': color === 'secondary',
+      'text-basic': color === 'basic',
+    },
   );
   const inputClass = clsx(
     [
@@ -17,8 +31,12 @@ export default function Input({
       'placeholder:text-primary/50',
     ],
     {
-      'border border-primary': !noBorder,
-      'p-2': !noBorder && type !== 'file',
+      'border border-primary': border,
+      'border-0': !border,
+      'focus:ring-primary focus:border-primary': color === 'primary',
+      'focus:ring-secondary focus:border-secondary': color === 'secondary',
+      'focus:ring-basic focus:border-basic': color === 'basic',
+      'p-2': border && type !== 'file',
       'mt-2': !!label,
     },
     type === 'file' ? [

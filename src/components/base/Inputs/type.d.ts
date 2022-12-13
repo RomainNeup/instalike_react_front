@@ -6,9 +6,10 @@ interface InputProps {
   value?: string;
   placeholder?: string;
   label?: string;
-  noBorder?: boolean;
+  border?: boolean;
   rows?: number;
   autocomplete?: string;
+  color?: 'primary' | 'secondary' | 'basic';
 }
 
 interface CheckboxProps {

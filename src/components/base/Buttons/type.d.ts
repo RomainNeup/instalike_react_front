@@ -8,4 +8,6 @@ interface ButtonProps {
   plain?: boolean;
   fullWidth?: boolean;
   to?: string;
+  textAlignment?: 'left' | 'center' | 'right';
+  border?: boolean;
 }
