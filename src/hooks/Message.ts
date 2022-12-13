@@ -61,7 +61,7 @@ export default function useConversationMessages(conversationId?: string): [
 
   useEffect(() => {
     if (!token) return () => { };
-    const socket = io('ws://localhost:3001', {
+    const socket = io(process.env.REACT_APP_SOCKET_URL, {
       auth: {
         token,
       },
