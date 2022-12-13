@@ -57,7 +57,7 @@ export default function useConversationMessages(conversationId?: string): [
         dispatch(addConversation(newConv));
       });
     }
-  }, [conversationId, dispatch]);
+  }, [conversationId, dispatch, informations]);
 
   useEffect(() => {
     if (!token) return () => { };
@@ -70,7 +70,6 @@ export default function useConversationMessages(conversationId?: string): [
 
     socket.on('message', (data: string) => {
       const event = JSON.parse(data);
-      console.log(event);
       switch (event.type) {
         case 'NEW_MESSAGE':
           dispatch(addMessage({
@@ -92,9 +91,6 @@ export default function useConversationMessages(conversationId?: string): [
       }
     });
 
-    socket.on('connect', () => {
-      console.log('connected');
-    });
     return () => {
       socket.disconnect();
     };

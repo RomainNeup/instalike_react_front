@@ -56,7 +56,6 @@ export default function AddConversation({
   useEffect(() => {
     if (userInput) {
       UserService.searchUser(userInput).then((res) => {
-        console.log(informations?.id);
         setUsers((prev) => prev.concat(
           res.filter((u) => (!prev.find((p) => p.id === u.id) && u.id !== informations?.id))
             .map((u) => ({ ...u, selected: false })),

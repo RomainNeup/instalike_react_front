@@ -37,7 +37,6 @@ export default function Message({
   const handleEditMessage = (newText: string) => {
     MessageService.editMessage(id, newText)
       .then((newMessage) => {
-        console.log(newMessage);
         dispatch(editMessage(newMessage));
       });
   };

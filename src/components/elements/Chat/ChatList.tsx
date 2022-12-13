@@ -22,7 +22,7 @@ export default function ChatList({ className, currentConversation }: ChatListPro
     ConversationService.getConversations().then((res) => {
       dispatch(setConversation(res));
     });
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className={containerClass}>
