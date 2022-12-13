@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import userReducer from './reducers/user/reducer';
 import postReducer from './reducers/post/reducer';
 import usersReducer from './reducers/users/reducer';
+import conversationReducer from './reducers/conversation/reducer';
 import { loadState, saveState } from './localStorage';
 
 const store = configureStore({
@@ -9,6 +10,7 @@ const store = configureStore({
     user: userReducer,
     posts: postReducer,
     users: usersReducer,
+    conversation: conversationReducer,
   },
   preloadedState: loadState(),
 });
