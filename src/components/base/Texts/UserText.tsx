@@ -1,12 +1,18 @@
 import React, { FormEvent, ReactElement, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
-import Icon from '../../base/Icons/Icon';
-import P from '../../base/Texts/P';
-import Input from '../../base/Inputs/Input';
+import Icon from '../Icons/Icon';
+import P from './P';
+import Input from '../Inputs/Input';
 
 export default function UserText({
-  className, text, handleDelete, handleEdit, isEditable, username,
+  className,
+  text,
+  handleDelete,
+  handleEdit,
+  isEditable,
+  username,
+  color,
 }: UserTextProps): ReactElement {
   const { t } = useTranslation('post');
   const [editedText, setEditedText] = useState<string>('');
@@ -32,20 +38,21 @@ export default function UserText({
         <form onSubmit={handleEditUserText} className="flex">
           <Input
             placeholder={t('comment.add')}
-            noBorder
+            border={false}
             onChange={(e) => setEditedText(e.target.value)}
             value={editedText}
             className="grow"
+            color={color}
           />
           <Icon
             name="delete"
             onClick={handleDelete}
-            color="secondary"
+            color={color}
             className="text-sm mx-2"
           />
           <Icon
             name="close"
-            color="secondary"
+            color={color}
             onClick={() => setEditedText('')}
           />
         </form>
@@ -62,16 +69,18 @@ export default function UserText({
               <Icon
                 onClick={() => setEditedText(text)}
                 name="edit"
-                color="secondary"
+                color={color}
                 className="mr-2 text-sm"
               />
             </div>
           )
         }
-        <P>
-          <b className="font-bold">
-            {`${username} `}
-          </b>
+        <P color={color}>
+          {username && (
+            <b className="font-bold">
+              {`${username} `}
+            </b>
+          )}
           {text}
         </P>
       </span>
