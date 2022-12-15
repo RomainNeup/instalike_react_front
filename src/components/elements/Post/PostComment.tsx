@@ -32,7 +32,7 @@ export default function PostComment({ comment }: PostCommentProps): ReactElement
       <UserText
         handleDelete={handleDeleteComment}
         handleEdit={handleEditComment}
-        isEditable={comment.currentUser}
+        isEditable={comment.user.currentUser}
         text={comment.text}
         username={comment.user.username}
       />

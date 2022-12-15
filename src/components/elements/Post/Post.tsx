@@ -5,7 +5,7 @@ import PostHeader from './PostHeader';
 
 export default function Post({ post, imageFull }: PostProps): ReactElement {
   return (
-    <div className="w-full mb-8">
+    <div className="w-full">
       <PostHeader user={post.user} />
       <PostBody post={post} imageFull={imageFull} />
       <PostFooter post={post} />

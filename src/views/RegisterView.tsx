@@ -7,6 +7,7 @@ import Link from '../components/base/Links/Link';
 import AuthService from '../api/auth/service';
 import { useAppDispatch } from '../store/hooks';
 import { loginUser } from '../store/reducers/user/reducer';
+import Body from '../components/layout/Body';
 
 export default function RegisterView(): ReactElement {
   const [username, setUsername] = useState('');
@@ -23,8 +24,8 @@ export default function RegisterView(): ReactElement {
   };
 
   return (
-    <div className="max-w-md w-2/3">
-      <H1 className="mb-16">{t('register.title')}</H1>
+    <Body size="small">
+      <H1 className="mb-12">{t('register.title')}</H1>
       <form onSubmit={handleRegister}>
         <Input
           label={t('fields.username')}
@@ -52,6 +53,6 @@ export default function RegisterView(): ReactElement {
         <Link className="mb-4" to="/login">{t('login.link')}</Link>
         <Button fullWidth>{t('register.submit')}</Button>
       </form>
-    </div>
+    </Body>
   );
 }

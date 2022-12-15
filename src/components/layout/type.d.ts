@@ -1,7 +1,12 @@
-interface BodyProps extends LayoutProps {
-  children: React.ReactNode;
+interface BasicProps {
+  className?: string;
 }
 
-interface LayoutProps {
-  className?: string;
+interface BodyProps extends BasicProps {
+  children: React.ReactNode;
+  size?: 'small' | 'medium' | 'large';
+}
+
+interface LayoutProps extends BasicProps {
+  children: React.ReactNode;
 }

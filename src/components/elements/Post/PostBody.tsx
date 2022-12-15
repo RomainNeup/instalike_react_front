@@ -46,7 +46,7 @@ export default function PostBody({ post, imageFull }: PostProps): ReactElement {
         <UserText
           handleDelete={handleDeletePost}
           handleEdit={handleEditPost}
-          isEditable={post.currentUser}
+          isEditable={post.user.currentUser}
           text={post.description}
           username={post.user.username}
           className="mb-2"

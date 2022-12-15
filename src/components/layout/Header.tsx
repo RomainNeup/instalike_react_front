@@ -13,7 +13,7 @@ import { logoutUser } from '../../store/reducers/user/reducer';
 import frFlag from '../../assets/images/flags/fr.png';
 import ukFlag from '../../assets/images/flags/uk.png';
 
-export default function Header({ className }: LayoutProps): ReactElement {
+export default function Header({ className }: BasicProps): ReactElement {
   const { t, i18n } = useTranslation(['post', 'user', 'auth', 'chat']);
   const { informations, isLogged } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
@@ -22,13 +22,14 @@ export default function Header({ className }: LayoutProps): ReactElement {
     [
       'flex',
       'justify-between',
-      'p-8',
+      'w-full',
+      'items-center',
     ],
   );
 
   return (
     <div className={headerClass}>
-      <Link to="/" className="flex">
+      <Link to="/" className="flex items-center">
         <div className="h-8 w-8 mr-4">
           <Image src={logo} alt="Logo" />
         </div>
@@ -36,8 +37,8 @@ export default function Header({ className }: LayoutProps): ReactElement {
       </Link>
       {
         isLogged ? (
-          <div className="flex space-x-4">
-            <Button size="small" className="self-center" to="/publish">
+          <div className="flex space-x-4 items-center">
+            <Button size="small" to="/publish">
               <Icon name="add" className="mr-2" />
               {t('post:publish.button')}
             </Button>

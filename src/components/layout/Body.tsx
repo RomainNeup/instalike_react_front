@@ -1,37 +1,30 @@
 import React, { ReactElement } from 'react';
 import clsx from 'clsx';
-import Footer from './Footer';
-import Header from './Header';
+import Errors from './Errors';
+// import Errors from './Errors';
 
-export default function Body({ children, className }: BodyProps): ReactElement {
+export default function Body({ children, className, size }: BodyProps): ReactElement {
   const bodyClass = clsx(
     className,
     [
       'flex',
+      'flex-col',
       'justify-center',
-      'p-8',
-      'md:px-16',
+      'w-full',
+      'content-center',
+      'space-y-4',
     ],
+    {
+      'max-w-md': size === 'small',
+      'max-w-lg': size === 'medium',
+      'max-w-3xl': size === 'large',
+    },
   );
 
   return (
-    <div>
-      <Header />
-      {/* <div className={`${props.className} px-8 md:px-16 justify-center flex`}>
-      <div className={`${props.className} max-w-md w-2/3`}>
-        <Error
-          v-for="(error, key) in errors"
-          :key="key"
-          :message="error"
-          :id="key"
-          className="my-2"
-        />
-      </div>
-    </div> */}
-      <div className={bodyClass}>
-        {children}
-      </div>
-      <Footer />
+    <div className={bodyClass}>
+      <Errors />
+      {children}
     </div>
   );
 }

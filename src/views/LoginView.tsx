@@ -8,6 +8,7 @@ import AuthService from '../api/auth/service';
 import UserService from '../api/user/service';
 import { loginUser } from '../store/reducers/user/reducer';
 import { useAppDispatch } from '../store/hooks';
+import Body from '../components/layout/Body';
 
 export default function LoginView(): ReactElement {
   const [identifier, setIdentifier] = useState('');
@@ -23,8 +24,8 @@ export default function LoginView(): ReactElement {
   };
 
   return (
-    <div className="max-w-md w-2/3">
-      <H1 className="mb-16">{t('login.title')}</H1>
+    <Body size="small">
+      <H1 className="mb-12">{t('login.title')}</H1>
       <form onSubmit={handleLogin}>
         <Input
           label={t('fields.identifier')}
@@ -46,6 +47,6 @@ export default function LoginView(): ReactElement {
         <Link className="mb-4" to="/register">{t('register.link')}</Link>
         <Button fullWidth>{t('login.submit')}</Button>
       </form>
-    </div>
+    </Body>
   );
 }
