@@ -1,4 +1,12 @@
 {
     "title": "Mes conversations",
-    "add": "Lancer une conversation"
+    "addConv": {
+        "title": "Nouvelle conversation",
+        "search": "Rechercher un utilisateur",
+        "create": "Créer la conversation",
+        "cancel": "Annuler"
+    },
+    "chatbar" : {
+        "placeholder" : "Écrivez un message"
+    }
 }

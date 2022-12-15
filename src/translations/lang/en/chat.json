@@ -1,4 +1,12 @@
 {
     "title": "My conversations",
-    "add": "Start a conversation"
+    "addConv": {
+        "title": "New conversation",
+        "search": "Search user",
+        "create": "Create the conversation",
+        "cancel": "Cancel"
+    },
+    "chatbar" : {
+        "placeholder" : "Write a message"
+    }
 }
