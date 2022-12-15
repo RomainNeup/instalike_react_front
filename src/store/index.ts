@@ -4,6 +4,7 @@ import postReducer from './reducers/post/reducer';
 import usersReducer from './reducers/users/reducer';
 import conversationReducer from './reducers/conversation/reducer';
 import { loadState, saveState } from './localStorage';
+import errorReducer from './reducers/error/reducer';
 
 const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ const store = configureStore({
     posts: postReducer,
     users: usersReducer,
     conversation: conversationReducer,
+    errors: errorReducer,
   },
   preloadedState: loadState(),
 });

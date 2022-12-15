@@ -1,32 +1,31 @@
 import React, { ReactElement } from 'react';
 import clsx from 'clsx';
 import Icon from '../Icons/Icon';
+import P from '../Texts/P';
+import useErrors from '../../../hooks/Errors';
 
-export default function Error({ id, message, className }: ErrorProps): ReactElement {
+export default function Error({ code }: ErrorType): ReactElement {
+  const { removeError } = useErrors();
+
   const errorClass = clsx(
-    className,
     [
-      'bg-secondary',
-      'w-full',
-      'rounded-md',
-      'p-4',
-      'text-basic',
+      'flex',
+      'justify-between',
+      'bg-red',
+      'text-primary',
+      'px-8',
+      'py-4',
+      'rounded-lg',
     ],
   );
-  const deleteError = () => {
-    console.log(`Delete error ${id}`);
-  };
 
   return (
     <div className={errorClass}>
-      <Icon
-        name="close"
-        className="float-right"
-        color="basic"
-        onClick={deleteError}
-      />
-      <b className="font-bold">Erreur ! </b>
-      {message}
+      <P color="primary">
+        <Icon name="error" className="mr-2" />
+        {code}
+      </P>
+      <Icon onClick={() => removeError(code)} name="close" />
     </div>
   );
 }
