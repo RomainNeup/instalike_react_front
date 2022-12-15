@@ -1,4 +1,5 @@
 import React, { ReactElement, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
 import H3 from '../../base/Titles/H3';
 import Input from '../../base/Inputs/Input';
@@ -12,6 +13,7 @@ import { addConversation } from '../../../store/reducers/conversation/reducer';
 export default function AddConversation({
   open = false, className, close,
 }: AddConversationProps): ReactElement {
+  const { t } = useTranslation('chat');
   const { informations } = useAppSelector((state) => state.user);
   const [userInput, setUserInput] = useState('');
   const [users, setUsers] = useState<UserSearchSelect[]>([]);
@@ -87,8 +89,8 @@ export default function AddConversation({
   return (
     <div tabIndex={-1} className={modalClass}>
       <div className={contentClass}>
-        <H3>New conversation</H3>
-        <Input className="py-4" placeholder="Search user" type="text" value={userInput} onChange={(e) => setUserInput(e.target.value)} />
+        <H3>{t('addConv.title')}</H3>
+        <Input className="py-4" placeholder={t('addConv.search')} type="text" value={userInput} onChange={(e) => setUserInput(e.target.value)} />
         {users.map((u) => (
           <div key={u.id}>
             <Checkbox
@@ -98,8 +100,8 @@ export default function AddConversation({
             />
           </div>
         ))}
-        <Button plain fullWidth onClick={handleCreateConversation}>Create conversation</Button>
-        <Button fullWidth onClick={close}>Cancel</Button>
+        <Button plain fullWidth onClick={handleCreateConversation}>{t('addConv.create')}</Button>
+        <Button fullWidth onClick={close}>{t('addConv.cancel')}</Button>
       </div>
     </div>
   );
