@@ -1,18 +1,18 @@
 import React, { ReactElement, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import routes from './router/routes';
-import Body from './components/layout/Body';
 import Middleware from './router/middlewares/Middleware';
 import NotFoundView from './views/utils/NotFoundView';
 import LoadingView from './views/utils/LoadingView';
 import './translations/i18n';
+import Layout from './components/layout/Layout';
 
 export default function App(): ReactElement {
   const [route] = useState<AppRoute[]>(routes());
 
   return (
     <div className="App">
-      <Body>
+      <Layout>
         <Routes>
           {route.map((({
             path, loginRequired, logoutRequired, Element,
@@ -30,7 +30,7 @@ export default function App(): ReactElement {
           <Route path="loading" element={<LoadingView />} />
           <Route path="*" element={<NotFoundView pageName="" />} />
         </Routes>
-      </Body>
+      </Layout>
     </div>
   );
 }

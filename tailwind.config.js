@@ -26,7 +26,7 @@ module.exports = {
       zinc: colors.zinc,
       neutral: colors.neutral,
       stone: colors.stone,
-      red: colors.red,
+      red: "#BA2C73",
       orange: colors.orange,
       amber: colors.amber,
       yellow: colors.yellow,
