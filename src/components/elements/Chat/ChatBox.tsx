@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+import { useTranslation } from 'react-i18next';
 import Image from '../../base/Images/Image';
 import Input from '../../base/Inputs/Input';
 import Message from './Message';
@@ -8,6 +9,7 @@ export default function ChatBox({
   messages,
   postMessage,
 }: ChatBoxProps): ReactElement {
+  const { t } = useTranslation('chat');
   const [message, setMessage] = React.useState<string>('');
   const addMessage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -37,7 +39,7 @@ export default function ChatBox({
         }
       </div>
       <form className="flex items-end w-100 text-primary" onSubmit={addMessage}>
-        <Input type="text" placeholder="Ecrivez un message" className="grow" value={message} onChange={(e) => setMessage(e.target.value)} />
+        <Input type="text" placeholder={t('chatbar.placeholder')} className="grow" value={message} onChange={(e) => setMessage(e.target.value)} />
       </form>
     </div>
   );
