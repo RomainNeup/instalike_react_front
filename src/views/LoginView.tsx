@@ -4,28 +4,23 @@ import Button from '../components/base/Buttons/Button';
 import H1 from '../components/base/Titles/H1';
 import Input from '../components/base/Inputs/Input';
 import Link from '../components/base/Links/Link';
-import AuthService from '../api/auth/service';
-import UserService from '../api/user/service';
-import { loginUser } from '../store/reducers/user/reducer';
-import { useAppDispatch } from '../store/hooks';
 import Body from '../components/layout/Body';
+import useUser from '../hooks/User';
 
 export default function LoginView(): ReactElement {
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
-  const dispatch = useAppDispatch();
   const { t } = useTranslation('auth');
+  const { login } = useUser();
 
   const handleLogin = (event: FormEvent) => {
     event.preventDefault();
-    AuthService.login(identifier, password)
-      .then(() => UserService.getCurrentUser()
-        .then((user) => dispatch(loginUser(user))));
+    login(identifier, password);
   };
 
   return (
     <Body size="small">
-      <H1 className="mb-12">{t('login.title')}</H1>
+      <H1 className="pb-12">{t('login.title')}</H1>
       <form onSubmit={handleLogin}>
         <Input
           label={t('fields.identifier')}

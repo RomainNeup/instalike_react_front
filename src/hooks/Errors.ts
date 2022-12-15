@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { logoutUser } from '../store/reducers/user/reducer';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { addError as dispatchError, removeError as deleteError } from '../store/reducers/error/reducer';
 
@@ -8,6 +9,9 @@ export default function useErrors() {
 
   const addError = (error: ErrorType) => {
     dispatch(dispatchError(error));
+    if (error.code === 'UNAUTHORIZED') {
+      dispatch(logoutUser());
+    }
   };
 
   const removeError = (error: string) => {

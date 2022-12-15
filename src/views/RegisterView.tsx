@@ -4,28 +4,24 @@ import Button from '../components/base/Buttons/Button';
 import H1 from '../components/base/Titles/H1';
 import Input from '../components/base/Inputs/Input';
 import Link from '../components/base/Links/Link';
-import AuthService from '../api/auth/service';
-import { useAppDispatch } from '../store/hooks';
-import { loginUser } from '../store/reducers/user/reducer';
 import Body from '../components/layout/Body';
+import useUser from '../hooks/User';
 
 export default function RegisterView(): ReactElement {
+  const { t } = useTranslation('auth');
+  const { register } = useUser();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const dispatch = useAppDispatch();
-  const { t } = useTranslation('auth');
 
   const handleRegister = (event: FormEvent) => {
     event.preventDefault();
-    AuthService.register(username, email, password)
-      .then(() => AuthService.login(username, password))
-      .then((response) => dispatch(loginUser(response)));
+    register(username, email, password);
   };
 
   return (
     <Body size="small">
-      <H1 className="mb-12">{t('register.title')}</H1>
+      <H1 className="pb-12">{t('register.title')}</H1>
       <form onSubmit={handleRegister}>
         <Input
           label={t('fields.username')}
