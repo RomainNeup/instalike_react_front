@@ -1,7 +1,6 @@
 import IndexView from '../views/IndexView';
 import LoginView from '../views/LoginView';
 import RegisterView from '../views/RegisterView';
-import ComponentView from '../views/ComponentView';
 import PublishView from '../views/PublishView';
 import ProfileView from '../views/ProfileView';
 import PostView from '../views/PostView';
@@ -59,10 +58,6 @@ export default function getRoutes(): AppRoute[] {
       path: '/chat',
       Element: ChatView,
       loginRequired: true,
-    },
-    {
-      path: '/components',
-      Element: ComponentView,
     },
   ];
 }

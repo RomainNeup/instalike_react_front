@@ -9,6 +9,7 @@ import UploadService from '../api/upload/service';
 import PostService from '../api/post/service';
 import { useAppDispatch } from '../store/hooks';
 import { addPost } from '../store/reducers/post/reducer';
+import Body from '../components/layout/Body';
 
 interface UploadedImage {
   value: string,
@@ -56,8 +57,8 @@ export default function PublishView(): ReactElement {
   };
 
   return (
-    <div className="max-w-lg w-full">
-      <H1 className="mb-16">{t('publish.title')}</H1>
+    <Body size="medium">
+      <H1 className="pb-12">{t('publish.title')}</H1>
       <form className="space-y-4" onSubmit={handlePublish}>
         {uploadedImage.preview && <Image src={uploadedImage.preview} alt={t('publish.preview')} className="w-full max-h-96" />}
         <Input
@@ -77,6 +78,6 @@ export default function PublishView(): ReactElement {
           <Button className="mt-4" fullWidth to="/">{t('publish.cancel')}</Button>
         </div>
       </form>
-    </div>
+    </Body>
   );
 }

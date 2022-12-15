@@ -7,6 +7,7 @@ import NotFoundView from './utils/NotFoundView';
 import UserService from '../api/user/service';
 import { addUser } from '../store/reducers/users/reducer';
 import LoadingView from './utils/LoadingView';
+import Body from '../components/layout/Body';
 
 export default function ProfileView(): ReactElement {
   const [loading, setLoading] = React.useState(true);
@@ -43,7 +44,7 @@ export default function ProfileView(): ReactElement {
   }
 
   return (
-    <div className="w-full max-w-3xl content-center">
+    <Body size="large">
       <UserInformations user={user} />
       <div className="grid grid-cols-3 gap-2 mt-4">
         {user.posts?.map((post) => (
@@ -55,6 +56,6 @@ export default function ProfileView(): ReactElement {
           </ReactLink>
         ))}
       </div>
-    </div>
+    </Body>
   );
 }

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useAppSelector } from '../store/hooks';
 import Post from '../components/elements/Post/Post';
 import NotFoundView from './utils/NotFoundView';
+import Body from '../components/layout/Body';
 
 export default function PostView(): ReactElement {
   const { id } = useParams<'id'>();
@@ -13,8 +14,8 @@ export default function PostView(): ReactElement {
     );
   }
   return (
-    <div className="w-full max-w-2xl content-center">
+    <Body size="small">
       <Post post={post} imageFull />
-    </div>
+    </Body>
   );
 }
