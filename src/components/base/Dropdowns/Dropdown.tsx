@@ -101,7 +101,7 @@ export default function Dropdown({ children, items }: DropdownProps): ReactEleme
       {
         open && (
           <div
-            className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md overflow-hidden bg-secondary border border-secondary text-basic shadow-lg focus:outline-none"
+            className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-lg overflow-hidden bg-secondary border border-secondary text-basic shadow-lg focus:outline-none"
           >
             {items.map(({
               id, text, type, className, disabled, icon, image, onClick, to,

@@ -8,7 +8,7 @@ export default function Link({ children, to, className }: LinkProps): ReactEleme
     [
       'w-full',
       'block',
-      'rounded-md',
+      'rounded-lg',
       'bg-transparent',
       'text-primary',
       'hover:text-primary/75',

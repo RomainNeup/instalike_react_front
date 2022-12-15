@@ -12,7 +12,7 @@ export default function UserText({
   handleEdit,
   isEditable,
   username,
-  color,
+  color = 'primary',
 }: UserTextProps): ReactElement {
   const { t } = useTranslation('post');
   const [editedText, setEditedText] = useState<string>('');

@@ -26,7 +26,7 @@ export default function Input({
     [
       'w-full',
       'block',
-      'rounded-md',
+      'rounded-lg',
       'bg-transparent',
       'placeholder:text-primary/50',
     ],
