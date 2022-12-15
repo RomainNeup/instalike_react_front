@@ -11,6 +11,7 @@ import UserService from '../api/user/service';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { editUser } from '../store/reducers/user/reducer';
 import { editUser as editUserInUsers } from '../store/reducers/users/reducer';
+import Body from '../components/layout/Body';
 
 interface UploadedImage {
   value: string,
@@ -83,7 +84,7 @@ export default function EditProfileView(): ReactElement {
   };
 
   return (
-    <div className="w-2/3 max-w-md">
+    <Body size="small">
       <form onSubmit={handleSubmit} className="mb-4">
         <div className="flex justify-center mb-8">
           <div className="w-24 h-24">
@@ -114,6 +115,6 @@ export default function EditProfileView(): ReactElement {
         <Button plain fullWidth>{t('action.submit')}</Button>
       </form>
       <Button fullWidth onClick={() => 'TODO'}>{t('action.delete')}</Button>
-    </div>
+    </Body>
   );
 }
