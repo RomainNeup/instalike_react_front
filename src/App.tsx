@@ -12,7 +12,7 @@ import API from './api/api';
 export default function App(): ReactElement {
   const [route] = useState<AppRoute[]>(routes());
   useEffect(() => {
-    API.get('translations/all.json')
+    API.get('translations')
       .then((res) => {
         i18next.addResourceBundle('en', 'backend', res.data.en, true, true);
         i18next.addResourceBundle('fr', 'backend', res.data.fr, true, true);
