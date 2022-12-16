@@ -6,12 +6,12 @@ import Button from '../components/base/Buttons/Button';
 import P from '../components/base/Texts/P';
 import ChatBox from '../components/elements/Chat/ChatBox';
 import AddConversation from '../components/elements/Chat/AddConversation';
-import useConversationMessages from '../hooks/Message';
+import { useConversation } from '../store/reducers/conversation/hooks';
 
 export default function ChatView(): ReactElement {
   const [open, setOpen] = useState(false);
   const { id } = useParams<string>();
-  const [postMessage, messages, user] = useConversationMessages(id);
+  const { postMessage, messages, user } = useConversation(id);
 
   return (
     <div className="flex max-h-144 h-128 max-w-4xl w-full overflow-hidden flex-row space-x-8">

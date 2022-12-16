@@ -4,21 +4,12 @@ import Image from '../../base/Images/Image';
 import P from '../../base/Texts/P';
 import H2 from '../../base/Titles/H2';
 import Button from '../../base/Buttons/Button';
-import { useAppDispatch } from '../../../store/hooks';
-import UserService from '../../../api/user/service';
-import { followUser as followUserUsersAction } from '../../../store/reducers/post/reducer';
-import { followUser as followUserPostAction } from '../../../store/reducers/users/reducer';
+import useUser from '../../../store/reducers/users/hooks';
 
 export default function UserInformations({ user }: UserInformationProps): ReactElement {
   const { t } = useTranslation('user');
-  const dispatch = useAppDispatch();
-  const handleFollow = () => {
-    UserService.followUser(user.id)
-      .then((follow) => {
-        dispatch(followUserPostAction({ id: user.id, follow }));
-        dispatch(followUserUsersAction({ id: user.id, follow }));
-      });
-  };
+  const { followUser } = useUser({ id: user.id });
+
   return (
     <div>
       <div className="flex items-center justify-between">
@@ -59,7 +50,7 @@ export default function UserInformations({ user }: UserInformationProps): ReactE
               </Button>
             ) : (
               <Button
-                onClick={handleFollow}
+                onClick={followUser}
                 className="w-1/3"
                 plain={!user.isFollower}
               >

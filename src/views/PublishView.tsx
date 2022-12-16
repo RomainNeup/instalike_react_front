@@ -5,11 +5,8 @@ import Button from '../components/base/Buttons/Button';
 import Image from '../components/base/Images/Image';
 import Input from '../components/base/Inputs/Input';
 import H1 from '../components/base/Titles/H1';
-import UploadService from '../api/upload/service';
-import PostService from '../api/post/service';
-import { useAppDispatch } from '../store/hooks';
-import { addPost } from '../store/reducers/post/reducer';
 import Body from '../components/layout/Body';
+import { usePost } from '../store/reducers/post/hooks';
 
 interface UploadedImage {
   value: string,
@@ -21,16 +18,14 @@ export default function PublishView(): ReactElement {
   const { t } = useTranslation('post');
   const [uploadedImage, setUploadedImage] = useState<UploadedImage>({ value: '' });
   const [description, setDescription] = useState<string>('');
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { createPost } = usePost();
 
   const handlePublish = (event: FormEvent) => {
     event.preventDefault();
     if (uploadedImage.file) {
-      UploadService.uploadMedia(uploadedImage.file)
-        .then((media) => PostService.createPost(media, description))
-        .then((post) => {
-          dispatch(addPost(post));
+      createPost(uploadedImage.file, description)
+        .then(() => {
           setUploadedImage({ value: '' });
           setDescription('');
           navigate('/');

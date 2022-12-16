@@ -4,19 +4,19 @@ import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import H3 from '../base/Titles/H3';
 import Image from '../base/Images/Image';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { useAppSelector } from '../../store/hooks';
 import logo from '../../assets/images/logo-light.svg';
 import Button from '../base/Buttons/Button';
 import Icon from '../base/Icons/Icon';
 import Dropdown from '../base/Dropdowns/Dropdown';
-import { logoutUser } from '../../store/reducers/user/reducer';
 import frFlag from '../../assets/images/flags/fr.png';
 import ukFlag from '../../assets/images/flags/uk.png';
+import useUser from '../../store/reducers/user/hooks';
 
 export default function Header({ className }: BasicProps): ReactElement {
   const { t, i18n } = useTranslation(['post', 'user', 'auth', 'chat']);
   const { informations, isLogged } = useAppSelector((state) => state.user);
-  const dispatch = useAppDispatch();
+  const { logout } = useUser();
   const headerClass = clsx(
     className,
     [
@@ -73,7 +73,7 @@ export default function Header({ className }: BasicProps): ReactElement {
                   id: 'logout',
                   text: t('auth:logout.title'),
                   type: 'button',
-                  onClick: () => dispatch(logoutUser()),
+                  onClick: logout,
                   icon: 'logout',
                 },
               ]}

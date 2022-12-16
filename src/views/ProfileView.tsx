@@ -1,35 +1,17 @@
+import React, { ReactElement } from 'react';
 import { Link as ReactLink, useParams } from 'react-router-dom';
-import React, { ReactElement, useEffect } from 'react';
 import Image from '../components/base/Images/Image';
 import UserInformations from '../components/elements/User/UserInformations';
-import { useAppSelector, useAppDispatch } from '../store/hooks';
+import { useAppSelector } from '../store/hooks';
 import NotFoundView from './utils/NotFoundView';
-import UserService from '../api/user/service';
-import { addUser } from '../store/reducers/users/reducer';
 import LoadingView from './utils/LoadingView';
 import Body from '../components/layout/Body';
+import useUser from '../store/reducers/users/hooks';
 
 export default function ProfileView(): ReactElement {
-  const [loading, setLoading] = React.useState(true);
   const { informations } = useAppSelector((state) => state.user);
   const { username = informations?.username } = useParams<'username'>();
-  const user = useAppSelector((state) => state.users.find((u) => u.username === username));
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    if (username && !user) {
-      UserService.getUser(username)
-        .then((u) => {
-          setLoading(false);
-          dispatch(addUser({
-            ...u,
-            currentUser: u.id === informations?.id,
-          }));
-        });
-    } else {
-      setLoading(false);
-    }
-  }, [username, dispatch, user, informations]);
+  const { user, loading } = useUser({ username });
 
   if (loading) {
     return (

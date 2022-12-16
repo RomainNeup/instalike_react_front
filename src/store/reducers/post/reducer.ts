@@ -59,12 +59,11 @@ export const postSlice = createSlice({
         postCopy.comments[commentIndex].text = action.payload.text;
       }
     },
-    deleteComment(posts, action: PayloadAction<PostComment>): void {
-      const postCopy = posts.find((post) => post.id === action.payload.post);
-      if (postCopy) {
-        postCopy.comments = postCopy.comments
-          .filter((comment) => comment.id !== action.payload.id);
-      }
+    deleteComment(posts, action: PayloadAction<string>): Post[] {
+      return posts.map((post): Post => ({
+        ...post,
+        comments: post.comments.filter((comment) => comment.id !== action.payload),
+      }));
     },
   },
 });

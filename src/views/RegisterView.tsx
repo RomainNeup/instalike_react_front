@@ -5,7 +5,7 @@ import H1 from '../components/base/Titles/H1';
 import Input from '../components/base/Inputs/Input';
 import Link from '../components/base/Links/Link';
 import Body from '../components/layout/Body';
-import useUser from '../hooks/User';
+import useUser from '../store/reducers/user/hooks';
 
 export default function RegisterView(): ReactElement {
   const { t } = useTranslation('auth');

@@ -4,21 +4,11 @@ import { Link as ReactLink } from 'react-router-dom';
 import Button from '../../base/Buttons/Button';
 import Image from '../../base/Images/Image';
 import P from '../../base/Texts/P';
-import { useAppDispatch } from '../../../store/hooks';
-import UserService from '../../../api/user/service';
-import { followUser as followUserUsersAction } from '../../../store/reducers/post/reducer';
-import { followUser as followUserPostAction } from '../../../store/reducers/users/reducer';
+import useUser from '../../../store/reducers/users/hooks';
 
 export default function PostHeader({ user }: PostLayoutProps): ReactElement {
   const { t } = useTranslation('user');
-  const dispatch = useAppDispatch();
-  const handleFollow = () => {
-    UserService.followUser(user.id)
-      .then((follow) => {
-        dispatch(followUserPostAction({ id: user.id, follow }));
-        dispatch(followUserUsersAction({ id: user.id, follow }));
-      });
-  };
+  const { followUser } = useUser({ id: user.id });
 
   return (
     <div className="flex flex-row space-x-4 mb-4">
@@ -35,7 +25,7 @@ export default function PostHeader({ user }: PostLayoutProps): ReactElement {
               {t('profile')}
             </Button>
           ) : (
-            <Button size="small" onClick={handleFollow} plain={!user.isFollower}>
+            <Button size="small" onClick={followUser} plain={!user.isFollower}>
               {user.isFollower ? t('action.unfollow') : t('action.follow')}
             </Button>
           )

@@ -9,12 +9,16 @@ class UserApi {
     return API.get<User>('user').then((a) => a.data);
   }
 
-  public static editUser(user: User): Promise<User> {
+  public static editUser(username: string, description: string, mediaId?: string): Promise<User> {
     return API.put<User>('user', {
-      username: user.username,
-      description: user.description,
-      media: user.media?.id,
+      username,
+      description,
+      media: mediaId || null,
     }).then((a) => a.data);
+  }
+
+  public static deleteUser(): Promise<void> {
+    return API.delete('user');
   }
 
   public static followUser(id: string): Promise<boolean> {

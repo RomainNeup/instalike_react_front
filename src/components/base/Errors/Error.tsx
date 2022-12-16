@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react';
 import clsx from 'clsx';
 import Icon from '../Icons/Icon';
 import P from '../Texts/P';
-import useErrors from '../../../hooks/Errors';
+import useErrors from '../../../store/reducers/error/hooks';
 
 export default function Error({ code }: ErrorType): ReactElement {
   const { removeError } = useErrors();

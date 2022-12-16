@@ -5,19 +5,16 @@ import H3 from '../../base/Titles/H3';
 import Input from '../../base/Inputs/Input';
 import Button from '../../base/Buttons/Button';
 import Checkbox from '../../base/Inputs/Checkbox';
-import UserService from '../../../api/user/service';
-import ConversationService from '../../../api/conversation/service';
-import { useAppDispatch, useAppSelector } from '../../../store/hooks';
-import { addConversation } from '../../../store/reducers/conversation/reducer';
+import { useConversations } from '../../../store/reducers/conversation/hooks';
+import useUser from '../../../store/reducers/user/hooks';
 
 export default function AddConversation({
   open = false, className, close,
 }: AddConversationProps): ReactElement {
   const { t } = useTranslation('chat');
-  const { informations } = useAppSelector((state) => state.user);
+  const { searchUser, users, selectUser } = useUser();
   const [userInput, setUserInput] = useState('');
-  const [users, setUsers] = useState<UserSearchSelect[]>([]);
-  const dispatch = useAppDispatch();
+  const { createConversation } = useConversations();
   const modalClass = clsx(
     className,
     [
@@ -56,33 +53,14 @@ export default function AddConversation({
     ],
   );
   useEffect(() => {
-    if (userInput) {
-      UserService.searchUser(userInput).then((res) => {
-        setUsers((prev) => prev.concat(
-          res.filter((u) => (!prev.find((p) => p.id === u.id) && u.id !== informations?.id))
-            .map((u) => ({ ...u, selected: false })),
-        ));
-      });
-    } else {
-      setUsers((prev) => prev.filter((u) => u.selected));
-    }
-  }, [userInput, informations]);
-
-  const addUserToConversation = (userAdded: UserSearchSelect, selected: boolean) => {
-    setUsers((prev) => prev.map((u) => ({
-      ...u,
-      selected: u.id === userAdded.id && selected,
-    })));
-  };
+    searchUser(userInput);
+  }, [userInput]);
 
   const handleCreateConversation = () => {
     const user: UserSearchSelect | undefined = users.find((u) => u.selected);
 
     if (user) {
-      ConversationService.createConversation(user.id).then((res) => {
-        close();
-        dispatch(addConversation(res));
-      });
+      createConversation(user.id);
     }
   };
 
@@ -95,7 +73,7 @@ export default function AddConversation({
           <div key={u.id}>
             <Checkbox
               label={u.username}
-              onChange={(e) => addUserToConversation(u, e.target.checked)}
+              onChange={(e) => selectUser(u.id, e.target.checked)}
               checked={u.selected}
             />
           </div>

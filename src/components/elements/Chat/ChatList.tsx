@@ -1,14 +1,11 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement } from 'react';
 import clsx from 'clsx';
 import Image from '../../base/Images/Image';
-import ConversationService from '../../../api/conversation/service';
-import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import Button from '../../base/Buttons/Button';
-import { setConversation } from '../../../store/reducers/conversation/reducer';
+import { useConversations } from '../../../store/reducers/conversation/hooks';
 
 export default function ChatList({ className, currentConversation }: ChatListProps): ReactElement {
-  const dispatch = useAppDispatch();
-  const conversations = useAppSelector((state) => state.conversation);
+  const { conversations } = useConversations();
 
   const containerClass = clsx(
     className,
@@ -17,12 +14,6 @@ export default function ChatList({ className, currentConversation }: ChatListPro
       'space-y-4',
     ],
   );
-
-  useEffect(() => {
-    ConversationService.getConversations().then((res) => {
-      dispatch(setConversation(res));
-    });
-  }, [dispatch]);
 
   return (
     <div className={containerClass}>

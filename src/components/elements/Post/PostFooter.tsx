@@ -2,26 +2,20 @@ import React, { FormEvent, ReactElement, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Image from '../../base/Images/Image';
 import Input from '../../base/Inputs/Input';
-import { useAppDispatch, useAppSelector } from '../../../store/hooks';
-import CommentService from '../../../api/comment/service';
-import { addComment } from '../../../store/reducers/post/reducer';
+import { useAppSelector } from '../../../store/hooks';
+import { usePost } from '../../../store/reducers/post/hooks';
 
 export default function PostFooter({ post }: PostProps): ReactElement {
   const { t } = useTranslation('post');
   const { informations } = useAppSelector((state) => state.user);
   const [comment, setComment] = useState('');
-  const dispatch = useAppDispatch();
+  const { commentPost } = usePost(post.id);
+
   const handleAddComment = (event: FormEvent) => {
     if (informations) {
       event.preventDefault();
-      CommentService.saveComment(post.id, comment)
-        .then((response) => {
-          dispatch(addComment({
-            ...response,
-            user: informations,
-          }));
-          setComment('');
-        });
+      commentPost(comment)
+        .then(() => setComment(''));
     }
   };
 

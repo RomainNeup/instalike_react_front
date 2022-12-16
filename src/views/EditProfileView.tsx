@@ -6,12 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import Image from '../components/base/Images/Image';
 import Input from '../components/base/Inputs/Input';
 import Button from '../components/base/Buttons/Button';
-import UploadService from '../api/upload/service';
-import UserService from '../api/user/service';
-import { useAppDispatch, useAppSelector } from '../store/hooks';
-import { editUser } from '../store/reducers/user/reducer';
-import { editUser as editUserInUsers } from '../store/reducers/users/reducer';
 import Body from '../components/layout/Body';
+import useUser from '../store/reducers/user/hooks';
 
 interface UploadedImage {
   value: string,
@@ -24,44 +20,23 @@ export default function EditProfileView(): ReactElement {
   const [media, setMedia] = useState<UploadedImage>({ value: '' });
   const [username, setUsername] = useState<string>('');
   const [description, setDescription] = useState<string>('');
-  const { informations } = useAppSelector((state) => state.user);
-  const dispatch = useAppDispatch();
+  const { currentUser, editProfile, deleteUser } = useUser();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (informations) {
-      setUsername(informations?.username || '');
-      setDescription(informations?.description || '');
-      setMedia((m) => ({ ...m, preview: informations?.media?.url }));
+    if (currentUser) {
+      setUsername(currentUser.username || '');
+      setDescription(currentUser.description || '');
+      setMedia((m) => ({ ...m, preview: currentUser.media?.url }));
     }
-  }, [informations]);
+  }, [currentUser]);
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    if (media.file) {
-      UploadService.uploadMedia(media.file)
-        .then((mediaId) => UserService.editUser({
-          id: '', username, description, media: { id: mediaId, mimetype: '', url: '' },
-        }))
-        .then((user) => {
-          if (informations) {
-            dispatch(editUser(user));
-            dispatch(editUserInUsers({ ...user, id: informations.id }));
-            navigate('/profile');
-          }
-        });
-    } else {
-      UserService.editUser({
-        id: '', username, description, media: null,
-      })
-        .then((user) => {
-          if (informations) {
-            dispatch(editUser(user));
-            dispatch(editUserInUsers({ ...user, id: informations.id }));
-            navigate('/profile');
-          }
-        });
-    }
+    editProfile(username, description, media.file)
+      .then(() => {
+        navigate('/profile');
+      });
   };
 
   const handleImageUpload = (elem: HTMLInputElement) => {
@@ -114,7 +89,7 @@ export default function EditProfileView(): ReactElement {
         </div>
         <Button plain fullWidth>{t('action.submit')}</Button>
       </form>
-      <Button fullWidth onClick={() => 'TODO'}>{t('action.delete')}</Button>
+      <Button fullWidth onClick={deleteUser}>{t('action.delete')}</Button>
     </Body>
   );
 }

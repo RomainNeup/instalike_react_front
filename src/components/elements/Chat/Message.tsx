@@ -2,14 +2,12 @@ import React, { ReactElement } from 'react';
 import clsx from 'clsx';
 import Image from '../../base/Images/Image';
 import UserText from '../../base/Texts/UserText';
-import MessageService from '../../../api/message/service';
-import { useAppDispatch } from '../../../store/hooks';
-import { deleteMessage, editMessage } from '../../../store/reducers/conversation/reducer';
+import { useMessage } from '../../../store/reducers/conversation/hooks';
 
 export default function Message({
   id, text, user, className,
 }: MessageProps): ReactElement {
-  const dispatch = useAppDispatch();
+  const { editMessage, deleteMessage } = useMessage(id);
   const containerClass = clsx(
     className,
     [
@@ -34,16 +32,6 @@ export default function Message({
     ],
     user.currentUser ? 'bg-secondary rounded-l-lg' : 'bg-primary rounded-r-lg',
   );
-  const handleEditMessage = (newText: string) => {
-    MessageService.editMessage(id, newText)
-      .then((newMessage) => {
-        dispatch(editMessage(newMessage));
-      });
-  };
-  const handleDeleteMessage = () => {
-    MessageService.deleteMessage(id)
-      .then(() => dispatch(deleteMessage(id)));
-  };
 
   return (
     <div className={containerClass}>
@@ -52,8 +40,8 @@ export default function Message({
       </div>
       <div className={messageClass}>
         <UserText
-          handleDelete={handleDeleteMessage}
-          handleEdit={handleEditMessage}
+          handleDelete={deleteMessage}
+          handleEdit={editMessage}
           text={text}
           color="basic"
           isEditable={user.currentUser}

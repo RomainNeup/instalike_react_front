@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { logoutUser } from '../store/reducers/user/reducer';
-import { useAppDispatch, useAppSelector } from '../store/hooks';
-import { addError as dispatchError, removeError as deleteError } from '../store/reducers/error/reducer';
+import { logoutUser } from '../user/reducer';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { addError as dispatchError, removeError as deleteError } from './reducer';
 
 export default function useErrors() {
   const dispatch = useAppDispatch();

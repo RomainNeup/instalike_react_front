@@ -1,23 +1,10 @@
 import React, { ReactElement } from 'react';
 import Image from '../../base/Images/Image';
-import CommentService from '../../../api/comment/service';
-import { useAppDispatch } from '../../../store/hooks';
-import { deleteComment, editComment } from '../../../store/reducers/post/reducer';
 import UserText from '../../base/Texts/UserText';
+import { useComment } from '../../../store/reducers/post/hooks';
 
 export default function PostComment({ comment }: PostCommentProps): ReactElement {
-  const dispatch = useAppDispatch();
-
-  const handleEditComment = (text: string) => {
-    CommentService.editComment(comment.id, text)
-      .then((newCom) => {
-        dispatch(editComment({ ...comment, ...newCom }));
-      });
-  };
-  const handleDeleteComment = () => {
-    CommentService.deleteComment(comment.id)
-      .then(() => dispatch(deleteComment(comment)));
-  };
+  const { deleteComment, editComment } = useComment();
 
   return (
     <div className="flex flex-row space-x-4 mb-2">
@@ -30,8 +17,8 @@ export default function PostComment({ comment }: PostCommentProps): ReactElement
         />
       </div>
       <UserText
-        handleDelete={handleDeleteComment}
-        handleEdit={handleEditComment}
+        handleDelete={deleteComment}
+        handleEdit={editComment}
         isEditable={comment.user.currentUser}
         text={comment.text}
         username={comment.user.username}

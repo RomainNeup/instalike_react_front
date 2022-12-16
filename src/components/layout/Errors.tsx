@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect } from 'react';
 import clsx from 'clsx';
-import useErrors from '../../hooks/Errors';
+import useErrors from '../../store/reducers/error/hooks';
 import Error from '../base/Errors/Error';
 
 export default function Errors({ className }: BasicProps): ReactElement {

@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import Body from '../components/layout/Body';
 import Post from '../components/elements/Post/Post';
-import usePosts from '../hooks/Posts';
+import { usePosts } from '../store/reducers/post/hooks';
 
 export default function IndexView(): ReactElement {
   const { posts } = usePosts();
