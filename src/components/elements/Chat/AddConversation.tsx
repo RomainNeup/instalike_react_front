@@ -5,16 +5,17 @@ import H3 from '../../base/Titles/H3';
 import Input from '../../base/Inputs/Input';
 import Button from '../../base/Buttons/Button';
 import Checkbox from '../../base/Inputs/Checkbox';
-import { useConversations } from '../../../store/reducers/conversation/hooks';
 import useUser from '../../../store/reducers/user/hooks';
 
 export default function AddConversation({
-  open = false, className, close,
+  open = false,
+  className,
+  close,
+  createConversation,
 }: AddConversationProps): ReactElement {
   const { t } = useTranslation('chat');
   const { searchUser, users, selectUser } = useUser();
   const [userInput, setUserInput] = useState('');
-  const { createConversation } = useConversations();
   const modalClass = clsx(
     className,
     [

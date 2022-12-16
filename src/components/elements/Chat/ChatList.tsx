@@ -2,11 +2,12 @@ import React, { ReactElement } from 'react';
 import clsx from 'clsx';
 import Image from '../../base/Images/Image';
 import Button from '../../base/Buttons/Button';
-import { useConversations } from '../../../store/reducers/conversation/hooks';
 
-export default function ChatList({ className, currentConversation }: ChatListProps): ReactElement {
-  const { conversations } = useConversations();
-
+export default function ChatList({
+  className,
+  currentConversation,
+  conversations,
+}: ChatListProps): ReactElement {
   const containerClass = clsx(
     className,
     [

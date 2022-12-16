@@ -9,6 +9,7 @@ interface MessageProps {
 interface ChatListProps {
   className?: string;
   currentConversation?: string;
+  conversations: Conversation[];
 }
 
 interface ChatBoxProps {
@@ -21,6 +22,7 @@ interface AddConversationProps {
   open: boolean;
   close: () => void;
   className?: string;
+  createConversation: (userId: string) => void;
 }
 
 interface UserSearchSelect extends SearchUser {
