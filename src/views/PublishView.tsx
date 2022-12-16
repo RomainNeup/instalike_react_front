@@ -11,7 +11,7 @@ import { usePost } from '../store/reducers/post/hooks';
 interface UploadedImage {
   value: string,
   file?: File | null,
-  preview?: string
+  preview?: string,
 }
 
 export default function PublishView(): ReactElement {
@@ -32,6 +32,7 @@ export default function PublishView(): ReactElement {
         });
     }
   };
+
   const handleImageUpload = (elem: HTMLInputElement) => {
     if (elem.files && elem.files.length > 0) {
       const fileReader = new FileReader();

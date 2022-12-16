@@ -41,7 +41,7 @@ export default function useUser({ id, username }: { id?: string, username?: stri
     } else {
       setLoading(false);
     }
-  }, [username, user]);
+  }, [username, user, addError, dispatch]);
 
   return {
     user,

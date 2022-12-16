@@ -21,12 +21,12 @@ export default function useErrors() {
   useEffect(() => {
     if (errors.length > 0) {
       const timeout = setTimeout(() => {
-        removeError(errors[0].code);
+        dispatch(deleteError(errors[0].code));
       }, 10000);
       return () => clearTimeout(timeout);
     }
     return () => {};
-  }, [errors]);
+  }, [errors, dispatch]);
 
   return { errors, addError, removeError };
 }

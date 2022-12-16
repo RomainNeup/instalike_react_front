@@ -1,4 +1,9 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, {
+  ReactElement,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
 import H3 from '../../base/Titles/H3';
@@ -16,6 +21,7 @@ export default function AddConversation({
   const { t } = useTranslation('chat');
   const { searchUser, users, selectUser } = useUser();
   const [userInput, setUserInput] = useState('');
+  const modalRef = useRef<HTMLDivElement>(null);
   const modalClass = clsx(
     className,
     [
@@ -25,11 +31,11 @@ export default function AddConversation({
       'right-0',
       'z-50',
       'w-full',
-      'p-16',
+      'p-8',
       'overflow-x-hidden',
       'overflow-y-auto',
-      'md:inset-0',
-      'md:h-full',
+      'inset-0',
+      'h-full',
       'flex',
       'justify-center',
       'bg-basic/50',
@@ -45,7 +51,8 @@ export default function AddConversation({
       'rounded',
       'shadow',
       'text-primary',
-      'w-2/5',
+      'w-full',
+      'max-w-sm',
       'h-fit',
       'p-8',
       'border',
@@ -53,9 +60,6 @@ export default function AddConversation({
       'space-y-4',
     ],
   );
-  useEffect(() => {
-    searchUser(userInput);
-  }, [userInput]);
 
   const handleCreateConversation = () => {
     const user: UserSearchSelect | undefined = users.find((u) => u.selected);
@@ -65,11 +69,34 @@ export default function AddConversation({
     }
   };
 
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
+        close();
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [close]);
+
   return (
     <div tabIndex={-1} className={modalClass}>
-      <div className={contentClass}>
+      <div className={contentClass} ref={modalRef}>
         <H3>{t('addConv.title')}</H3>
-        <Input className="py-4" placeholder={t('addConv.search')} type="text" value={userInput} onChange={(e) => setUserInput(e.target.value)} />
+        <Input
+          className="py-4"
+          placeholder={t('addConv.search')}
+          type="text"
+          value={userInput}
+          onChange={(e) => {
+            searchUser(e.target.value);
+            setUserInput(e.target.value);
+          }}
+        />
         {users.map((u) => (
           <div key={u.id}>
             <Checkbox

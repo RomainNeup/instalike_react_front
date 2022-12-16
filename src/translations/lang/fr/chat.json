@@ -4,7 +4,8 @@
         "title": "Nouvelle conversation",
         "search": "Rechercher un utilisateur",
         "create": "Créer la conversation",
-        "cancel": "Annuler"
+        "cancel": "Annuler",
+        "button": "Créer"
     },
     "chatbar" : {
         "placeholder" : "Écrivez un message"

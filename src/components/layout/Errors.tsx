@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement } from 'react';
 import clsx from 'clsx';
 import useErrors from '../../store/reducers/error/hooks';
 import Error from '../base/Errors/Error';
@@ -15,10 +15,6 @@ export default function Errors({ className }: BasicProps): ReactElement {
       hidden: errors.length === 0,
     },
   );
-
-  useEffect(() => {
-    console.log('les erreur ?', errors);
-  }, [errors]);
 
   return (
     <div className={containerClass}>

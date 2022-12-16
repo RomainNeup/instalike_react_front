@@ -4,7 +4,8 @@
         "title": "New conversation",
         "search": "Search user",
         "create": "Create the conversation",
-        "cancel": "Cancel"
+        "cancel": "Cancel",
+        "button": "Create"
     },
     "chatbar" : {
         "placeholder" : "Write a message"

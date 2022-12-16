@@ -19,6 +19,7 @@ export function useConversations() {
   const conversations = useAppSelector((state) => state.conversation);
   const [loading, setLoading] = useState<boolean>(true);
   const dispatch = useAppDispatch();
+  const [error, setError] = useState<ErrorType | null>(null);
   const { addError } = useErrors();
 
   const createConversation = (userId: string) => {
@@ -38,10 +39,17 @@ export function useConversations() {
       .catch((err: AxiosError<ErrorResponse>) => {
         setLoading(false);
         if (err.response) {
-          addError(err.response.data.error);
+          setError(err.response.data.error);
         }
       });
-  }, []);
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (error) {
+      addError(error);
+      setError(null);
+    }
+  }, [error, addError]);
 
   return {
     createConversation,
@@ -90,10 +98,12 @@ export function useConversation(conversationId?: string): {
   user?: User,
 } {
   const [token, setToken] = useState('');
+  const [error, setError] = useState<ErrorType | null>(null);
   const conversation = useAppSelector((state) => state.conversation
     .find((c) => c.id === conversationId));
   const dispatch = useAppDispatch();
   const { currentUser } = useUser();
+  const { addError } = useErrors();
 
   const postMessage = (text: string) => {
     if (!conversationId) return Promise.reject();
@@ -106,29 +116,46 @@ export function useConversation(conversationId?: string): {
             currentUser: true,
           },
         }));
+      })
+      .catch((err: AxiosError<ErrorResponse>) => {
+        if (err.response) {
+          addError(err.response.data.error);
+        }
       });
   };
 
   useEffect(() => {
-    AuthService.getSocketToken().then((t) => setToken(t));
+    AuthService.getSocketToken()
+      .then((t) => setToken(t))
+      .catch((err: AxiosError<ErrorResponse>) => {
+        if (err.response) {
+          setError(err.response.data.error);
+        }
+      });
   }, []);
 
   useEffect(() => {
     if (conversationId) {
-      ConversationService.getConversation(conversationId).then((res) => {
-        const newConv: Conversation = {
-          ...res,
-          messages: res.messages?.map((m) => ({
-            ...m,
-            user: {
-              ...m.user,
-              currentUser: currentUser?.id === m.user.id,
-            },
-          })),
-          unreadMessages: false,
-        };
-        dispatch(addConversation(newConv));
-      });
+      ConversationService.getConversation(conversationId)
+        .then((res) => {
+          const newConv: Conversation = {
+            ...res,
+            messages: res.messages?.map((m) => ({
+              ...m,
+              user: {
+                ...m.user,
+                currentUser: currentUser?.id === m.user.id,
+              },
+            })),
+            unreadMessages: false,
+          };
+          dispatch(addConversation(newConv));
+        })
+        .catch((err: AxiosError<ErrorResponse>) => {
+          if (err.response) {
+            setError(err.response.data.error);
+          }
+        });
     }
   }, [conversationId, dispatch, currentUser]);
 
@@ -160,14 +187,30 @@ export function useConversation(conversationId?: string): {
           dispatch(deleteMessage(event.data.message.id));
           break;
         default:
+          setError({ code: 'UNKNOWN_EVENT' });
           break;
       }
+    });
+
+    socket.on('connect_error', () => {
+      setError({ code: 'ERROR' });
+    });
+
+    socket.on('connect_failed', () => {
+      setError({ code: 'ERROR' });
     });
 
     return () => {
       socket.disconnect();
     };
   }, [conversationId, token, dispatch]);
+
+  useEffect(() => {
+    if (error) {
+      addError(error);
+      setError(null);
+    }
+  }, [error, addError]);
 
   return { postMessage, messages: conversation?.messages, user: conversation?.user };
 }

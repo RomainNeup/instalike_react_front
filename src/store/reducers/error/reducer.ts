@@ -7,6 +7,7 @@ export const errorSlice = createSlice({
   initialState,
   reducers: {
     addError(state, action: PayloadAction<ErrorType>) {
+      if (!action.payload || state.find((e) => e.code === action.payload.code)) return;
       state.push(action.payload);
     },
     removeError(state, action: PayloadAction<string>) {

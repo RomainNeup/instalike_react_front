@@ -10,4 +10,7 @@ export default {
   user,
   post,
   chat,
+  backend: {
+    ERROR: 'An error occured',
+  },
 };

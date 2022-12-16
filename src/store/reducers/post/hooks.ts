@@ -146,45 +146,51 @@ export function useComment(id?: string) {
 }
 
 export function usePosts(): UsePostsReturn {
-  const user = useAppSelector((state) => state.user.informations);
-  const [userId, setUserId] = useState<string>();
+  const { addError } = useErrors();
+  const [error, setError] = useState<ErrorType | null>(null);
+  const { currentUser } = useUser();
   const posts = useAppSelector((state) => state.posts);
   const [loading, setLoading] = useState<boolean>(false);
-  const { addError } = useErrors();
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    if (user) setUserId(user.id);
-  }, [user]);
+  const getPosts = () => {
+    if (currentUser) {
+      setLoading(true);
+      PostService.getPosts()
+        .then((res) => {
+          dispatch(dispatchPosts(res.map<Post>((post): Post => ({
+            ...post,
+            user: {
+              ...post.user,
+              currentUser: post.user.id === currentUser.id,
+            },
+            comments: post.comments.map((comment) => ({
+              ...comment,
+              user: {
+                ...comment.user,
+                currentUser: comment.user.id === currentUser.id,
+              },
+            })),
+          }))));
+          setLoading(false);
+        })
+        .catch((err: AxiosError<ErrorResponse>) => {
+          setLoading(false);
+          if (err.response) {
+            setError(err.response.data.error);
+          }
+        });
+    }
+  };
 
   useEffect(() => {
-    if (!userId) return;
-    setLoading(true);
-    PostService.getPosts()
-      .then((res) => {
-        dispatch(dispatchPosts(res.map<Post>((post): Post => ({
-          ...post,
-          user: {
-            ...post.user,
-            currentUser: post.user.id === userId,
-          },
-          comments: post.comments.map((comment) => ({
-            ...comment,
-            user: {
-              ...comment.user,
-              currentUser: comment.user.id === userId,
-            },
-          })),
-        }))));
-        setLoading(false);
-      })
-      .catch((err: AxiosError<ErrorResponse>) => {
-        setLoading(false);
-        if (err.response) {
-          addError(err.response.data.error);
-        }
-      });
-  }, [userId, dispatch]);
+    if (error) {
+      addError(error);
+      setError(null);
+    }
+  }, [error, addError]);
+
+  useEffect(getPosts, [currentUser, dispatch]);
 
   return {
     posts,
