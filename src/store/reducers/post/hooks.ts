@@ -15,7 +15,8 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import useErrors from '../error/hooks';
 import UploadService from '../../../api/upload/service';
 import CommentService from '../../../api/comment/service';
-import useUser from '../user/hooks';
+import useCurrentUser from '../user/hooks';
+import useUser from '../users/hooks';
 
 interface UsePostsReturn {
   posts: Post[],
@@ -27,7 +28,8 @@ export function usePost(id?: string) {
   const [loading, setLoading] = useState<boolean>(false);
   const { addError } = useErrors();
   const post = useAppSelector((state) => state.posts.find((p) => p.id === id));
-  const { currentUser } = useUser();
+  const { currentUser } = useCurrentUser();
+  const { addPostToUser, deletePostFromUser, editPostFromUser } = useUser({});
 
   const getPost = () => {
     if (!id || post) return;
@@ -43,7 +45,11 @@ export function usePost(id?: string) {
 
   const createPost = (media: File, description: string) => UploadService.uploadMedia(media)
     .then((res) => PostService.createPost(res, description))
-    .then((res) => dispatch(addPost(res)))
+    .then((res) => {
+      addPostToUser(res);
+      dispatch(addPost(res));
+      setLoading(false);
+    })
     .catch((err: AxiosError<ErrorResponse>) => {
       setLoading(false);
       if (err.response) {
@@ -54,7 +60,11 @@ export function usePost(id?: string) {
   const updatePost = (content: string) => {
     if (!post || !id) return;
     PostService.editPost(id, content)
-      .then((res) => dispatch(editPost({ ...post, description: res.description })))
+      .then((res) => {
+        setLoading(false);
+        dispatch(editPost({ ...post, description: res.description }));
+        editPostFromUser({ ...post, description: res.description });
+      })
       .catch((err: AxiosError<ErrorResponse>) => {
         setLoading(false);
         if (err.response) {
@@ -64,9 +74,14 @@ export function usePost(id?: string) {
   };
 
   const removePost = () => {
+    setLoading(true);
     if (!id) return;
     PostService.deletePost(id)
-      .then(() => dispatch(deletePost(id)))
+      .then(() => {
+        setLoading(false);
+        dispatch(deletePost(id));
+        deletePostFromUser(id);
+      })
       .catch((err: AxiosError<ErrorResponse>) => {
         setLoading(false);
         if (err.response) {
@@ -109,15 +124,18 @@ export function usePost(id?: string) {
   };
 }
 
-export function useComment(id?: string) {
+export function useComment(comment: PostComment | undefined) {
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState<boolean>(false);
   const { addError } = useErrors();
 
   const edit = (text: string) => {
-    if (!id) return;
-    CommentService.editComment(id, text)
-      .then((newComment) => dispatch(editComment(newComment)))
+    if (!comment?.id) return;
+    CommentService.editComment(comment.id, text)
+      .then((newComment) => dispatch(editComment({
+        ...comment,
+        text: newComment.text,
+      })))
       .catch((err: AxiosError<ErrorResponse>) => {
         setLoading(false);
         if (err.response) {
@@ -127,9 +145,9 @@ export function useComment(id?: string) {
   };
 
   const removeComment = () => {
-    if (!id) return Promise.resolve();
-    return CommentService.deleteComment(id)
-      .then(() => dispatch(deleteComment(id)))
+    if (!comment?.id) return Promise.resolve();
+    return CommentService.deleteComment(comment.id)
+      .then(() => dispatch(deleteComment(comment.id)))
       .catch((err: AxiosError<ErrorResponse>) => {
         setLoading(false);
         if (err.response) {
@@ -148,7 +166,7 @@ export function useComment(id?: string) {
 export function usePosts(): UsePostsReturn {
   const { addError } = useErrors();
   const [error, setError] = useState<ErrorType | null>(null);
-  const { currentUser } = useUser();
+  const { currentUser } = useCurrentUser();
   const posts = useAppSelector((state) => state.posts);
   const [loading, setLoading] = useState<boolean>(false);
   const dispatch = useAppDispatch();
@@ -158,13 +176,13 @@ export function usePosts(): UsePostsReturn {
       setLoading(true);
       PostService.getPosts()
         .then((res) => {
-          dispatch(dispatchPosts(res.map<Post>((post): Post => ({
+          dispatch(dispatchPosts(res.slice().reverse().map<Post>((post): Post => ({
             ...post,
             user: {
               ...post.user,
               currentUser: post.user.id === currentUser.id,
             },
-            comments: post.comments.map((comment) => ({
+            comments: post.comments.slice(0).reverse().map((comment) => ({
               ...comment,
               user: {
                 ...comment.user,

@@ -23,6 +23,12 @@ export const usersSlice = createSlice({
             followers: action.payload.follow ? user.followers + 1 : user.followers - 1,
           };
         }
+        if (user.currentUser && user.following !== undefined) {
+          return {
+            ...user,
+            following: action.payload.follow ? user.following + 1 : user.following - 1,
+          };
+        }
         return user;
       });
     },
@@ -37,8 +43,16 @@ export const usersSlice = createSlice({
         return user;
       });
     },
+    clearUsers(): User[] {
+      return initialState;
+    },
   },
 });
 
-export const { addUser, followUser, editUser } = usersSlice.actions;
+export const {
+  addUser,
+  followUser,
+  editUser,
+  clearUsers,
+} = usersSlice.actions;
 export default usersSlice.reducer;

@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { AxiosError } from 'axios';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { editUser, loginUser, logoutUser } from './reducer';
-import { editUser as editUserInUsers } from '../users/reducer';
+import { clearUsers, editUser as editUserInUsers } from '../users/reducer';
+import { clearConversation } from '../conversation/reducer';
 import useErrors from '../error/hooks';
 import AuthService from '../../../api/auth/service';
 import UserService from '../../../api/user/service';
@@ -36,8 +37,9 @@ export default function useUser() {
             addError(err.response.data.error);
           }
         });
+    } else {
+      setUsers((prev) => prev.filter((user) => user.selected));
     }
-    setUsers((prev) => prev.filter((user) => user.selected));
   };
 
   const getUser = () => {
@@ -109,7 +111,11 @@ export default function useUser() {
 
   const logout = () => {
     AuthService.logout()
-      .then(() => dispatch(logoutUser()))
+      .then(() => {
+        dispatch(logoutUser());
+        dispatch(clearUsers());
+        dispatch(clearConversation());
+      })
       .catch((err: AxiosError<ErrorResponse>) => {
         setLoading(false);
         if (err.response) {

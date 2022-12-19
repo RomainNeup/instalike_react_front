@@ -20,6 +20,7 @@ export const userSlice = createSlice({
           email,
           description,
           media,
+          currentUser: true,
         },
         isLogged: true,
       };
