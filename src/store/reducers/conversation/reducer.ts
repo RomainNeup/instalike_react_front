@@ -51,6 +51,9 @@ export const conversationSlice = createSlice({
         conversation.lastMessage = conversation.messages?.[conversation.messages.length - 1];
       }
     },
+    clearConversation(): Conversation[] {
+      return initialState;
+    },
   },
 });
 
@@ -60,6 +63,7 @@ export const {
   addMessage,
   editMessage,
   deleteMessage,
+  clearConversation,
 } = conversationSlice.actions;
 
 export default conversationSlice.reducer;

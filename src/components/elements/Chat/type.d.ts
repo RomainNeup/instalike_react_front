@@ -22,7 +22,7 @@ interface AddConversationProps {
   open: boolean;
   close: () => void;
   className?: string;
-  createConversation: (userId: string) => void;
+  createConversation: (userId: string) => Promise<Conversation | null>;
 }
 
 interface UserSearchSelect extends SearchUser {

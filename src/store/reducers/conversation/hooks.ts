@@ -22,16 +22,18 @@ export function useConversations() {
   const [error, setError] = useState<ErrorType | null>(null);
   const { addError } = useErrors();
 
-  const createConversation = (userId: string) => {
-    ConversationService.createConversation(userId)
-      .then((res) => dispatch(addConversation(res)))
-      .catch((err: AxiosError<ErrorResponse>) => {
-        setLoading(false);
-        if (err.response) {
-          addError(err.response.data.error);
-        }
-      });
-  };
+  const createConversation = (userId: string) => ConversationService.createConversation(userId)
+    .then((res) => {
+      dispatch(addConversation(res));
+      return res;
+    })
+    .catch((err: AxiosError<ErrorResponse>) => {
+      setLoading(false);
+      if (err.response) {
+        addError(err.response.data.error);
+      }
+      return null;
+    });
 
   useEffect(() => {
     ConversationService.getConversations()
@@ -212,5 +214,9 @@ export function useConversation(conversationId?: string): {
     }
   }, [error, addError]);
 
-  return { postMessage, messages: conversation?.messages, user: conversation?.user };
+  return {
+    postMessage,
+    messages: conversation?.messages,
+    user: conversation?.user || conversation?.creator,
+  };
 }

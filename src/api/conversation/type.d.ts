@@ -2,7 +2,7 @@ interface Conversation {
   id: string;
   lastMessage?: Message | null;
   unreadMessages?: boolean;
-  users: User[];
+  creator: User;
   messages?: Message[];
   user: User;
 }

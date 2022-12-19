@@ -5,6 +5,7 @@ import React, {
   useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 import H3 from '../../base/Titles/H3';
 import Input from '../../base/Inputs/Input';
@@ -22,6 +23,7 @@ export default function AddConversation({
   const { searchUser, users, selectUser } = useUser();
   const [userInput, setUserInput] = useState('');
   const modalRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
   const modalClass = clsx(
     className,
     [
@@ -65,7 +67,13 @@ export default function AddConversation({
     const user: UserSearchSelect | undefined = users.find((u) => u.selected);
 
     if (user) {
-      createConversation(user.id);
+      createConversation(user.id)
+        .then((res) => {
+          if (res) {
+            navigate(`/chat/${res.id}`);
+            close();
+          }
+        });
     }
   };
 
