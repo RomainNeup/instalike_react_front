@@ -1,3 +1,9 @@
 {
-    "submit": "Envoyer"
+    "submit": "Envoyer",
+    "loading": "Chargement...",
+    "notFound": {
+        "title": "Page non trouvée",
+        "text": "La page {{page}} n'a pas été trouvée.",
+        "link": "Retour à l'accueil"
+    }
 }

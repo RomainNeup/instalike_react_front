@@ -1,3 +1,9 @@
 {
-    "submit": "Submit"
+    "submit": "Submit",
+    "loading": "Loading...",
+    "notFound": {
+        "title": "Page not found",
+        "text": "Page {{page}} not found",
+        "link": "Back to home"
+    }
 }
