@@ -15,12 +15,13 @@ export default function UserText({
   color = 'primary',
 }: UserTextProps): ReactElement {
   const { t } = useTranslation('post');
-  const [editedText, setEditedText] = useState<string>('');
+  const [editedText, setEditedText] = useState<string | null>(null);
 
   const handleEditUserText = (event: FormEvent) => {
     event.preventDefault();
+    if (!editedText) return;
     handleEdit(editedText);
-    setEditedText('');
+    setEditedText(null);
   };
 
   const classes = clsx(
@@ -32,7 +33,7 @@ export default function UserText({
     ],
   );
 
-  if (editedText) {
+  if (editedText !== null) {
     return (
       <div className={classes}>
         <form onSubmit={handleEditUserText} className="flex">

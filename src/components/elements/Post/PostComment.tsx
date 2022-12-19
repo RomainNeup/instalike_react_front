@@ -4,7 +4,7 @@ import UserText from '../../base/Texts/UserText';
 import { useComment } from '../../../store/reducers/post/hooks';
 
 export default function PostComment({ comment }: PostCommentProps): ReactElement {
-  const { deleteComment, editComment } = useComment();
+  const { deleteComment, editComment } = useComment(comment);
 
   return (
     <div className="flex flex-row space-x-4 mb-2">
