@@ -59,6 +59,7 @@ export default function PublishView(): ReactElement {
         {uploadedImage.preview && <Image src={uploadedImage.preview} alt={t('publish.preview')} className="w-full max-h-96" />}
         <Input
           type="file"
+          accept="image/*"
           value={uploadedImage.value}
           onChange={(e) => handleImageUpload(e.target as HTMLInputElement)}
         />

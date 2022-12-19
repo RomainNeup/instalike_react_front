@@ -3,6 +3,7 @@ interface InputProps {
   disabled?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   type?: 'text' | 'password' | 'email' | 'number' | 'textarea' | 'file';
+  accept?: string;
   value?: string;
   placeholder?: string;
   label?: string;

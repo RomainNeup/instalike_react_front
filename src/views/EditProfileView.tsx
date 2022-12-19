@@ -69,6 +69,7 @@ export default function EditProfileView(): ReactElement {
         <div className="space-y-4 mb-8">
           <Input
             type="file"
+            accept="image/*"
             value={media.value}
             onChange={(e) => handleImageUpload(e.target as HTMLInputElement)}
           />

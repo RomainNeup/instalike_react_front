@@ -9,6 +9,7 @@ export default function Input({
   onChange,
   placeholder,
   type = 'text',
+  accept,
   value,
   rows = 4,
   autocomplete = 'off',
@@ -72,6 +73,7 @@ export default function Input({
             id={label}
             className={inputClass}
             type={type}
+            accept={accept}
             placeholder={placeholder}
             value={value}
             onChange={onChange}
