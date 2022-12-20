@@ -13,12 +13,8 @@ class UserApi {
     return API.put<User>('user', {
       username,
       description,
-      media: mediaId || null,
+      media: mediaId,
     }).then((a) => a.data);
-  }
-
-  public static deleteUser(): Promise<void> {
-    return API.delete('user');
   }
 
   public static followUser(id: string): Promise<boolean> {

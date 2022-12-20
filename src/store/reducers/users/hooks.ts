@@ -19,7 +19,7 @@ export default function useUser({ id, username }: { id?: string, username?: stri
   const user = useAppSelector((state) => state.users.find(
     (u) => (username && u.username === username)
       || (id && u.id === id)
-      || (currentUser && u.id === currentUser?.id),
+      || (!id && !username && currentUser && u.id === currentUser?.id),
   ));
 
   const followUser = () => {
