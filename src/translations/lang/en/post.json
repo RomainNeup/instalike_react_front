@@ -15,7 +15,6 @@
         "placeholders": {
             "description": "Tell us about your photo..."
         },
-        "submit": "Share my photo",
-        "cancel": "Cancel"
+        "submit": "Share my photo"
     }
 }

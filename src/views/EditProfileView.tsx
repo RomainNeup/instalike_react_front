@@ -8,6 +8,7 @@ import Input from '../components/base/Inputs/Input';
 import Button from '../components/base/Buttons/Button';
 import Body from '../components/layout/Body';
 import useUser from '../store/reducers/user/hooks';
+import Icon from '../components/base/Icons/Icon';
 
 interface UploadedImage {
   value: string,
@@ -16,11 +17,11 @@ interface UploadedImage {
 }
 
 export default function EditProfileView(): ReactElement {
-  const { t } = useTranslation('user');
+  const { t } = useTranslation(['user', 'common']);
   const [media, setMedia] = useState<UploadedImage>({ value: '' });
   const [username, setUsername] = useState<string>('');
   const [description, setDescription] = useState<string>('');
-  const { currentUser, editProfile, deleteUser } = useUser();
+  const { currentUser, editProfile } = useUser();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -74,23 +75,29 @@ export default function EditProfileView(): ReactElement {
             onChange={(e) => handleImageUpload(e.target as HTMLInputElement)}
           />
           <Input
-            label={t('fields.username')}
-            placeholder={t('placeholders.username')}
+            label={t('user:fields.username')}
+            placeholder={t('user:placeholders.username')}
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
           <Input
-            label={t('fields.description')}
-            placeholder={t('placeholders.description')}
+            label={t('user:fields.description')}
+            placeholder={t('user:placeholders.description')}
             type="textarea"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>
-        <Button plain fullWidth>{t('action.submit')}</Button>
+        <Button plain fullWidth>
+          <Icon name="edit" className="mr-2" />
+          {t('user:action.submit')}
+        </Button>
       </form>
-      <Button fullWidth onClick={deleteUser}>{t('action.delete')}</Button>
+      <Button fullWidth to="/">
+        <Icon name="cancel" className="mr-2" />
+        {t('common:cancel')}
+      </Button>
     </Body>
   );
 }

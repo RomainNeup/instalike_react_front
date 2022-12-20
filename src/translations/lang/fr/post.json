@@ -15,7 +15,6 @@
         "placeholders": {
             "description": "Dites en plus sur votre post..."
         },
-        "submit": "Je partage ma photo",
-        "cancel": "J'abandonne"
+        "submit": "Je partage ma photo"
     }
 }

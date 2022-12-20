@@ -1,6 +1,7 @@
 import React, { FormEvent, ReactElement, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import Icon from '../components/base/Icons/Icon';
 import Button from '../components/base/Buttons/Button';
 import Image from '../components/base/Images/Image';
 import Input from '../components/base/Inputs/Input';
@@ -15,7 +16,7 @@ interface UploadedImage {
 }
 
 export default function PublishView(): ReactElement {
-  const { t } = useTranslation('post');
+  const { t } = useTranslation(['post', 'common']);
   const [uploadedImage, setUploadedImage] = useState<UploadedImage>({ value: '' });
   const [description, setDescription] = useState<string>('');
   const navigate = useNavigate();
@@ -54,9 +55,9 @@ export default function PublishView(): ReactElement {
 
   return (
     <Body size="medium">
-      <H1 className="pb-12">{t('publish.title')}</H1>
+      <H1 className="pb-12">{t('post:publish.title')}</H1>
       <form className="space-y-4" onSubmit={handlePublish}>
-        {uploadedImage.preview && <Image src={uploadedImage.preview} alt={t('publish.preview')} className="w-full max-h-96" />}
+        {uploadedImage.preview && <Image src={uploadedImage.preview} alt={t('post:publish.preview')} className="w-full max-h-96" />}
         <Input
           type="file"
           accept="image/*"
@@ -65,14 +66,20 @@ export default function PublishView(): ReactElement {
         />
         <Input
           type="textarea"
-          label={t('publish.fields.description')}
-          placeholder={t('publish.placeholders.description')}
+          label={t('post:publish.fields.description')}
+          placeholder={t('post:publish.placeholders.description')}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
         <div>
-          <Button className="mt-8" fullWidth plain>{t('publish.submit')}</Button>
-          <Button className="mt-4" fullWidth to="/">{t('publish.cancel')}</Button>
+          <Button className="mt-8" fullWidth plain>
+            <Icon name="publish" className="mr-2" />
+            {t('post:publish.submit')}
+          </Button>
+          <Button className="mt-4" fullWidth to="/">
+            <Icon name="cancel" className="mr-2" />
+            {t('common:cancel')}
+          </Button>
         </div>
       </form>
     </Body>
