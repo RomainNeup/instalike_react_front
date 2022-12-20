@@ -82,25 +82,20 @@ export default function useUser() {
     mediaId?: string,
   ) => UserService.editUser(username, description, mediaId)
     .then((user) => {
-      dispatch(editUser(user));
-      dispatch(editUserInUsers(user));
+      dispatch(editUser({
+        ...currentUser,
+        ...user,
+      }));
+      dispatch(editUserInUsers({
+        ...currentUser,
+        ...user,
+      }));
     });
 
   const editProfile = (username: string, description: string, media?: File | null) => {
     if (!media) return edit(username, description);
     return UploadService.uploadMedia(media)
       .then((mediaId) => edit(username, description, mediaId))
-      .catch((err: AxiosError<ErrorResponse>) => {
-        setLoading(false);
-        if (err.response) {
-          addError(err.response.data.error);
-        }
-      });
-  };
-
-  const deleteUser = () => {
-    UserService.deleteUser()
-      .then(() => dispatch(logoutUser()))
       .catch((err: AxiosError<ErrorResponse>) => {
         setLoading(false);
         if (err.response) {
@@ -131,7 +126,6 @@ export default function useUser() {
     logout,
     loading,
     editProfile,
-    deleteUser,
     searchUser,
     selectUser,
     users,
