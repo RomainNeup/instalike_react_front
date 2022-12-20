@@ -8,7 +8,7 @@ import PostComment from './PostComment';
 import UserText from '../../base/Texts/UserText';
 import { usePost } from '../../../store/reducers/post/hooks';
 
-export default function PostBody({ post, imageFull }: PostProps): ReactElement {
+export default function PostBody({ post, imageFull, commentPost }: PostProps): ReactElement {
   const { t } = useTranslation('post');
   const { likePost, updatePost, removePost } = usePost(post.id);
   const imageClass = clsx(
@@ -23,7 +23,7 @@ export default function PostBody({ post, imageFull }: PostProps): ReactElement {
       <Image className={imageClass} src={post.media?.url} alt={post.description} border="primary" />
       <div className="mt-4">
         <Icon name="favorite" color="secondary" className="mr-2" onClick={likePost} plain={post.isLiked} />
-        <Icon name="chat_bubble" color="secondary" />
+        <Icon name="chat_bubble" color="secondary" onClick={commentPost} />
         <P className="font-light">
           {t('likes', { count: post.likes })}
         </P>

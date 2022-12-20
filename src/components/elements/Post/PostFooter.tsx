@@ -5,7 +5,7 @@ import Input from '../../base/Inputs/Input';
 import { useAppSelector } from '../../../store/hooks';
 import { usePost } from '../../../store/reducers/post/hooks';
 
-export default function PostFooter({ post }: PostProps): ReactElement {
+export default function PostFooter({ post, inputRef }: PostProps): ReactElement {
   const { t } = useTranslation('post');
   const { informations } = useAppSelector((state) => state.user);
   const [comment, setComment] = useState('');
@@ -32,6 +32,7 @@ export default function PostFooter({ post }: PostProps): ReactElement {
               border={false}
               onChange={(e) => setComment(e.target.value)}
               value={comment}
+              inputRef={inputRef}
             />
           </form>
         </div>

@@ -14,6 +14,8 @@ interface PostProps {
   className?: string;
   post: Post;
   imageFull?: boolean;
+  commentPost?: () => void;
+  inputRef?: React.RefObject<HTMLInputElement>;
 }
 
 interface PostCommentProps {

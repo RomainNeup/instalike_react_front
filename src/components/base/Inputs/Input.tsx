@@ -14,6 +14,7 @@ export default function Input({
   rows = 4,
   autocomplete = 'off',
   color = 'primary',
+  inputRef,
 }: InputProps): ReactElement {
   const componentClass = clsx(
     className,
@@ -79,6 +80,7 @@ export default function Input({
             onChange={onChange}
             disabled={disabled}
             autoComplete={autocomplete}
+            ref={inputRef}
           />
         )
       }

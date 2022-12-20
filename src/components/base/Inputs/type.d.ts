@@ -11,6 +11,7 @@ interface InputProps {
   rows?: number;
   autocomplete?: string;
   color?: 'primary' | 'secondary' | 'basic';
+  inputRef?: React.RefObject<HTMLInputElement>;
 }
 
 interface CheckboxProps {
