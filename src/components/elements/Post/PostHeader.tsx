@@ -5,6 +5,7 @@ import Button from '../../base/Buttons/Button';
 import Image from '../../base/Images/Image';
 import P from '../../base/Texts/P';
 import useUser from '../../../store/reducers/users/hooks';
+import Icon from '../../base/Icons/Icon';
 
 export default function PostHeader({ user }: PostLayoutProps): ReactElement {
   const { t } = useTranslation('user');
@@ -22,10 +23,12 @@ export default function PostHeader({ user }: PostLayoutProps): ReactElement {
         {
           user.currentUser ? (
             <Button size="small" to="/profile">
+              <Icon name="account_circle" className="mr-2" />
               {t('profile')}
             </Button>
           ) : (
             <Button size="small" onClick={followUser} plain={!user.isFollower}>
+              <Icon name={user.isFollower ? 'done' : 'person_add'} className="mr-2" />
               {user.isFollower ? t('action.unfollow') : t('action.follow')}
             </Button>
           )

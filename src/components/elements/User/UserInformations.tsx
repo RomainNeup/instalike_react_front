@@ -5,6 +5,7 @@ import P from '../../base/Texts/P';
 import H2 from '../../base/Titles/H2';
 import Button from '../../base/Buttons/Button';
 import useUser from '../../../store/reducers/users/hooks';
+import Icon from '../../base/Icons/Icon';
 
 export default function UserInformations({ user }: UserInformationProps): ReactElement {
   const { t } = useTranslation('user');
@@ -46,6 +47,7 @@ export default function UserInformations({ user }: UserInformationProps): ReactE
           {
             user.currentUser ? (
               <Button v-else className="w-1/3" to="/account/edit">
+                <Icon name="edit" className="mr-2" />
                 {t('action.edit')}
               </Button>
             ) : (
@@ -54,6 +56,7 @@ export default function UserInformations({ user }: UserInformationProps): ReactE
                 className="w-1/3"
                 plain={!user.isFollower}
               >
+                <Icon name={user.isFollower ? 'check' : 'person_add'} className="mr-2" />
                 {user.isFollower ? t('action.unfollow') : t('action.follow')}
               </Button>
             )
