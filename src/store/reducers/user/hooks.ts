@@ -93,7 +93,15 @@ export default function useUser() {
     });
 
   const editProfile = (username: string, description: string, media?: File | null) => {
-    if (!media) return edit(username, description);
+    if (!media) {
+      return edit(username, description)
+        .catch((err: AxiosError<ErrorResponse>) => {
+          setLoading(false);
+          if (err.response) {
+            addError(err.response.data.error);
+          }
+        });
+    }
     return UploadService.uploadMedia(media)
       .then((mediaId) => edit(username, description, mediaId))
       .catch((err: AxiosError<ErrorResponse>) => {
