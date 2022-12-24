@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import Image from '../../base/Images/Image';
 import Input from '../../base/Inputs/Input';
@@ -16,6 +16,11 @@ export default function ChatBox({
     postMessage(message)
       .then(() => setMessage(''));
   };
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
 
   return (
     <div className="w-2/3 h-full flex flex-col justify-between">
@@ -37,6 +42,7 @@ export default function ChatBox({
             />
           ))
         }
+        <div ref={messagesEndRef} />
       </div>
       <form className="flex items-end w-100 text-primary" onSubmit={addMessage}>
         <Input type="text" placeholder={t('chatbar.placeholder')} className="grow" value={message} onChange={(e) => setMessage(e.target.value)} />
